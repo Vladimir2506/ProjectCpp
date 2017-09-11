@@ -1,0 +1,15 @@
+<RCC>
+    <qresource prefix="/ProjectFrontend">
+        <file>commit.png</file>
+        <file>modify.png</file>
+        <file>right.png</file>
+        <file>wrong.png</file>
+        <file>add.png</file>
+        <file>back.png</file>
+        <file>next.png</file>
+        <file>starful.png</file>
+        <file>starnil.png</file>
+        <file>submit.png</file>
+        <file>subtract.png</file>
+    </qresource>
+</RCC>

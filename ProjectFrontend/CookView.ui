@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>CookView</class>
+ <widget class="QDialog" name="CookView">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>825</width>
+    <height>600</height>
+   </rect>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>825</width>
+    <height>600</height>
+   </size>
+  </property>
+  <property name="maximumSize">
+   <size>
+    <width>825</width>
+    <height>600</height>
+   </size>
+  </property>
+  <property name="windowTitle">
+   <string>厨师</string>
+  </property>
+  <widget class="QLabel" name="lblInfo">
+   <property name="geometry">
+    <rect>
+     <x>25</x>
+     <y>25</y>
+     <width>275</width>
+     <height>25</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
+  <widget class="QGroupBox" name="gbTodo">
+   <property name="geometry">
+    <rect>
+     <x>25</x>
+     <y>75</y>
+     <width>400</width>
+     <height>500</height>
+    </rect>
+   </property>
+   <property name="title">
+    <string>待烹饪的菜品</string>
+   </property>
+   <widget class="QListWidget" name="lstTodo">
+    <property name="geometry">
+     <rect>
+      <x>25</x>
+      <y>75</y>
+      <width>350</width>
+      <height>350</height>
+     </rect>
+    </property>
+    <property name="editTriggers">
+     <set>QAbstractItemView::NoEditTriggers</set>
+    </property>
+    <property name="selectionMode">
+     <enum>QAbstractItemView::NoSelection</enum>
+    </property>
+    <property name="selectionBehavior">
+     <enum>QAbstractItemView::SelectItems</enum>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="btnFinish">
+    <property name="geometry">
+     <rect>
+      <x>135</x>
+      <y>440</y>
+      <width>125</width>
+      <height>40</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>完成选定烹饪</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="lblTodo">
+    <property name="geometry">
+     <rect>
+      <x>135</x>
+      <y>40</y>
+      <width>125</width>
+      <height>25</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>分配的菜品</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+   </widget>
+  </widget>
+  <widget class="QGroupBox" name="gbDone">
+   <property name="geometry">
+    <rect>
+     <x>450</x>
+     <y>25</y>
+     <width>350</width>
+     <height>550</height>
+    </rect>
+   </property>
+   <property name="focusPolicy">
+    <enum>Qt::NoFocus</enum>
+   </property>
+   <property name="title">
+    <string>已完成的菜品</string>
+   </property>
+   <widget class="QTableView" name="tbDone">
+    <property name="geometry">
+     <rect>
+      <x>25</x>
+      <y>25</y>
+      <width>300</width>
+      <height>500</height>
+     </rect>
+    </property>
+    <property name="editTriggers">
+     <set>QAbstractItemView::NoEditTriggers</set>
+    </property>
+    <property name="selectionMode">
+     <enum>QAbstractItemView::NoSelection</enum>
+    </property>
+   </widget>
+  </widget>
+ </widget>
+ <layoutdefault spacing="6" margin="11"/>
+ <resources/>
+ <connections>
+  <connection>
+   <sender>lstTodo</sender>
+   <signal>currentRowChanged(int)</signal>
+   <receiver>CookView</receiver>
+   <slot>OnSelect(int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>251</x>
+     <y>167</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>321</x>
+     <y>64</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>btnFinish</sender>
+   <signal>clicked()</signal>
+   <receiver>CookView</receiver>
+   <slot>CookOne()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>245</x>
+     <y>532</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>431</x>
+     <y>555</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+ <slots>
+  <slot>OnSelect(int)</slot>
+  <slot>CookOne()</slot>
+ </slots>
+</ui>

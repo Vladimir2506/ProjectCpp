@@ -1,0 +1,576 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>OrderSupervise</class>
+ <widget class="QDialog" name="OrderSupervise">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>900</width>
+    <height>500</height>
+   </rect>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>900</width>
+    <height>500</height>
+   </size>
+  </property>
+  <property name="maximumSize">
+   <size>
+    <width>900</width>
+    <height>500</height>
+   </size>
+  </property>
+  <property name="windowTitle">
+   <string>订单管理</string>
+  </property>
+  <widget class="QPushButton" name="btnBack">
+   <property name="geometry">
+    <rect>
+     <x>25</x>
+     <y>25</y>
+     <width>40</width>
+     <height>40</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+   <property name="icon">
+    <iconset>
+     <normaloff>back.png</normaloff>back.png</iconset>
+   </property>
+   <property name="iconSize">
+    <size>
+     <width>25</width>
+     <height>25</height>
+    </size>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="btnNext">
+   <property name="geometry">
+    <rect>
+     <x>75</x>
+     <y>25</y>
+     <width>40</width>
+     <height>40</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+   <property name="icon">
+    <iconset>
+     <normaloff>next.png</normaloff>next.png</iconset>
+   </property>
+   <property name="iconSize">
+    <size>
+     <width>25</width>
+     <height>25</height>
+    </size>
+   </property>
+  </widget>
+  <widget class="QGroupBox" name="gbContent">
+   <property name="geometry">
+    <rect>
+     <x>450</x>
+     <y>25</y>
+     <width>425</width>
+     <height>450</height>
+    </rect>
+   </property>
+   <property name="title">
+    <string>订单内容</string>
+   </property>
+   <widget class="QTableView" name="tbFood">
+    <property name="geometry">
+     <rect>
+      <x>50</x>
+      <y>50</y>
+      <width>325</width>
+      <height>325</height>
+     </rect>
+    </property>
+    <property name="selectionMode">
+     <enum>QAbstractItemView::SingleSelection</enum>
+    </property>
+    <property name="selectionBehavior">
+     <enum>QAbstractItemView::SelectRows</enum>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="btnNLine">
+    <property name="geometry">
+     <rect>
+      <x>75</x>
+      <y>390</y>
+      <width>100</width>
+      <height>40</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>添加菜品</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="btnDLine">
+    <property name="geometry">
+     <rect>
+      <x>250</x>
+      <y>390</y>
+      <width>100</width>
+      <height>40</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>删除菜品</string>
+    </property>
+   </widget>
+  </widget>
+  <widget class="QGroupBox" name="gbProperty">
+   <property name="geometry">
+    <rect>
+     <x>25</x>
+     <y>75</y>
+     <width>410</width>
+     <height>400</height>
+    </rect>
+   </property>
+   <property name="title">
+    <string>订单属性</string>
+   </property>
+   <widget class="QLineEdit" name="leID">
+    <property name="geometry">
+     <rect>
+      <x>200</x>
+      <y>50</y>
+      <width>150</width>
+      <height>25</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="leName">
+    <property name="geometry">
+     <rect>
+      <x>200</x>
+      <y>125</y>
+      <width>150</width>
+      <height>25</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="leWaitor">
+    <property name="geometry">
+     <rect>
+      <x>200</x>
+      <y>200</y>
+      <width>150</width>
+      <height>25</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="leCustomer">
+    <property name="geometry">
+     <rect>
+      <x>200</x>
+      <y>275</y>
+      <width>150</width>
+      <height>25</height>
+     </rect>
+    </property>
+    <property name="inputMask">
+     <string/>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QLabel" name="lblID">
+    <property name="geometry">
+     <rect>
+      <x>50</x>
+      <y>50</y>
+      <width>125</width>
+      <height>25</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>订单ID：</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="lblName">
+    <property name="geometry">
+     <rect>
+      <x>50</x>
+      <y>125</y>
+      <width>125</width>
+      <height>25</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>订单日期：</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="lblWaitorID">
+    <property name="geometry">
+     <rect>
+      <x>50</x>
+      <y>200</y>
+      <width>125</width>
+      <height>25</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>服务员ID：</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="lblCustomer">
+    <property name="geometry">
+     <rect>
+      <x>50</x>
+      <y>275</y>
+      <width>125</width>
+      <height>25</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>用户ID：</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="lblTableNO">
+    <property name="geometry">
+     <rect>
+      <x>50</x>
+      <y>350</y>
+      <width>125</width>
+      <height>25</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>桌号：</string>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="leTableNO">
+    <property name="geometry">
+     <rect>
+      <x>200</x>
+      <y>350</y>
+      <width>150</width>
+      <height>25</height>
+     </rect>
+    </property>
+   </widget>
+  </widget>
+  <widget class="QPushButton" name="btnSave">
+   <property name="geometry">
+    <rect>
+     <x>125</x>
+     <y>25</y>
+     <width>100</width>
+     <height>40</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>保存改动</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="btnUndo">
+   <property name="geometry">
+    <rect>
+     <x>235</x>
+     <y>25</y>
+     <width>100</width>
+     <height>40</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>撤销改动</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="btnAdd">
+   <property name="geometry">
+    <rect>
+     <x>345</x>
+     <y>25</y>
+     <width>40</width>
+     <height>40</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+   <property name="icon">
+    <iconset>
+     <normaloff>add.png</normaloff>add.png</iconset>
+   </property>
+   <property name="iconSize">
+    <size>
+     <width>25</width>
+     <height>25</height>
+    </size>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="btnDel">
+   <property name="geometry">
+    <rect>
+     <x>395</x>
+     <y>25</y>
+     <width>40</width>
+     <height>40</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+   <property name="icon">
+    <iconset>
+     <normaloff>subtract.png</normaloff>subtract.png</iconset>
+   </property>
+   <property name="iconSize">
+    <size>
+     <width>25</width>
+     <height>25</height>
+    </size>
+   </property>
+  </widget>
+ </widget>
+ <layoutdefault spacing="6" margin="11"/>
+ <resources/>
+ <connections>
+  <connection>
+   <sender>leID</sender>
+   <signal>textEdited(QString)</signal>
+   <receiver>OrderSupervise</receiver>
+   <slot>OnDelta()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>346</x>
+     <y>165</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>439</x>
+     <y>113</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>leName</sender>
+   <signal>textEdited(QString)</signal>
+   <receiver>OrderSupervise</receiver>
+   <slot>OnDelta()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>340</x>
+     <y>241</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>448</x>
+     <y>261</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>leWaitor</sender>
+   <signal>textEdited(QString)</signal>
+   <receiver>OrderSupervise</receiver>
+   <slot>OnDelta()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>358</x>
+     <y>321</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>442</x>
+     <y>336</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>leCustomer</sender>
+   <signal>textEdited(QString)</signal>
+   <receiver>OrderSupervise</receiver>
+   <slot>OnDelta()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>360</x>
+     <y>386</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>441</x>
+     <y>434</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>tbFood</sender>
+   <signal>clicked(QModelIndex)</signal>
+   <receiver>OrderSupervise</receiver>
+   <slot>OnSelected(QModelIndex)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>556</x>
+     <y>77</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>566</x>
+     <y>19</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>btnNLine</sender>
+   <signal>clicked()</signal>
+   <receiver>OrderSupervise</receiver>
+   <slot>NewLine()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>534</x>
+     <y>430</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>608</x>
+     <y>484</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>btnDLine</sender>
+   <signal>clicked()</signal>
+   <receiver>OrderSupervise</receiver>
+   <slot>DelLine()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>782</x>
+     <y>433</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>817</x>
+     <y>484</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>btnAdd</sender>
+   <signal>clicked()</signal>
+   <receiver>OrderSupervise</receiver>
+   <slot>OnAddClick()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>369</x>
+     <y>43</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>386</x>
+     <y>5</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>btnDel</sender>
+   <signal>clicked()</signal>
+   <receiver>OrderSupervise</receiver>
+   <slot>OnDelClick()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>432</x>
+     <y>45</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>501</x>
+     <y>9</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>btnBack</sender>
+   <signal>clicked()</signal>
+   <receiver>OrderSupervise</receiver>
+   <slot>BackOne()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>35</x>
+     <y>42</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>53</x>
+     <y>7</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>btnNext</sender>
+   <signal>clicked()</signal>
+   <receiver>OrderSupervise</receiver>
+   <slot>NextOne()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>102</x>
+     <y>35</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>138</x>
+     <y>7</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>btnSave</sender>
+   <signal>clicked()</signal>
+   <receiver>OrderSupervise</receiver>
+   <slot>OnSaveClick()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>183</x>
+     <y>42</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>246</x>
+     <y>22</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>btnUndo</sender>
+   <signal>clicked()</signal>
+   <receiver>OrderSupervise</receiver>
+   <slot>OnUndoClick()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>244</x>
+     <y>35</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>283</x>
+     <y>4</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>leTableNO</sender>
+   <signal>textEdited(QString)</signal>
+   <receiver>OrderSupervise</receiver>
+   <slot>OnDelta()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>310</x>
+     <y>446</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>302</x>
+     <y>494</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+ <slots>
+  <slot>OnDelta()</slot>
+  <slot>OnSelected(QModelIndex)</slot>
+  <slot>NewLine()</slot>
+  <slot>DelLine()</slot>
+  <slot>OnAddClick()</slot>
+  <slot>OnDelClick()</slot>
+  <slot>BackOne()</slot>
+  <slot>NextOne()</slot>
+  <slot>OnSaveClick()</slot>
+  <slot>OnUndoClick()</slot>
+ </slots>
+</ui>
