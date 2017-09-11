@@ -7,7 +7,7 @@ ProjectFrontend::ProjectFrontend(QWidget *parent)
 	//UI Init
 	ui.setupUi(this);
 	MainLogic::GetInstance()->Initialise();
-	MainLogic::GetInstance()->arrSeatVacance = vector<char>(100,1);
+	MainLogic::GetInstance()->arrSeatVacance = vector<char>(36, 1);
 	pPreload = nullptr;
 	bPhone = false;
 	bPW = false;

@@ -10,6 +10,7 @@
 */
 
 #pragma once
+
 #ifndef CAFETERIA_H
 
 #define CAFETERIA_H
@@ -352,7 +353,7 @@ public:
 	People * FindExist(const string &strName);			//Find someone exists
 	People *pUser;										//The controller who is using this app
 	MyDataBase MainDB;									//Main Database
-	vector<char> arrSeatVacance;						//The seat vacancies  0 = no 1 = yes without using vector<bool>
+	vector<char> arrSeatVacance;						//The seat vacancies  0 = no 1 = yes without using vector<char>
 };
 
 #endif 

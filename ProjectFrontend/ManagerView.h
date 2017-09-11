@@ -14,10 +14,12 @@ public:
 private:
 	void PrepareCook();
 	void PrepareWaitor();
+	bool IsAllVacance();
 private slots :
 	void BindCook(QString qstrCook);
 	void BindWaitor(QString qstrWaitor);
 	void OnProfile();
+	void OnSetTable();
 private:
 	Ui::ManagerView ui;
 	string idCook;

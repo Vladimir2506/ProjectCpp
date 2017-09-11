@@ -38,6 +38,7 @@ public:
     QTableView *tbComm;
     QLabel *lblComm;
     QPushButton *btnProfile;
+    QPushButton *btnSeatVacance;
 
     void setupUi(QDialog *ManagerView)
     {
@@ -80,12 +81,16 @@ public:
         lblComm->setAlignment(Qt::AlignCenter);
         btnProfile = new QPushButton(ManagerView);
         btnProfile->setObjectName(QStringLiteral("btnProfile"));
-        btnProfile->setGeometry(QRect(750, 25, 100, 40));
+        btnProfile->setGeometry(QRect(800, 25, 100, 40));
+        btnSeatVacance = new QPushButton(ManagerView);
+        btnSeatVacance->setObjectName(QStringLiteral("btnSeatVacance"));
+        btnSeatVacance->setGeometry(QRect(675, 25, 100, 40));
 
         retranslateUi(ManagerView);
         QObject::connect(cbCook, SIGNAL(currentTextChanged(QString)), ManagerView, SLOT(BindCook(QString)));
         QObject::connect(cbWaitor, SIGNAL(currentTextChanged(QString)), ManagerView, SLOT(BindWaitor(QString)));
         QObject::connect(btnProfile, SIGNAL(clicked()), ManagerView, SLOT(OnProfile()));
+        QObject::connect(btnSeatVacance, SIGNAL(clicked()), ManagerView, SLOT(OnSetTable()));
 
         QMetaObject::connectSlotsByName(ManagerView);
     } // setupUi
@@ -100,6 +105,7 @@ public:
         lblWaitor->setText(QApplication::translate("ManagerView", "\350\257\267\351\200\211\346\213\251\344\270\200\345\220\215\346\234\215\345\212\241\345\221\230", Q_NULLPTR));
         lblComm->setText(QApplication::translate("ManagerView", "\350\216\267\345\276\227\347\232\204\350\257\204\344\273\267", Q_NULLPTR));
         btnProfile->setText(QApplication::translate("ManagerView", "\344\270\252\344\272\272\350\265\204\346\226\231", Q_NULLPTR));
+        btnSeatVacance->setText(QApplication::translate("ManagerView", "\350\256\276\347\275\256\351\244\220\346\241\214\346\225\260", Q_NULLPTR));
     } // retranslateUi
 
 };

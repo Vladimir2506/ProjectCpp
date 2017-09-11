@@ -97,6 +97,18 @@ void ManagerView::PrepareWaitor()
 	}
 }
 
+bool ManagerView::IsAllVacance()
+{
+	for (auto &t : MainLogic::GetInstance()->arrSeatVacance)
+	{
+		if (t == 0)
+		{
+			return false;
+		}
+	}
+	return true;
+}
+
 void ManagerView::BindCook(QString qstrCook)
 {
 	idCook = qstr2str(qstrCook);
@@ -114,4 +126,21 @@ void ManagerView::OnProfile()
 	ProfileView profile(this);
 	profile.exec();
 	ui.lblInfo->setText("欢迎！尊敬的经理" + str2qstr(pManager->GetName()));
+}
+
+void ManagerView::OnSetTable()
+{
+	if (IsAllVacance())
+	{
+		auto now = MainLogic::GetInstance()->arrSeatVacance.size();
+		auto capa = QInputDialog::getInt(this, "设置", "请设置餐桌总数：", now, 1, 100);
+		if (capa != now)
+		{
+			MainLogic::GetInstance()->arrSeatVacance = vector<char>(capa, 1);
+		}
+	}
+	else
+	{
+		QMessageBox::information(this, "提示", "仍有顾客在用餐，无法设置！");
+	}
 }

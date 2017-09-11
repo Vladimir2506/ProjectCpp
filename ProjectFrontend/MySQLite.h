@@ -4,6 +4,8 @@
 **Powered By SQLite3
 */
 
+#pragma once
+
 #ifndef DATABASE_H
 #define DATABASE_H
 
