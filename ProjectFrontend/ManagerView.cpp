@@ -28,6 +28,7 @@ ManagerView::ManagerView(QWidget *parent)
 	ui.cbWaitor->setCurrentIndex(0);
 	PrepareCook();
 	PrepareWaitor();
+	PrepareVolume();
 }
 
 ManagerView::~ManagerView()
@@ -109,6 +110,31 @@ bool ManagerView::IsAllVacance()
 	return true;
 }
 
+void ManagerView::PrepareVolume()
+{
+	ui.tbVolume->setColumnCount(2);
+	ui.tbVolume->setHorizontalHeaderItem(0, new QTableWidgetItem("菜品名"));
+	ui.tbVolume->setHorizontalHeaderItem(1, new QTableWidgetItem("销量"));
+	int nRow = 0;
+	for (auto &cu : MainLogic::s_currentMenu)
+	{
+		ui.tbVolume->setRowCount(1 + nRow);
+		ui.tbVolume->setItem(nRow, 0, new QTableWidgetItem(str2qstr(cu.second.GetName())));
+		int nVol = 0;
+		for (auto &ord : MainLogic::s_currentOrders)
+		{
+			auto &&mp = ord.second.GetFoodMap();
+			auto it = mp.find(cu.first);
+			if (it != mp.end())
+			{
+				nVol += it->second;
+			}
+		}
+		ui.tbVolume->setItem(nRow, 1, new QTableWidgetItem(QString::number(nVol)));
+		++nRow;
+	}
+}
+
 void ManagerView::BindCook(QString qstrCook)
 {
 	idCook = qstr2str(qstrCook);
@@ -133,7 +159,7 @@ void ManagerView::OnSetTable()
 	if (IsAllVacance())
 	{
 		auto now = MainLogic::GetInstance()->arrSeatVacance.size();
-		auto capa = QInputDialog::getInt(this, "设置", "请设置餐桌总数：", now, 1, 100);
+		auto capa = static_cast<size_t>(QInputDialog::getInt(this, "设置", "请设置餐桌总数：", static_cast<int>(now), 1, 100));
 		if (capa != now)
 		{
 			MainLogic::GetInstance()->arrSeatVacance = vector<char>(capa, 1);

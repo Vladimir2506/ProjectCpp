@@ -20,6 +20,7 @@
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QPushButton>
 #include <QtWidgets/QTableView>
+#include <QtWidgets/QTableWidget>
 
 QT_BEGIN_NAMESPACE
 
@@ -39,6 +40,8 @@ public:
     QLabel *lblComm;
     QPushButton *btnProfile;
     QPushButton *btnSeatVacance;
+    QGroupBox *gbVolume;
+    QTableWidget *tbVolume;
 
     void setupUi(QDialog *ManagerView)
     {
@@ -50,10 +53,12 @@ public:
         lblInfo->setGeometry(QRect(25, 25, 375, 25));
         gbCook = new QGroupBox(ManagerView);
         gbCook->setObjectName(QStringLiteral("gbCook"));
-        gbCook->setGeometry(QRect(25, 75, 450, 650));
+        gbCook->setGeometry(QRect(25, 75, 450, 325));
         tbCook = new QTableView(gbCook);
         tbCook->setObjectName(QStringLiteral("tbCook"));
-        tbCook->setGeometry(QRect(50, 125, 350, 475));
+        tbCook->setGeometry(QRect(50, 100, 350, 200));
+        tbCook->setEditTriggers(QAbstractItemView::NoEditTriggers);
+        tbCook->setSelectionMode(QAbstractItemView::SingleSelection);
         cbCook = new QComboBox(gbCook);
         cbCook->setObjectName(QStringLiteral("cbCook"));
         cbCook->setGeometry(QRect(225, 50, 150, 25));
@@ -71,13 +76,17 @@ public:
         lblWaitor->setGeometry(QRect(50, 50, 150, 25));
         tbWaitor = new QTableView(gbWaitor);
         tbWaitor->setObjectName(QStringLiteral("tbWaitor"));
-        tbWaitor->setGeometry(QRect(50, 125, 350, 200));
+        tbWaitor->setGeometry(QRect(50, 100, 350, 200));
+        tbWaitor->setEditTriggers(QAbstractItemView::NoEditTriggers);
+        tbWaitor->setSelectionMode(QAbstractItemView::SingleSelection);
         tbComm = new QTableView(gbWaitor);
         tbComm->setObjectName(QStringLiteral("tbComm"));
-        tbComm->setGeometry(QRect(50, 375, 350, 225));
+        tbComm->setGeometry(QRect(50, 350, 350, 275));
+        tbComm->setEditTriggers(QAbstractItemView::NoEditTriggers);
+        tbComm->setSelectionMode(QAbstractItemView::SingleSelection);
         lblComm = new QLabel(gbWaitor);
         lblComm->setObjectName(QStringLiteral("lblComm"));
-        lblComm->setGeometry(QRect(150, 340, 150, 25));
+        lblComm->setGeometry(QRect(150, 315, 150, 25));
         lblComm->setAlignment(Qt::AlignCenter);
         btnProfile = new QPushButton(ManagerView);
         btnProfile->setObjectName(QStringLiteral("btnProfile"));
@@ -85,6 +94,14 @@ public:
         btnSeatVacance = new QPushButton(ManagerView);
         btnSeatVacance->setObjectName(QStringLiteral("btnSeatVacance"));
         btnSeatVacance->setGeometry(QRect(675, 25, 100, 40));
+        gbVolume = new QGroupBox(ManagerView);
+        gbVolume->setObjectName(QStringLiteral("gbVolume"));
+        gbVolume->setGeometry(QRect(25, 425, 450, 300));
+        tbVolume = new QTableWidget(gbVolume);
+        tbVolume->setObjectName(QStringLiteral("tbVolume"));
+        tbVolume->setGeometry(QRect(50, 50, 350, 225));
+        tbVolume->setEditTriggers(QAbstractItemView::NoEditTriggers);
+        tbVolume->setSelectionMode(QAbstractItemView::SingleSelection);
 
         retranslateUi(ManagerView);
         QObject::connect(cbCook, SIGNAL(currentTextChanged(QString)), ManagerView, SLOT(BindCook(QString)));
@@ -106,6 +123,7 @@ public:
         lblComm->setText(QApplication::translate("ManagerView", "\350\216\267\345\276\227\347\232\204\350\257\204\344\273\267", Q_NULLPTR));
         btnProfile->setText(QApplication::translate("ManagerView", "\344\270\252\344\272\272\350\265\204\346\226\231", Q_NULLPTR));
         btnSeatVacance->setText(QApplication::translate("ManagerView", "\350\256\276\347\275\256\351\244\220\346\241\214\346\225\260", Q_NULLPTR));
+        gbVolume->setTitle(QApplication::translate("ManagerView", "\350\217\234\345\223\201\351\224\200\351\207\217", Q_NULLPTR));
     } // retranslateUi
 
 };

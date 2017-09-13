@@ -15,6 +15,7 @@ private:
 	void PrepareCook();
 	void PrepareWaitor();
 	bool IsAllVacance();
+	void PrepareVolume();
 private slots :
 	void BindCook(QString qstrCook);
 	void BindWaitor(QString qstrWaitor);
