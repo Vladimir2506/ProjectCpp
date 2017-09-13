@@ -12,7 +12,7 @@ public:
 	WaitorView(QWidget *parent = Q_NULLPTR);
 	~WaitorView();
 protected:
-	virtual void paintEvent(QPaintEvent *event) override;
+	void paintEvent(QPaintEvent *event) override;
 private slots:
 	void OnSelDemand(int nRow);
 	void OnSelPlate(int nRow);

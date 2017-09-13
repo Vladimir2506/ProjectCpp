@@ -36,13 +36,15 @@ ProfileView::ProfileView(QWidget *parent)
 
 ProfileView::~ProfileView()
 {
+
 }
+
 void ProfileView::paintEvent(QPaintEvent * event)
 {
 	if (bDelta)
 	{
 		ui.btnUndo->setDisabled(false);
-		ui.btnSave->setDisabled(!(CheckDeux() && CheckPW() && CheckPhone()));
+		ui.btnSave->setDisabled(!(CheckDeux() && CheckPW() && CheckPhone() && CheckName()));
 	}
 	else
 	{
@@ -56,6 +58,7 @@ void ProfileView::OnDelta()
 }
 void ProfileView::OnSave()
 {
+	pMe->SetPhone(qstr2str(ui.lePhone->text()));
 	pMe->SetName(qstr2str(ui.leName->text()));
 	pMe->SetPassword(qstr2str(ui.lePassword->text()));
 	PrepareInfo();
@@ -106,7 +109,7 @@ bool ProfileView::CheckPW()
 
 bool ProfileView::CheckPhone()
 {
-	auto strPhone = ui.leName->text();
+	auto strPhone = ui.lePhone->text();
 	if (strPhone.size() < 11)
 	{
 		ui.lblState1->setPixmap(pixNil);
@@ -153,10 +156,26 @@ bool ProfileView::CheckDeux()
 	}
 }
 
+bool ProfileView::CheckName()
+{
+	auto strName = ui.leName->text();
+	if (strName.isEmpty())
+	{
+		ui.lblState4->setPixmap(pixNil);
+		return false;
+	}
+	else
+	{
+		ui.lblState4->setPixmap(pixRight);
+		return true;
+	}
+}
+
 void ProfileView::PrepareInfo()
 {
 	ui.leID->setText(str2qstr(pMe->GetId()));
 	ui.leName->setText(str2qstr(pMe->GetName()));
+	ui.lePhone->setText(str2qstr(pMe->GetPhone()));
 	ui.lePassword->setText(str2qstr(pMe->GetPassword()));
 	ui.leDeux->setText("");
 }

@@ -20,14 +20,13 @@ public:
 private slots:
 	void OnRegClicked();
 	void OnLogClicked();
-	void CheckPhone(QString);		
-	void CheckPW(QString);
+private:
+	bool CheckPhone();
+	bool CheckPW();
 protected:
-	virtual void paintEvent(QPaintEvent *event) override;
-	virtual void closeEvent(QCloseEvent *event) override;
+	void paintEvent(QPaintEvent *event) override;
+	void closeEvent(QCloseEvent *event) override;
 private:
 	Ui::ProjectFrontendClass ui;
-	People *pPreload;				//Prepare a person to sign in
-	bool bPhone;					//Is phone ok
-	bool bPW;						//Is password ok
+	People *pPreload;				//Load the person info in advance
 };

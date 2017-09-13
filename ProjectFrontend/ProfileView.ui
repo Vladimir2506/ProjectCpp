@@ -38,7 +38,7 @@
      <string>用户ID：</string>
     </property>
    </widget>
-   <widget class="QLabel" name="lblName">
+   <widget class="QLabel" name="lblPhone">
     <property name="geometry">
      <rect>
       <x>50</x>
@@ -55,7 +55,7 @@
     <property name="geometry">
      <rect>
       <x>50</x>
-      <y>125</y>
+      <y>175</y>
       <width>125</width>
       <height>25</height>
      </rect>
@@ -68,7 +68,7 @@
     <property name="geometry">
      <rect>
       <x>50</x>
-      <y>175</y>
+      <y>225</y>
       <width>125</width>
       <height>25</height>
      </rect>
@@ -81,19 +81,6 @@
     <property name="geometry">
      <rect>
       <x>200</x>
-      <y>125</y>
-      <width>150</width>
-      <height>25</height>
-     </rect>
-    </property>
-    <property name="maxLength">
-     <number>8</number>
-    </property>
-   </widget>
-   <widget class="QLineEdit" name="leDeux">
-    <property name="geometry">
-     <rect>
-      <x>200</x>
       <y>175</y>
       <width>150</width>
       <height>25</height>
@@ -102,8 +89,27 @@
     <property name="maxLength">
      <number>8</number>
     </property>
+    <property name="echoMode">
+     <enum>QLineEdit::Password</enum>
+    </property>
    </widget>
-   <widget class="QLineEdit" name="leName">
+   <widget class="QLineEdit" name="leDeux">
+    <property name="geometry">
+     <rect>
+      <x>200</x>
+      <y>225</y>
+      <width>150</width>
+      <height>25</height>
+     </rect>
+    </property>
+    <property name="maxLength">
+     <number>8</number>
+    </property>
+    <property name="echoMode">
+     <enum>QLineEdit::Password</enum>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="lePhone">
     <property name="geometry">
      <rect>
       <x>200</x>
@@ -146,7 +152,7 @@
     <property name="geometry">
      <rect>
       <x>375</x>
-      <y>125</y>
+      <y>175</y>
       <width>25</width>
       <height>25</height>
      </rect>
@@ -159,7 +165,7 @@
     <property name="geometry">
      <rect>
       <x>375</x>
-      <y>175</y>
+      <y>225</y>
       <width>25</width>
       <height>25</height>
      </rect>
@@ -172,7 +178,7 @@
     <property name="geometry">
      <rect>
       <x>75</x>
-      <y>250</y>
+      <y>275</y>
       <width>100</width>
       <height>40</height>
      </rect>
@@ -185,13 +191,52 @@
     <property name="geometry">
      <rect>
       <x>240</x>
-      <y>250</y>
+      <y>275</y>
       <width>100</width>
       <height>40</height>
      </rect>
     </property>
     <property name="text">
      <string>撤销改动</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="lblName">
+    <property name="geometry">
+     <rect>
+      <x>50</x>
+      <y>125</y>
+      <width>125</width>
+      <height>25</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>用户名：</string>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="leName">
+    <property name="geometry">
+     <rect>
+      <x>200</x>
+      <y>125</y>
+      <width>150</width>
+      <height>25</height>
+     </rect>
+    </property>
+    <property name="maxLength">
+     <number>10</number>
+    </property>
+   </widget>
+   <widget class="QLabel" name="lblState4">
+    <property name="geometry">
+     <rect>
+      <x>375</x>
+      <y>125</y>
+      <width>25</width>
+      <height>25</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
     </property>
    </widget>
   </widget>
@@ -297,7 +342,7 @@
  <resources/>
  <connections>
   <connection>
-   <sender>leName</sender>
+   <sender>lePhone</sender>
    <signal>textEdited(QString)</signal>
    <receiver>ProfileView</receiver>
    <slot>OnDelta()</slot>

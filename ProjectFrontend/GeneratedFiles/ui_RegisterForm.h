@@ -41,6 +41,9 @@ public:
     QLineEdit *lePWDeux;
     QLabel *lblChar;
     QComboBox *cbChar;
+    QLabel *lblName;
+    QLineEdit *leName;
+    QLabel *lblState4;
 
     void setupUi(QDialog *RegisterForm)
     {
@@ -48,19 +51,19 @@ public:
             RegisterForm->setObjectName(QStringLiteral("RegisterForm"));
         RegisterForm->setWindowModality(Qt::WindowModal);
         RegisterForm->setEnabled(true);
-        RegisterForm->resize(500, 400);
+        RegisterForm->resize(500, 500);
         QSizePolicy sizePolicy(QSizePolicy::Preferred, QSizePolicy::Preferred);
         sizePolicy.setHorizontalStretch(0);
         sizePolicy.setVerticalStretch(0);
         sizePolicy.setHeightForWidth(RegisterForm->sizePolicy().hasHeightForWidth());
         RegisterForm->setSizePolicy(sizePolicy);
-        RegisterForm->setMinimumSize(QSize(500, 400));
-        RegisterForm->setMaximumSize(QSize(500, 400));
+        RegisterForm->setMinimumSize(QSize(500, 500));
+        RegisterForm->setMaximumSize(QSize(500, 500));
         gbRegister = new QGroupBox(RegisterForm);
         gbRegister->setObjectName(QStringLiteral("gbRegister"));
-        gbRegister->setGeometry(QRect(25, 25, 450, 350));
-        gbRegister->setMinimumSize(QSize(450, 350));
-        gbRegister->setMaximumSize(QSize(450, 350));
+        gbRegister->setGeometry(QRect(25, 25, 450, 450));
+        gbRegister->setMinimumSize(QSize(450, 450));
+        gbRegister->setMaximumSize(QSize(450, 450));
         gbRegister->setAlignment(Qt::AlignCenter);
         lblPhone = new QLabel(gbRegister);
         lblPhone->setObjectName(QStringLiteral("lblPhone"));
@@ -86,13 +89,13 @@ public:
         lePW->setEchoMode(QLineEdit::Password);
         btnSubmit = new QPushButton(gbRegister);
         btnSubmit->setObjectName(QStringLiteral("btnSubmit"));
-        btnSubmit->setGeometry(QRect(75, 290, 100, 50));
+        btnSubmit->setGeometry(QRect(75, 350, 100, 50));
         btnCancel = new QPushButton(gbRegister);
         btnCancel->setObjectName(QStringLiteral("btnCancel"));
-        btnCancel->setGeometry(QRect(240, 290, 100, 50));
+        btnCancel->setGeometry(QRect(260, 350, 100, 50));
         lblErrMsg = new QLabel(gbRegister);
         lblErrMsg->setObjectName(QStringLiteral("lblErrMsg"));
-        lblErrMsg->setGeometry(QRect(50, 250, 350, 25));
+        lblErrMsg->setGeometry(QRect(50, 300, 350, 25));
         lblPWDeux = new QLabel(gbRegister);
         lblPWDeux->setObjectName(QStringLiteral("lblPWDeux"));
         lblPWDeux->setGeometry(QRect(50, 150, 150, 25));
@@ -111,6 +114,15 @@ public:
         cbChar->setObjectName(QStringLiteral("cbChar"));
         cbChar->setGeometry(QRect(200, 200, 150, 25));
         cbChar->setEditable(false);
+        lblName = new QLabel(gbRegister);
+        lblName->setObjectName(QStringLiteral("lblName"));
+        lblName->setGeometry(QRect(50, 250, 150, 25));
+        leName = new QLineEdit(gbRegister);
+        leName->setObjectName(QStringLiteral("leName"));
+        leName->setGeometry(QRect(200, 250, 150, 25));
+        lblState4 = new QLabel(gbRegister);
+        lblState4->setObjectName(QStringLiteral("lblState4"));
+        lblState4->setGeometry(QRect(375, 250, 25, 25));
         QWidget::setTabOrder(lePhone, lePW);
         QWidget::setTabOrder(lePW, lePWDeux);
         QWidget::setTabOrder(lePWDeux, cbChar);
@@ -121,9 +133,10 @@ public:
         QObject::connect(btnCancel, SIGNAL(clicked()), RegisterForm, SLOT(reject()));
         QObject::connect(btnSubmit, SIGNAL(clicked()), RegisterForm, SLOT(SubmitReg()));
         QObject::connect(cbChar, SIGNAL(currentIndexChanged(int)), RegisterForm, SLOT(BindSelect(int)));
-        QObject::connect(lePhone, SIGNAL(textChanged(QString)), RegisterForm, SLOT(CheckPhone(QString)));
-        QObject::connect(lePW, SIGNAL(textChanged(QString)), RegisterForm, SLOT(CheckPW(QString)));
-        QObject::connect(lePWDeux, SIGNAL(textChanged(QString)), RegisterForm, SLOT(CheckDeux(QString)));
+        QObject::connect(leName, SIGNAL(textChanged(QString)), RegisterForm, SLOT(OnDelta()));
+        QObject::connect(lePWDeux, SIGNAL(textChanged(QString)), RegisterForm, SLOT(OnDelta()));
+        QObject::connect(lePW, SIGNAL(textChanged(QString)), RegisterForm, SLOT(OnDelta()));
+        QObject::connect(lePhone, SIGNAL(textChanged(QString)), RegisterForm, SLOT(OnDelta()));
 
         cbChar->setCurrentIndex(-1);
 
@@ -143,7 +156,7 @@ public:
         lblState1->setText(QString());
         lblState2->setText(QString());
         lePhone->setText(QString());
-        lePhone->setPlaceholderText(QApplication::translate("RegisterForm", "11\344\275\215\346\211\213\346\234\272\345\217\267", Q_NULLPTR));
+        lePhone->setPlaceholderText(QApplication::translate("RegisterForm", "11\344\275\215\346\211\213\346\234\272\345\217\267\347\240\201", Q_NULLPTR));
 #ifndef QT_NO_WHATSTHIS
         lePW->setWhatsThis(QApplication::translate("RegisterForm", "\347\224\261\346\225\260\345\255\227\345\222\214\345\255\227\346\257\215\347\273\204\346\210\220", Q_NULLPTR));
 #endif // QT_NO_WHATSTHIS
@@ -159,6 +172,9 @@ public:
         lePWDeux->setPlaceholderText(QApplication::translate("RegisterForm", "8\344\275\215\345\257\206\347\240\201", Q_NULLPTR));
         lblChar->setText(QApplication::translate("RegisterForm", "\350\257\267\351\200\211\346\213\251\346\202\250\347\232\204\350\272\253\344\273\275\357\274\232", Q_NULLPTR));
         cbChar->setCurrentText(QString());
+        lblName->setText(QApplication::translate("RegisterForm", "\350\257\267\350\276\223\345\205\245\346\202\250\347\232\204\345\220\215\345\255\227\357\274\232", Q_NULLPTR));
+        leName->setPlaceholderText(QApplication::translate("RegisterForm", "10\344\270\252\345\255\227\347\254\246\344\271\213\345\206\205", Q_NULLPTR));
+        lblState4->setText(QString());
     } // retranslateUi
 
 };

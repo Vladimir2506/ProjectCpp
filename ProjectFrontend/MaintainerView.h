@@ -30,7 +30,7 @@ private slots:
 	void OnCommentClicked();
 	void OnOrderClicked();
 protected:
-	virtual void paintEvent(QPaintEvent *event) override;
+	void paintEvent(QPaintEvent *event) override;
 private:
 	void PrepareMenu();
 	void PrepareUser();

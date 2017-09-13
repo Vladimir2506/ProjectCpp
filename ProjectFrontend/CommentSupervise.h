@@ -11,7 +11,7 @@ public:
 	CommentSupervise(QWidget *parent = Q_NULLPTR);
 	~CommentSupervise();
 protected:
-	virtual void paintEvent(QPaintEvent *event) override;
+	void paintEvent(QPaintEvent *event) override;
 private slots:
 	void SetStars(int nStar);
 	void OnDelClick();

@@ -7,17 +7,17 @@ RegisterForm::RegisterForm(QWidget *parent)
 {
 	//UI Init
 	ui.setupUi(this);
+	//Pixmap Init
 	pixWrong.load("wrong.png");
 	pixRight.load("right.png");
+	//Buttons Init
 	ui.btnSubmit->setDisabled(true);
 	ui.btnSubmit->clearFocus();
-	bPhone = false;
-	bPW = false;
-	bDeux = false;
-	bUnique = false;
 	ui.cbChar->addItems(lstCharaters);
 	ui.cbChar->setCurrentIndex(0);
 	nSelect = 0;
+	//Flags Init
+	bDelta = false;
 }
 
 RegisterForm::~RegisterForm()
@@ -25,105 +25,10 @@ RegisterForm::~RegisterForm()
 
 }
 
-void RegisterForm::CheckPhone(QString qstrPhone)
-{
-	//Check phone number is registered
-	bUnique = true;
-	bPhone = true;
-	int nLen = qstrPhone.size();
-	if (nLen < 11)
-	{
-		ui.lblState1->setPixmap(pixNil);
-		bPhone = false;
-		bUnique = false;
-		return;
-	}
-	else 
-	{
-		for (auto &qc : qstrPhone)
-		{
-			if (!qc.isDigit())
-			{
-				//Check phone number validity
-				bPhone = false;
-				break;
-			}
-		}
-		bUnique = (MainLogic::GetInstance()->FindExist(qstr2str(qstrPhone)) == nullptr);
-	}
-	//Set icon
-	if (bPhone && bUnique)
-	{
-		ui.lblState1->setPixmap(pixRight);
-	}
-	else
-	{
-		ui.lblState1->setPixmap(pixWrong);
-	}
-}
-
-void RegisterForm::CheckPW(QString qstrPW)
-{
-	CheckDeux(ui.lePWDeux->text());		//Check the confirmation immideiately
-	bPW = true;
-	int nLen = qstrPW.size();
-	if (nLen < 8)
-	{
-		ui.lblState2->setPixmap(pixNil);
-		bPW = false;
-		return;
-	}
-	else
-	{
-		for (auto &qc : qstrPW)
-		{
-			//Only letters and numbers are permitted
-			if (!(qc.isDigit() || qc.isLetter()))
-			{
-				bPW = false;
-				break;
-			}
-		}
-	}
-	//Set icon
-	if (bPW)
-	{
-		ui.lblState2->setPixmap(pixRight);
-	}
-	else
-	{
-		ui.lblState2->setPixmap(pixWrong);
-	}
-}
-
-void RegisterForm::CheckDeux(QString qstrDeux)
-{
-	bDeux = true;
-	int nLen = qstrDeux.size();
-	if (nLen < 8)
-	{
-		ui.lblState3->setPixmap(pixNil);
-		bDeux = false;
-		return;
-	}
-	if (qstrDeux != ui.lePW->text())
-	{
-		bDeux = false;
-	}
-	//Set icon
-	if (bDeux)
-	{
-		ui.lblState3->setPixmap(pixRight);
-	}
-	else
-	{
-		ui.lblState3->setPixmap(pixWrong);
-	}
-}
 
 void RegisterForm::BindSelect(int nSel)
 {
-	nSelect = nSel;	// get current index
+	nSelect = nSel;	// Get current index
 }
 
 void RegisterForm::SubmitReg()
@@ -132,8 +37,9 @@ void RegisterForm::SubmitReg()
 	People *pSignup = nullptr;
 	size_t nRecorder = 0;
 	string strId;
-	string strName = qstr2str(ui.lePhone->text());
+	string strPhone = qstr2str(ui.lePhone->text());
 	string strPassword = qstr2str(ui.lePW->text());
+	string strName = qstr2str(ui.leName->text());
 	switch (nSelect)
 	{
 	case CharSel::CH_CUSTOMER:
@@ -142,7 +48,7 @@ void RegisterForm::SubmitReg()
 			nRecorder = stoi(MainLogic::s_currentCustomers.rbegin()->first.substr(1, string::npos));
 		}
 		strId = IdGenerator(IDGENERATOR::ID_CUSTOMER, nRecorder);
-		pSignup = new Customer(strId, strName, strPassword);
+		pSignup = new Customer(strId, strName, strPassword, strPhone);
 		MainLogic::s_currentCustomers.emplace(pSignup->GetId(), *dynamic_cast<Customer*>(pSignup));
 		break;
 	case CharSel::CH_COOK:
@@ -151,7 +57,7 @@ void RegisterForm::SubmitReg()
 			nRecorder = stoi(MainLogic::s_currentCooks.rbegin()->first.substr(1, string::npos));
 		}
 		strId = IdGenerator(IDGENERATOR::ID_COOK, nRecorder);
-		pSignup = new Cook(strId, strName, strPassword);
+		pSignup = new Cook(strId, strName, strPassword, strPhone);
 		MainLogic::s_currentCooks.emplace(pSignup->GetId(), *dynamic_cast<Cook*>(pSignup));
 		break;
 	case CharSel::CH_WAITOR:
@@ -160,7 +66,7 @@ void RegisterForm::SubmitReg()
 			nRecorder = stoi(MainLogic::s_currentWaitors.rbegin()->first.substr(1, string::npos));
 		}
 		strId = IdGenerator(IDGENERATOR::ID_WAITOR, nRecorder);
-		pSignup = new Waitor(strId, strName, strPassword);
+		pSignup = new Waitor(strId, strName, strPassword, strPhone);
 		MainLogic::s_currentWaitors.emplace(pSignup->GetId(), *dynamic_cast<Waitor*>(pSignup));
 		break;
 	case CharSel::CH_MANAGER:
@@ -169,7 +75,7 @@ void RegisterForm::SubmitReg()
 			nRecorder = stoi(MainLogic::s_currentManagers.rbegin()->first.substr(1, string::npos));
 		}
 		strId = IdGenerator(IDGENERATOR::ID_MANAGER, nRecorder);
-		pSignup = new Manager(strId, strName, strPassword);
+		pSignup = new Manager(strId, strName, strPassword, strPhone);
 		MainLogic::s_currentManagers.emplace(pSignup->GetId(), *dynamic_cast<Manager*>(pSignup));
 		break;
 	case CharSel::CH_MAINTAINER:
@@ -178,7 +84,7 @@ void RegisterForm::SubmitReg()
 			nRecorder = stoi(MainLogic::s_currentMaintainers.rbegin()->first.substr(1, string::npos));
 		}
 		strId = IdGenerator(IDGENERATOR::ID_MAINTAINER, nRecorder);
-		pSignup = new Maintainer(strId, strName, strPassword);
+		pSignup = new Maintainer(strId, strName, strPassword, strPhone);
 		MainLogic::s_currentMaintainers.emplace(pSignup->GetId(), *dynamic_cast<Maintainer*>(pSignup));
 		break;
 	default:
@@ -189,43 +95,123 @@ void RegisterForm::SubmitReg()
 		delete pSignup;
 		pSignup = nullptr;
 	}
+	bDelta = false;
 	accept();
 }
 
 void RegisterForm::paintEvent(QPaintEvent * event)
 {
-	//Set error information
-	if (ui.lePhone->text().size() == 11 && (!bPhone || !bUnique))
+	if (bDelta)
 	{
-		if (!bUnique)
-		{
-			ui.lblErrMsg->setText("该手机号已被注册！");
-		}
-		if (!bPhone)
-		{
-			ui.lblErrMsg->setText("请输入正确的手机号码！");
-		}
-	}
-	else if (ui.lePW->text().size() == 8 && (!bPW))
-	{
-		ui.lblErrMsg->setText("密码必须由数字和字母组成！");
-	}
-	else if (ui.lePWDeux->text().size() == 8 && (!bDeux))
-	{
-		ui.lblErrMsg->setText("两次输入的密码不一致！");
-	}
-	else
-	{
-		ui.lblErrMsg->setText("");
-	}
-	//Check sign-up button
-	if (bPW && bPhone && bDeux && bUnique)
-	{
-		ui.btnSubmit->setDisabled(false);
+		ui.btnSubmit->setDisabled(!(CheckPhone() && CheckPW() && CheckDeux() && CheckName()));
 	}
 	else
 	{
 		ui.btnSubmit->setDisabled(true);
 	}
 	QDialog::paintEvent(event);
+}
+
+bool RegisterForm::CheckPW()
+{
+	auto strPW = ui.lePW->text();
+	if (strPW.size() < 8)
+	{
+		ui.lblState2->setPixmap(pixNil);
+		ui.lblErrMsg->setText("");
+		return false;
+	}
+	else
+	{
+		for (auto &c : strPW)
+		{
+			if (!c.isDigit() && !c.isLetter())
+			{
+				ui.lblState2->setPixmap(pixWrong);
+				ui.lblErrMsg->setText("密码必须由数字和字母组成！");
+				return false;
+			}
+		}
+		ui.lblState2->setPixmap(pixRight);
+		return true;
+	}
+}
+
+bool RegisterForm::CheckPhone()
+{
+	auto strPhone = ui.lePhone->text();
+	if (strPhone.size() < 11)
+	{
+		ui.lblState1->setPixmap(pixNil);
+		ui.lblErrMsg->setText("");
+		return false;
+	}
+	else
+	{
+		if (MainLogic::GetInstance()->FindExist(qstr2str(strPhone)) != nullptr)
+		{
+			ui.lblState1->setPixmap(pixWrong);
+			ui.lblErrMsg->setText("该手机号已被注册！");
+			return false;
+		}
+		for (auto &c : strPhone)
+		{
+			if (!c.isDigit())
+			{
+				ui.lblState1->setPixmap(pixWrong);
+				ui.lblErrMsg->setText("请输入正确的手机号码！");
+				return false;
+			}
+		}
+		ui.lblState1->setPixmap(pixRight);
+		return true;
+	}
+}
+
+bool RegisterForm::CheckDeux()
+{
+	auto strPW = ui.lePW->text();
+	auto strDeux = ui.lePWDeux->text();
+	if (strDeux.size() < 8)
+	{
+		ui.lblState3->setPixmap(pixNil);
+		ui.lblErrMsg->setText("");
+		return false;
+	}
+	else
+	{
+		if (strDeux != strPW)
+		{
+			ui.lblState3->setPixmap(pixWrong);
+			ui.lblErrMsg->setText("两次输入的密码不一致！");
+			return false;
+		}
+		ui.lblState3->setPixmap(pixRight);
+		return true;
+	}
+}
+
+bool RegisterForm::CheckName()
+{
+	auto strName = ui.leName->text();
+	if (strName.isEmpty())
+	{
+		ui.lblState4->setPixmap(pixNil);
+		ui.lblErrMsg->setText("");
+		return false;
+	}
+	else
+	{
+		ui.lblState4->setPixmap(pixRight);
+		return true;
+	}
+}
+
+void RegisterForm::OnDelta()
+{
+	bDelta = true;
+	CheckDeux();
+	CheckName();
+	CheckPW();
+	CheckPhone();
 }

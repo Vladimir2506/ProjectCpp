@@ -35,7 +35,7 @@ public:
     QLabel *lblPW;
     QLineEdit *lePhone;
     QLineEdit *lePW;
-    QLabel *lblErrMsg;
+    QLabel *lblLogin;
     QStatusBar *statusBar;
 
     void setupUi(QMainWindow *ProjectFrontendClass)
@@ -49,32 +49,33 @@ public:
         centralWidget->setObjectName(QStringLiteral("centralWidget"));
         gbLogin = new QGroupBox(centralWidget);
         gbLogin->setObjectName(QStringLiteral("gbLogin"));
-        gbLogin->setGeometry(QRect(50, 50, 500, 350));
-        gbLogin->setAlignment(Qt::AlignCenter);
+        gbLogin->setGeometry(QRect(50, 175, 500, 225));
+        gbLogin->setAlignment(Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter);
         btnSignUp = new QPushButton(gbLogin);
         btnSignUp->setObjectName(QStringLiteral("btnSignUp"));
-        btnSignUp->setGeometry(QRect(280, 270, 100, 50));
+        btnSignUp->setGeometry(QRect(280, 150, 100, 50));
         btnSignIn = new QPushButton(gbLogin);
         btnSignIn->setObjectName(QStringLiteral("btnSignIn"));
-        btnSignIn->setGeometry(QRect(120, 270, 100, 50));
+        btnSignIn->setGeometry(QRect(120, 150, 100, 50));
         lblPhone = new QLabel(gbLogin);
         lblPhone->setObjectName(QStringLiteral("lblPhone"));
-        lblPhone->setGeometry(QRect(90, 80, 150, 25));
+        lblPhone->setGeometry(QRect(90, 50, 150, 25));
         lblPW = new QLabel(gbLogin);
         lblPW->setObjectName(QStringLiteral("lblPW"));
-        lblPW->setGeometry(QRect(90, 130, 150, 25));
+        lblPW->setGeometry(QRect(90, 100, 150, 25));
         lePhone = new QLineEdit(gbLogin);
         lePhone->setObjectName(QStringLiteral("lePhone"));
-        lePhone->setGeometry(QRect(250, 80, 150, 25));
+        lePhone->setGeometry(QRect(250, 50, 150, 25));
         lePhone->setMaxLength(11);
         lePW = new QLineEdit(gbLogin);
         lePW->setObjectName(QStringLiteral("lePW"));
-        lePW->setGeometry(QRect(250, 130, 150, 25));
+        lePW->setGeometry(QRect(250, 100, 150, 25));
         lePW->setMaxLength(8);
         lePW->setEchoMode(QLineEdit::Password);
-        lblErrMsg = new QLabel(gbLogin);
-        lblErrMsg->setObjectName(QStringLiteral("lblErrMsg"));
-        lblErrMsg->setGeometry(QRect(90, 200, 320, 25));
+        lblLogin = new QLabel(centralWidget);
+        lblLogin->setObjectName(QStringLiteral("lblLogin"));
+        lblLogin->setGeometry(QRect(225, 75, 150, 25));
+        lblLogin->setAlignment(Qt::AlignCenter);
         ProjectFrontendClass->setCentralWidget(centralWidget);
         statusBar = new QStatusBar(ProjectFrontendClass);
         statusBar->setObjectName(QStringLiteral("statusBar"));
@@ -94,7 +95,7 @@ public:
     void retranslateUi(QMainWindow *ProjectFrontendClass)
     {
         ProjectFrontendClass->setWindowTitle(QApplication::translate("ProjectFrontendClass", "\351\244\220\345\216\205\347\263\273\347\273\237", Q_NULLPTR));
-        gbLogin->setTitle(QApplication::translate("ProjectFrontendClass", "\347\231\273\345\275\225\347\263\273\347\273\237", Q_NULLPTR));
+        gbLogin->setTitle(QApplication::translate("ProjectFrontendClass", "\350\257\267\350\276\223\345\205\245\344\277\241\346\201\257", Q_NULLPTR));
         btnSignUp->setText(QApplication::translate("ProjectFrontendClass", "\346\263\250\345\206\214\350\264\246\345\217\267", Q_NULLPTR));
         btnSignIn->setText(QApplication::translate("ProjectFrontendClass", "\347\231\273\345\275\225\347\263\273\347\273\237", Q_NULLPTR));
         lblPhone->setText(QApplication::translate("ProjectFrontendClass", "\350\257\267\350\276\223\345\205\245\346\202\250\347\232\204\347\224\265\350\257\235\345\217\267\347\240\201\357\274\232", Q_NULLPTR));
@@ -103,7 +104,7 @@ public:
         lePhone->setPlaceholderText(QApplication::translate("ProjectFrontendClass", "11\344\275\215\346\211\213\346\234\272\345\217\267", Q_NULLPTR));
         lePW->setText(QString());
         lePW->setPlaceholderText(QApplication::translate("ProjectFrontendClass", "8\344\275\215\345\257\206\347\240\201", Q_NULLPTR));
-        lblErrMsg->setText(QString());
+        lblLogin->setText(QApplication::translate("ProjectFrontendClass", "\347\231\273\345\275\225", Q_NULLPTR));
     } // retranslateUi
 
 };

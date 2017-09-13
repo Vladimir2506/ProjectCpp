@@ -11,5 +11,3 @@ using namespace std;
 //Some useful functions
 QString str2qstr(const string &str);
 string qstr2str(const QString &qstr);
-
-

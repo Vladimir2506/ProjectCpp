@@ -251,39 +251,39 @@ void MainLogic::Finalise()
 	}
 }
 
-People * MainLogic::FindExist(const string & strName)
+People * MainLogic::FindExist(const string & strPhone)
 {
 	for (auto &r : MainLogic::s_currentCustomers)
 	{
-		if (r.second.GetName() == strName)
+		if (r.second.GetPhone() == strPhone)
 		{
 			return &r.second;
 		}
 	}
 	for (auto &r : MainLogic::s_currentManagers)
 	{
-		if (r.second.GetName() == strName)
+		if (r.second.GetPhone() == strPhone)
 		{
 			return &r.second;
 		}
 	}
 	for (auto &r : MainLogic::s_currentCooks)
 	{
-		if (r.second.GetName() == strName)
+		if (r.second.GetPhone() == strPhone)
 		{
 			return &r.second;
 		}
 	}
 	for (auto &r : MainLogic::s_currentWaitors)
 	{
-		if (r.second.GetName() == strName)
+		if (r.second.GetPhone() == strPhone)
 		{
 			return &r.second;
 		}
 	}
 	for (auto &r : MainLogic::s_currentMaintainers)
 	{
-		if (r.second.GetName() == strName)
+		if (r.second.GetPhone() == strPhone)
 		{
 			return &r.second;
 		}
@@ -342,8 +342,8 @@ Object::~Object()
 
 }
 
-People::People(const string & strId, const string & strName, const string & strPassword)
-	:Object(strId, strName), m_strPassword(strPassword)
+People::People(const string & strId, const string & strName, const string & strPassword, const string & strPhone)
+	:Object(strId, strName), m_strPassword(strPassword), m_strPhone(strPhone)
 {
 
 }
@@ -356,6 +356,16 @@ void People::SetPassword(const string & strPassword)
 string People::GetPassword() const
 {
 	return m_strPassword;
+}
+
+void People::SetPhone(const string & strPhone)
+{
+	m_strPhone = strPhone;
+}
+
+string People::GetPhone() const
+{
+	return m_strPhone;
 }
 
 People::~People()
@@ -419,7 +429,7 @@ void Comment::LoadInfo(MyDataBase &theDB)
 	TABLE Comment
 	ID NTEXT PRIMARY KEY NOT NULL
 	NAME NTEXT NOT NULL
-	STAR int NOT NULL
+	STAR INT NOT NULL
 	CONTENT NTEXT NOT NULL
 	USERID NTEXT NOT NULL
 	DISHID NTEXT NOT NULL
@@ -465,7 +475,7 @@ void Comment::SaveInfo(MyDataBase &theDB)
 	TABLE Comment
 	ID NTEXT PRIMARY KEY NOT NULL
 	NAME NTEXT NOT NULL
-	STAR int NOT NULL
+	STAR INT NOT NULL
 	CONTENT NTEXT NOT NULL
 	USERID NTEXT NOT NULL
 	DISHID NTEXT NOT NULL
@@ -793,7 +803,7 @@ void Order::LoadInfo(MyDataBase & theDB)
 	NAME NTEXT NOT NULL
 	IDCUSTOMER NTEXT NOT NULL
 	IDWAITOR NTEXT NOT NULL
-	NOTABLE int NOT NULL
+	NOTABLE INT NOT NULL
 	*/
 	//Check the table is exist
 	if (!theDB.IsTableExist(strTableName))
@@ -818,7 +828,7 @@ void Order::LoadInfo(MyDataBase & theDB)
 	/*
 	TABLE 'o' + m_strId
 	ID NTEXT PRIMARY KEY NOT NULL
-	AMOUNT int NOT NULL
+	AMOUNT INT NOT NULL
 	*/
 	constexpr int nLengthData = 2;
 	string strSubName = "o" + m_strId;
@@ -862,9 +872,9 @@ void Order::SaveInfo(MyDataBase & theDB)
 	NAME NTEXT NOT NULL
 	IDCUSTOMER NTEXT NOT NULL
 	IDWAITOR NTEXT NOT NULL
-	NOTABLE int NOT NULL
+	NOTABLE INT NOT NULL
 	*/
-	vector<string> strTerms{ "ID NTEXT","NAME NTEXT","IDCUSTOMER NTEXT","IDWAITOR NTEXT","NOTABLE int" };
+	vector<string> strTerms{ "ID NTEXT","NAME NTEXT","IDCUSTOMER NTEXT","IDWAITOR NTEXT","NOTABLE INT" };
 	vector<string> strOptions(nLength, "NOT NULL");
 	//Check the table is exist
 	if (!theDB.IsTableExist(strTableName))
@@ -887,11 +897,11 @@ void Order::SaveInfo(MyDataBase & theDB)
 	/*
 	TABLE 'o' + m_strId
 	ID NTEXT PRIMARY KEY NOT NULL
-	AMOUNT int NOT NULL
+	AMOUNT INT NOT NULL
 	*/
 	constexpr int nLengthData = 2;
 	string strSubName = "o" + m_strId;
-	strTerms = { "ID NTEXT","AMOUNT int" };
+	strTerms = { "ID NTEXT","AMOUNT INT" };
 	strOptions = vector<string>(nLengthData, "NOT NULL");
 	//If no table matches
 	dishDB.DeleteTable(strSubName);
@@ -923,8 +933,8 @@ void Order::DeleteMe(MyDataBase & theDB)
 	subDB.DeleteTable(strSubName);
 }
 
-Customer::Customer(const string & strId, const string & strName, const string & strPassword)
-	:People(strId, strName, strPassword)
+Customer::Customer(const string & strId, const string & strName, const string & strPassword, const string & strPhone)
+	:People(strId, strName, strPassword, strPhone)
 {
 	m_nState = CSSTATE::Absent;
 	m_nTableNum = -1;
@@ -1004,7 +1014,7 @@ void Customer::LoadInfo(MyDataBase &theDB)
 		//Wrong database
 		throw invalid_argument(theDB.m_strFileName);
 	}
-	constexpr int nLength = 3;
+	constexpr int nLength =4;
 	const string strTableName = "Customer";
 	//The schema
 	/*
@@ -1012,6 +1022,7 @@ void Customer::LoadInfo(MyDataBase &theDB)
 	ID NTEXT PRIMARY KEY NOT NULL
 	NAME NTEXT NOT NULL
 	PASSWORD NTEXT NOT NULL
+	PHONE NTEXT NOT NULL
 	*/
 	//Check the table is exist
 	if (!theDB.IsTableExist(strTableName))
@@ -1026,6 +1037,7 @@ void Customer::LoadInfo(MyDataBase &theDB)
 		m_strId = strResults[0];
 		m_strName = strResults[1];
 		m_strPassword = strResults[2];
+		m_strPhone = strResults[3];
 	}
 	strResults.clear();
 }
@@ -1043,8 +1055,8 @@ void Customer::SaveInfo(MyDataBase &theDB)
 		throw invalid_argument(theDB.m_strFileName);
 	}
 	vector<string> strResults;
-	vector<string> strVals{ MainLogic::ToSql(m_strId),MainLogic::ToSql(m_strName),MainLogic::ToSql(m_strPassword) };
-	constexpr int nLength = 3;
+	vector<string> strVals{ MainLogic::ToSql(m_strId),MainLogic::ToSql(m_strName),MainLogic::ToSql(m_strPassword),MainLogic::ToSql(m_strPhone) };
+	constexpr int nLength = 4;
 	const string strTableName = "Customer";
 	//The schema
 	/*
@@ -1052,8 +1064,9 @@ void Customer::SaveInfo(MyDataBase &theDB)
 	ID NTEXT PRIMARY KEY NOT NULL
 	NAME NTEXT NOT NULL
 	PASSWORD NTEXT NOT NULL
+	PHONE NTEXT NOT NULL
 	*/
-	vector<string> strTerms{ "ID NTEXT","NAME NTEXT","PASSWORD NTEXT" };
+	vector<string> strTerms{ "ID NTEXT","NAME NTEXT","PASSWORD NTEXT","PHONE NTEXT" };
 	vector<string> strOptions(nLength, "NOT NULL");
 	//Check the table is exist
 	if (!theDB.IsTableExist(strTableName))
@@ -1102,11 +1115,6 @@ void Customer::DeleteMe(MyDataBase & theDB)
 	theDB.DeleteValue(strTableName, strCondition);
 }
 
-Cook::Cook(string strId, string strName, string strPassword)
-	:People(strId, strName, strPassword)
-{
-
-}
 
 void Cook::Pick(const pair<Cuisine, Order*> theDishByOrder)
 {
@@ -1140,6 +1148,11 @@ void Cook::DoCooking(deque<pair<Cuisine, Order*>>::iterator itCuisine)
 	m_deqTodo.erase(itCuisine);
 }
 
+Cook::Cook(const string & strId, const string & strName, const string & strPassword, const string & strPhone)
+	:People(strId, strName, strPassword, strPhone)
+{
+}
+
 deque<pair<Cuisine, Order*>> Cook::GetToDoList() const
 {
 	return m_deqTodo;
@@ -1162,7 +1175,7 @@ void Cook::LoadInfo(MyDataBase & theDB)
 		//Wrong database
 		throw invalid_argument(theDB.m_strFileName);
 	}
-	constexpr int nLength = 3;
+	constexpr int nLength = 4;
 	const string strTableName = "Cook";
 	//The schema
 	/*
@@ -1170,6 +1183,7 @@ void Cook::LoadInfo(MyDataBase & theDB)
 	ID NTEXT PRIMARY KEY NOT NULL
 	NAME NTEXT NOT NULL
 	PASSWORD NTEXT NOT NULL
+	PHONE NTEXT NOT NULL
 	*/
 	//Check the table is exist
 	if (!theDB.IsTableExist(strTableName))
@@ -1184,6 +1198,7 @@ void Cook::LoadInfo(MyDataBase & theDB)
 		m_strId = strResults[0];
 		m_strName = strResults[1];
 		m_strPassword = strResults[2];
+		m_strPhone = strResults[3];
 	}
 	strResults.clear();
 	//Load another database
@@ -1192,7 +1207,7 @@ void Cook::LoadInfo(MyDataBase & theDB)
 	/*
 	TABLE 'w' + m_strId
 	ID NTEXT PRIMARY KEY NOT NULL
-	AMOUNT int NOT NULL
+	AMOUNT INT NOT NULL
 	*/
 	constexpr int nLengthData = 2;
 	string strSubName = "w" + m_strId;
@@ -1226,8 +1241,8 @@ void Cook::SaveInfo(MyDataBase & theDB)
 		throw invalid_argument(theDB.m_strFileName);
 	}
 	vector<string> strResults;
-	vector<string> strVals{ MainLogic::ToSql(m_strId),MainLogic::ToSql(m_strName),MainLogic::ToSql(m_strPassword) };
-	constexpr int nLength = 3;
+	vector<string> strVals{ MainLogic::ToSql(m_strId),MainLogic::ToSql(m_strName),MainLogic::ToSql(m_strPassword),MainLogic::ToSql(m_strPhone) };
+	constexpr int nLength = 4;
 	const string strTableName = "Cook";
 	//The schema
 	/*
@@ -1235,8 +1250,9 @@ void Cook::SaveInfo(MyDataBase & theDB)
 	ID NTEXT PRIMARY KEY NOT NULL
 	NAME NTEXT NOT NULL
 	PASSWORD NTEXT NOT NULL
+	PHONE NTEXT NOT NULL
 	*/
-	vector<string> strTerms{ "ID NTEXT","NAME NTEXT","PASSWORD NTEXT" };
+	vector<string> strTerms{ "ID NTEXT","NAME NTEXT","PASSWORD NTEXT","PHONE NTEXT" };
 	vector<string> strOptions(nLength, "NOT NULL");
 	//Check the table is exist
 	if (!theDB.IsTableExist(strTableName))
@@ -1260,11 +1276,11 @@ void Cook::SaveInfo(MyDataBase & theDB)
 	/*
 	TABLE 'w' + m_strId
 	ID NTEXT PRIMARY KEY NOT NULL
-	AMOUNT int NOT NULL
+	AMOUNT INT NOT NULL
 	*/
 	constexpr int nLengthData = 2;
 	string strSubName = "w" + m_strId;
-	strTerms = { "ID NTEXT","AMOUNT int" };
+	strTerms = { "ID NTEXT","AMOUNT INT" };
 	strOptions = vector<string>(nLengthData, "NOT NULL");
 	//If no table matches
 	workDB.DeleteTable(strSubName);
@@ -1309,8 +1325,8 @@ void Cook::DeleteMe(MyDataBase & theDB)
 	subDB.DeleteTable(strSubName);
 }
 
-Waitor::Waitor(const string & strId, const string & strName, const string & strPassword)
-	:People(strId, strName, strPassword),m_arrServDone{0}
+Waitor::Waitor(const string & strId, const string & strName, const string & strPassword, const string & strPhone)
+	:People(strId, strName, strPassword, strPhone),m_arrServDone{0}
 {
 	m_nTableNum = -1;
 }
@@ -1376,7 +1392,7 @@ void Waitor::LoadInfo(MyDataBase & theDB)
 		//Wrong database
 		throw invalid_argument(theDB.m_strFileName);
 	}
-	constexpr int nLength = 3;
+	constexpr int nLength = 4;
 	const string strTableName = "Waitor";
 	//The schema
 	/*
@@ -1384,6 +1400,7 @@ void Waitor::LoadInfo(MyDataBase & theDB)
 	ID NTEXT PRIMARY KEY NOT NULL
 	NAME NTEXT NOT NULL
 	PASSWORD NTEXT NOT NULL
+	PHONE NTEXT NOT NULL
 	*/
 	//Check the table is exist
 	if (!theDB.IsTableExist(strTableName))
@@ -1398,6 +1415,7 @@ void Waitor::LoadInfo(MyDataBase & theDB)
 		m_strId = strResults[0];
 		m_strName = strResults[1];
 		m_strPassword = strResults[2];
+		m_strPhone = strResults[3];
 	}
 	strResults.clear();
 	//Load another database
@@ -1406,7 +1424,7 @@ void Waitor::LoadInfo(MyDataBase & theDB)
 	/*
 	TABLE 's' + m_strId
 	ID int PRIMARY KEY NOT NULL
-	AMOUNT int NOT NULL
+	AMOUNT INT NOT NULL
 	*/
 	constexpr int nLengthData = 2;
 	string strSubName = "s" + m_strId;
@@ -1441,7 +1459,7 @@ void Waitor::SaveInfo(MyDataBase & theDB)
 	}
 	vector<string> strResults;
 	vector<string> strVals{ MainLogic::ToSql(m_strId),MainLogic::ToSql(m_strName),MainLogic::ToSql(m_strPassword) };
-	constexpr int nLength = 3;
+	constexpr int nLength = 4;
 	const string strTableName = "Waitor";
 	//The schema
 	/*
@@ -1450,7 +1468,7 @@ void Waitor::SaveInfo(MyDataBase & theDB)
 	NAME NTEXT NOT NULL
 	PASSWORD NTEXT NOT NULL
 	*/
-	vector<string> strTerms{ "ID NTEXT","NAME NTEXT","PASSWORD NTEXT" };
+	vector<string> strTerms{ "ID NTEXT","NAME NTEXT","PASSWORD NTEXT","PHONE NTEXT" };
 	vector<string> strOptions(nLength, "NOT NULL");
 	//Check the table is exist
 	if (!theDB.IsTableExist(strTableName))
@@ -1476,7 +1494,7 @@ void Waitor::SaveInfo(MyDataBase & theDB)
 	*/
 	string strSubName = "s" + m_strId;
 	constexpr int nLengthData = 2;
-	strTerms = { "ID NTEXT","AMOUNT int" };
+	strTerms = { "ID NTEXT","AMOUNT INT" };
 	strOptions = vector<string>(nLengthData, "NOT NULL");
 	//If no table matches
 	servDB.DeleteTable(strSubName);
@@ -1536,8 +1554,8 @@ tuple<vector<string>, int> Manager::CheckComment(const People & personWhoever)
 	return make_tuple(rComment, sum);
 }
 
-Manager::Manager(const string & strId, const string & strName, const string & strPassword)
-	:People(strId, strName, strPassword)
+Manager::Manager(const string & strId, const string & strName, const string & strPassword, const string & strPhone)
+	:People(strId, strName, strPassword, strPhone)
 {
 
 }
@@ -1568,7 +1586,7 @@ void Manager::LoadInfo(MyDataBase & theDB)
 		//Wrong database
 		throw invalid_argument(theDB.m_strFileName);
 	}
-	constexpr int nLength = 3;
+	constexpr int nLength = 4;
 	const string strTableName = "Manager";
 	//The schema
 	/*
@@ -1576,6 +1594,7 @@ void Manager::LoadInfo(MyDataBase & theDB)
 	ID NTEXT PRIMARY KEY NOT NULL
 	NAME NTEXT NOT NULL
 	PASSWORD NTEXT NOT NULL
+	PHONE NTEXT NOT NULL
 	*/
 	//Check the table is exist
 	if (!theDB.IsTableExist(strTableName))
@@ -1590,6 +1609,7 @@ void Manager::LoadInfo(MyDataBase & theDB)
 		m_strId = strResults[0];
 		m_strName = strResults[1];
 		m_strPassword = strResults[2];
+		m_strPhone = strResults[3];
 	}
 	strResults.clear();
 }
@@ -1607,8 +1627,8 @@ void Manager::SaveInfo(MyDataBase & theDB)
 		throw invalid_argument(theDB.m_strFileName);
 	}
 	vector<string> strResults;
-	vector<string> strVals{ MainLogic::ToSql(m_strId),MainLogic::ToSql(m_strName),MainLogic::ToSql(m_strPassword) };
-	constexpr int nLength = 3;
+	vector<string> strVals{ MainLogic::ToSql(m_strId),MainLogic::ToSql(m_strName),MainLogic::ToSql(m_strPassword),MainLogic::ToSql(m_strPhone) };
+	constexpr int nLength = 4;
 	const string strTableName = "Manager";
 	//The schema
 	/*
@@ -1616,8 +1636,9 @@ void Manager::SaveInfo(MyDataBase & theDB)
 	ID NTEXT PRIMARY KEY NOT NULL
 	NAME NTEXT NOT NULL
 	PASSWORD NTEXT NOT NULL
+	PHONE NTEXT NOT NULL
 	*/
-	vector<string> strTerms{ "ID NTEXT","NAME NTEXT","PASSWORD NTEXT" };
+	vector<string> strTerms{ "ID NTEXT","NAME NTEXT","PASSWORD NTEXT","PHONE NTEXT" };
 	vector<string> strOptions(nLength, "NOT NULL");
 	//Check the table is exist
 	if (!theDB.IsTableExist(strTableName))
@@ -1662,8 +1683,8 @@ void Manager::DeleteMe(MyDataBase & theDB)
 	theDB.DeleteValue(strTableName, strCondition);
 }
 
-Maintainer::Maintainer(const string & strId, const string & strName, const string & strPassword)
-	:People(strId, strName, strPassword)
+Maintainer::Maintainer(const string & strId, const string & strName, const string & strPassword, const string &strPhone)
+	:People(strId, strName, strPassword, strPhone)
 {
 
 }
@@ -1680,7 +1701,7 @@ void Maintainer::LoadInfo(MyDataBase & theDB)
 		//Wrong database
 		throw invalid_argument(theDB.m_strFileName);
 	}
-	constexpr int nLength = 3;
+	constexpr int nLength = 4;
 	const string strTableName = "Maintainer";
 	//The schema
 	/*
@@ -1688,6 +1709,7 @@ void Maintainer::LoadInfo(MyDataBase & theDB)
 	ID NTEXT PRIMARY KEY NOT NULL
 	NAME NTEXT NOT NULL
 	PASSWORD NTEXT NOT NULL
+	PHONE NTEXT NOT NULL
 	*/
 	//Check the table is exist
 	if (!theDB.IsTableExist(strTableName))
@@ -1702,6 +1724,7 @@ void Maintainer::LoadInfo(MyDataBase & theDB)
 		m_strId = strResults[0];
 		m_strName = strResults[1];
 		m_strPassword = strResults[2];
+		m_strPhone = strResults[3];
 	}
 	strResults.clear();
 }
@@ -1719,8 +1742,8 @@ void Maintainer::SaveInfo(MyDataBase & theDB)
 		throw invalid_argument(theDB.m_strFileName);
 	}
 	vector<string> strResults;
-	vector<string> strVals{ MainLogic::ToSql(m_strId),MainLogic::ToSql(m_strName),MainLogic::ToSql(m_strPassword) };
-	constexpr int nLength = 3;
+	vector<string> strVals{ MainLogic::ToSql(m_strId),MainLogic::ToSql(m_strName),MainLogic::ToSql(m_strPassword),MainLogic::ToSql(m_strPhone) };
+	constexpr int nLength = 4;
 	const string strTableName = "Maintainer";
 	//The schema
 	/*
@@ -1728,8 +1751,9 @@ void Maintainer::SaveInfo(MyDataBase & theDB)
 	ID NTEXT PRIMARY KEY NOT NULL
 	NAME NTEXT NOT NULL
 	PASSWORD NTEXT NOT NULL
+	PHONE NTEXT NOT NULL
 	*/
-	vector<string> strTerms{ "ID NTEXT","NAME NTEXT","PASSWORD NTEXT" };
+	vector<string> strTerms{ "ID NTEXT","NAME NTEXT","PASSWORD NTEXT","PHONE NTEXT" };
 	vector<string> strOptions(nLength, "NOT NULL");
 	//Check the table is exist
 	if (!theDB.IsTableExist(strTableName))

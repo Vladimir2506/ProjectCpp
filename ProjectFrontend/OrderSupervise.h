@@ -11,7 +11,7 @@ public:
 	OrderSupervise(QWidget *parent = Q_NULLPTR);
 	~OrderSupervise();
 protected:
-	virtual void paintEvent(QPaintEvent *event) override;
+	void paintEvent(QPaintEvent *event) override;
 private slots:
 	void OnDelta();
 	void NewLine();

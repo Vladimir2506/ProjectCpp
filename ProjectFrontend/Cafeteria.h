@@ -5,7 +5,6 @@
 **Main.db - Overall information and indecies
 **OrderFood.db - Food list in every order
 **CookWork.db - Work done by every cook
-**Menu.db - Food code list in every order
 **Service.db - Service by every waitor
 */
 
@@ -70,13 +69,16 @@ public:
 class People :public Object
 {
 protected:
+	string m_strPhone;			//The phone number to login
 	string m_strPassword;		//The password
 public:
 	//Constructors
-	People(const string & strId = "", const string & strName = "", const string & strPassword = "");
+	People(const string & strId = "", const string & strName = "", const string & strPassword = "", const string & strPhone = "");
 	//Properties
 	virtual void SetPassword(const string & strPassword);
 	virtual string GetPassword() const;
+	virtual void SetPhone(const string & strPhone);
+	virtual string GetPhone() const;
 	//Destructor
 	virtual ~People();
 	//Interfaces
@@ -99,7 +101,7 @@ protected:
 public:
 	int m_nStar;			//Stars
 	string m_strContent;	//Content
-							//Constructors
+	//Constructors
 	Comment(const string & strId = "", const string & strName = "",
 		const string & strUserId = "", const string & strDishId = "", const string & strDate = "");
 	//Properties
@@ -191,7 +193,7 @@ public:
 	map<string, string> m_waitorComment;			//Waitor comment status
 	//Constructors
 	Customer(const string & strId = "", const string & strName = "",
-		const string & strPassword = "");
+		const string & strPassword = "", const string & strPhone = "");
 	//Properties
 	virtual void SetState(const int nState);
 	virtual int GetState() const;
@@ -230,7 +232,8 @@ protected:
 public:
 	deque<pair<Cuisine, Order*>> m_deqTodo;			//The one to do
 	//Constructors
-	Cook(string strId = "", string strName = "", string strPassword = "");
+	Cook(const string  & strId = "",const string & strName = "",
+		const string & strPassword = "",const string & strPhone = "");
 	//Properties
 	virtual deque<pair<Cuisine, Order*>> GetToDoList() const;
 	virtual map<Cuisine, int> GetWorkDone() const;
@@ -260,7 +263,8 @@ public:
 	deque<pair<Cuisine, Order*>> m_deqReady;
 	deque<int> m_deqTodo;
 	//Constructors
-	Waitor(const string & strId = "", const string & strName = "", const string & strPassword = "");
+	Waitor(const string & strId = "", const string & strName = "",
+		const string & strPassword = "", const string & strPhone = "");
 	//Properties
 	virtual void SetTableNum(const int & nTableNum);
 	virtual int GetTableNum() const;
@@ -300,7 +304,8 @@ private:
 	virtual tuple<vector<string>, int> CheckComment(const People & personWhoever);
 public:
 	//Constructors
-	Manager(const string & strId = "", const string & strName = "", const string & strPassword = "");
+	Manager(const string & strId = "", const string & strName = "", 
+		const string & strPassword = "", const string & strPhone = "");
 	//Behaviours
 	virtual tuple<vector<string>, map<Cuisine, int>, int> CheckCook(const Cook & cookWhoever);
 	virtual tuple<vector<string>, array<int, nService>, int> CheckWaitor(const Waitor & waitorWhoever);
@@ -319,7 +324,8 @@ class Maintainer :public People
 {
 public:
 	//Constructors
-	Maintainer(const string & strId = "", const string & strName = "", const string & strPassword = "");
+	Maintainer(const string & strId = "", const string & strName = "", 
+		const string & strPassword = "", const string &strPhone = "");
 	//Interfaces
 	virtual void LoadInfo(MyDataBase &theDB);
 	virtual void SaveInfo(MyDataBase &theDB);

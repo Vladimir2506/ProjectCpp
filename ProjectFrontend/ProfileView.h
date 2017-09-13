@@ -22,6 +22,7 @@ private:
 	bool CheckPW();
 	bool CheckPhone();
 	bool CheckDeux();
+	bool CheckName();
 	void PrepareInfo();
 	void PrepareOrders(const string &idOrder);
 	void PrepareComments();

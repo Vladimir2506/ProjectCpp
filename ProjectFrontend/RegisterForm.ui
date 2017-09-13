@@ -13,7 +13,7 @@
     <x>0</x>
     <y>0</y>
     <width>500</width>
-    <height>400</height>
+    <height>500</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -25,13 +25,13 @@
   <property name="minimumSize">
    <size>
     <width>500</width>
-    <height>400</height>
+    <height>500</height>
    </size>
   </property>
   <property name="maximumSize">
    <size>
     <width>500</width>
-    <height>400</height>
+    <height>500</height>
    </size>
   </property>
   <property name="windowTitle">
@@ -43,19 +43,19 @@
      <x>25</x>
      <y>25</y>
      <width>450</width>
-     <height>350</height>
+     <height>450</height>
     </rect>
    </property>
    <property name="minimumSize">
     <size>
      <width>450</width>
-     <height>350</height>
+     <height>450</height>
     </size>
    </property>
    <property name="maximumSize">
     <size>
      <width>450</width>
-     <height>350</height>
+     <height>450</height>
     </size>
    </property>
    <property name="whatsThis">
@@ -138,7 +138,7 @@
      <number>11</number>
     </property>
     <property name="placeholderText">
-     <string>11位手机号</string>
+     <string>11位手机号码</string>
     </property>
    </widget>
    <widget class="QLineEdit" name="lePW">
@@ -167,7 +167,7 @@
     <property name="geometry">
      <rect>
       <x>75</x>
-      <y>290</y>
+      <y>350</y>
       <width>100</width>
       <height>50</height>
      </rect>
@@ -179,8 +179,8 @@
    <widget class="QPushButton" name="btnCancel">
     <property name="geometry">
      <rect>
-      <x>240</x>
-      <y>290</y>
+      <x>260</x>
+      <y>350</y>
       <width>100</width>
       <height>50</height>
      </rect>
@@ -193,7 +193,7 @@
     <property name="geometry">
      <rect>
       <x>50</x>
-      <y>250</y>
+      <y>300</y>
       <width>350</width>
       <height>25</height>
      </rect>
@@ -282,6 +282,45 @@
      <number>-1</number>
     </property>
    </widget>
+   <widget class="QLabel" name="lblName">
+    <property name="geometry">
+     <rect>
+      <x>50</x>
+      <y>250</y>
+      <width>150</width>
+      <height>25</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>请输入您的名字：</string>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="leName">
+    <property name="geometry">
+     <rect>
+      <x>200</x>
+      <y>250</y>
+      <width>150</width>
+      <height>25</height>
+     </rect>
+    </property>
+    <property name="placeholderText">
+     <string>10个字符之内</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="lblState4">
+    <property name="geometry">
+     <rect>
+      <x>375</x>
+      <y>250</y>
+      <width>25</width>
+      <height>25</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
   </widget>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
@@ -303,7 +342,7 @@
    <hints>
     <hint type="sourcelabel">
      <x>349</x>
-     <y>218</y>
+     <y>395</y>
     </hint>
     <hint type="destinationlabel">
      <x>493</x>
@@ -319,7 +358,7 @@
    <hints>
     <hint type="sourcelabel">
      <x>179</x>
-     <y>248</y>
+     <y>395</y>
     </hint>
     <hint type="destinationlabel">
      <x>192</x>
@@ -344,34 +383,18 @@
    </hints>
   </connection>
   <connection>
-   <sender>lePhone</sender>
+   <sender>leName</sender>
    <signal>textChanged(QString)</signal>
    <receiver>RegisterForm</receiver>
-   <slot>CheckPhone(QString)</slot>
+   <slot>OnDelta()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>349</x>
-     <y>76</y>
+     <x>362</x>
+     <y>288</y>
     </hint>
     <hint type="destinationlabel">
      <x>488</x>
-     <y>69</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>lePW</sender>
-   <signal>textChanged(QString)</signal>
-   <receiver>RegisterForm</receiver>
-   <slot>CheckPW(QString)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>299</x>
-     <y>135</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>488</x>
-     <y>143</y>
+     <y>316</y>
     </hint>
    </hints>
   </connection>
@@ -379,15 +402,47 @@
    <sender>lePWDeux</sender>
    <signal>textChanged(QString)</signal>
    <receiver>RegisterForm</receiver>
-   <slot>CheckDeux(QString)</slot>
+   <slot>OnDelta()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>329</x>
-     <y>191</y>
+     <x>355</x>
+     <y>194</y>
     </hint>
     <hint type="destinationlabel">
-     <x>488</x>
-     <y>186</y>
+     <x>494</x>
+     <y>193</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>lePW</sender>
+   <signal>textChanged(QString)</signal>
+   <receiver>RegisterForm</receiver>
+   <slot>OnDelta()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>341</x>
+     <y>137</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>500</x>
+     <y>148</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>lePhone</sender>
+   <signal>textChanged(QString)</signal>
+   <receiver>RegisterForm</receiver>
+   <slot>OnDelta()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>362</x>
+     <y>80</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>495</x>
+     <y>86</y>
     </hint>
    </hints>
   </connection>
@@ -398,5 +453,6 @@
   <slot>SubmitReg()</slot>
   <slot>CheckDeux(QString)</slot>
   <slot>BindSelect(int)</slot>
+  <slot>OnDelta()</slot>
  </slots>
 </ui>

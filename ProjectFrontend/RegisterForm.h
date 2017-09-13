@@ -11,25 +11,25 @@ public:
 	RegisterForm(QWidget *parent = Q_NULLPTR);
 	~RegisterForm();
 private slots :
-	void CheckPhone(QString qstrPhone);
-	void CheckPW(QString qstrPW);
-	void CheckDeux(QString qstrDeux);
+	void OnDelta();
 	void BindSelect(int nSel);
 	void SubmitReg();
 protected:
 	virtual void paintEvent(QPaintEvent *event) override;
+private:
+	bool CheckPW();
+	bool CheckPhone();
+	bool CheckDeux();
+	bool CheckName();
 private:
 	Ui::RegisterForm ui;
 	//Icons
 	QPixmap pixRight;
 	QPixmap pixWrong;
 	QPixmap pixNil;
-	//Check validity
-	bool bPhone;
-	bool bPW;
-	bool bDeux;
-	bool bUnique;
 	//cbChar selection
 	QStringList lstCharaters;
 	int nSelect;
+	//Edit flags
+	bool bDelta;
 };
