@@ -142,6 +142,8 @@ public:
 */
 class Order :public Object
 {
+private:
+	bool bAssigned;						//Just assigned once
 protected:
 	map<Cuisine, int> m_mapOrderFood;	//Food Ordered
 	string m_strCustomerId;				//Customer's Id
@@ -149,7 +151,7 @@ protected:
 	int m_nTableNum;					//The table number
 public:
 	map<Cuisine, int> m_mapBill;				//Bill's subtotal
-	map<Cuisine, int> m_mapFoodToDo;	//Food in service
+	map<Cuisine, int> m_mapFoodToDo;			//Food in service
 	//Constructors
 	Order(const string & strId = "", const string & strName = "", const string & strCustomerId = "", const string & strWaitorId = "");
 	//Properties
@@ -162,10 +164,12 @@ public:
 	virtual void SetTableNum(const int &nTableNum);
 	virtual int GetTableNum() const;
 	//Behaviours
-	virtual void Adjust(const Cuisine theDish, int nAmount);		//Add Some dishes to the order		
+	virtual void Adjust(const Cuisine theDish, int nAmount);	//Add Some dishes to the order		
 	virtual int CheckOut();										//Payment
 	virtual void Assign();										//Assign the task to a cook
 	virtual void Consume(const Cuisine theDish);				//A dish served
+	virtual string Appoint();									//Bind an idle waitor if no one serves
+	virtual bool IsServed();									//Check if there is a waitor serving
 	//Interfaces
 	virtual void LoadInfo(MyDataBase &theDB);
 	virtual void SaveInfo(MyDataBase &theDB);

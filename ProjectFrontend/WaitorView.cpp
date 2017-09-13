@@ -13,7 +13,7 @@ WaitorView::WaitorView(QWidget *parent)
 	}
 	else
 	{
-		ui.lblInfo->setText("您好！尊敬的服务员" + str2qstr(pWaitor->GetId()) + ",您服务的桌号为" + QString::number(pWaitor->GetTableNum()));
+		ui.lblInfo->setText("您好！尊敬的服务员" + str2qstr(pWaitor->GetId()) + ",您服务的桌号为" + QString::number(pWaitor->GetTableNum() + 1));
 	}
 	mdlDone = new QStandardItemModel(this);
 	PrepareDemand();

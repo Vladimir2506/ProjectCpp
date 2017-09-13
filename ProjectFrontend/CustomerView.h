@@ -39,7 +39,7 @@ private:
 	void PrepareOrder();
 private:
 	Ui::CustomerView ui;
-	int nSeat;
+	size_t nSeat;
 	QVector<QPushButton *> matSeat;
 	Customer *pCustomer;
 	Waitor *pWaitor;

@@ -51,7 +51,7 @@ public:
         lstTodo->setObjectName(QStringLiteral("lstTodo"));
         lstTodo->setGeometry(QRect(25, 75, 350, 350));
         lstTodo->setEditTriggers(QAbstractItemView::NoEditTriggers);
-        lstTodo->setSelectionMode(QAbstractItemView::NoSelection);
+        lstTodo->setSelectionMode(QAbstractItemView::SingleSelection);
         lstTodo->setSelectionBehavior(QAbstractItemView::SelectItems);
         btnFinish = new QPushButton(gbTodo);
         btnFinish->setObjectName(QStringLiteral("btnFinish"));

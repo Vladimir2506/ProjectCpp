@@ -615,7 +615,7 @@ void Cuisine::DeleteMe(MyDataBase & theDB)
 Order::Order(const string & strId, const string & strName, const string & strCustomerId, const string & strWaitorId)
 	:Object(strId, strName), m_strCustomerId(strCustomerId), m_strWaitorId(strWaitorId)
 {
-
+	bAssigned = false;
 }
 
 void Order::SetCustomerId(const string & strCustomerId)
@@ -710,6 +710,10 @@ int Order::CheckOut()
 
 void Order::Assign()
 {
+	if (bAssigned)
+	{
+		return;
+	}
 	auto as = m_mapFoodToDo;
 	auto rc = MainLogic::s_currentCooks.begin();
 	for (auto dish = as.begin(); dish != as.end();)
@@ -729,6 +733,7 @@ void Order::Assign()
 			rc = MainLogic::s_currentCooks.begin();
 		}
 	}
+	bAssigned = true;
 }
 
 void Order::Consume(const Cuisine theDish)
@@ -737,6 +742,34 @@ void Order::Consume(const Cuisine theDish)
 	{
 		--m_mapFoodToDo[theDish];
 	}
+}
+
+string Order::Appoint()
+{
+	if (!m_strWaitorId.empty())
+	{
+		return m_strWaitorId;
+	}
+	auto it = find_if(MainLogic::s_currentWaitors.begin(), MainLogic::s_currentWaitors.end(),
+		[](pair<const string &, Waitor> obj)
+	{
+		return obj.second.IsIdle();
+	});
+	if (it != MainLogic::s_currentWaitors.end())
+	{
+		it->second.SetTableNum(m_nTableNum);
+		m_strWaitorId = it->first;
+	}
+	else
+	{
+		m_strWaitorId = "";
+	}
+	return m_strWaitorId;
+}
+
+bool Order::IsServed()
+{
+	return !m_strWaitorId.empty();
 }
 
 void Order::LoadInfo(MyDataBase & theDB)
@@ -920,25 +953,12 @@ const map<string, Order>::iterator Customer::GetCurrrentOrder() const
 
 string Customer::MakeOrder()
 {
-	if (m_nState == CSSTATE::Eat)
+	if (m_nState != CSSTATE::Eat)
 	{
-		return m_itNow->second.GetWaitorId();
+		m_nState = CSSTATE::Eat;
+		m_itNow->second.SetCustomerId(m_strId);
 	}
-	m_nState = CSSTATE::Eat;
-	m_itNow->second.SetCustomerId(m_strId);
-	//Find the first idle waitor
-	auto it = find_if(MainLogic::s_currentWaitors.begin(), MainLogic::s_currentWaitors.end(),
-		[](pair<const string &, Waitor> obj)
-	{
-		return obj.second.IsIdle();
-	});
-	if (it != MainLogic::s_currentWaitors.end())
-	{
-		it->second.SetTableNum(m_nTableNum);
-		m_itNow->second.SetWaitorId(it->first);
-		return it->first;
-	}
-	return "";
+	return m_itNow->second.Appoint();
 }
 
 void Customer::Finish()

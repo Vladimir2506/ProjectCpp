@@ -21,8 +21,6 @@ CustomerView::CustomerView(QWidget *parent)
 	default:
 		break;
 	}
-	ui.lblTotal->setText("总计：0元");
-	nTotal = 0;
 }
 
 CustomerView::~CustomerView()
@@ -38,6 +36,7 @@ void CustomerView::paintEvent(QPaintEvent * event)
 	ui.btnPackUp->setDisabled(pWaitor == nullptr);
 	ui.btnSubmit->setDisabled(nTotal == 0);
 	ui.btnFinish->setDisabled(ui.pbGeneral->value() != 100);
+	ui.btnComWaitor->setDisabled(pWaitor == nullptr);
 	QDialog::paintEvent(event);
 }
 
@@ -48,7 +47,6 @@ void CustomerView::SubmitOrder()
 		QMessageBox::Yes | QMessageBox::No);
 	if (ret == QMessageBox::Yes)
 	{
-		pCustomer->m_itNow->second.Assign();
 		for (auto & s : pCustomer->m_itNow->second.GetFoodMap())
 		{
 			pCustomer->m_statusComment[s.first.GetId()];
@@ -94,6 +92,7 @@ void CustomerView::PhaseOrderMake()
 	ui.lblInfo->setText(QString("您好！尊敬的顾客%0，您的桌号为%1").
 		arg(str2qstr(pCustomer->GetName())).
 		arg(pCustomer->GetTableNum() + 1));
+	nTotal = 0;
 	ui.lblTotal->setText(QString("总计：%0元").arg(nTotal));
 }
 
@@ -110,6 +109,7 @@ void CustomerView::PhaseMealEat()
 		pWaitor = &MainLogic::s_currentWaitors[idWaitor];
 		pCustomer->m_waitorComment[idWaitor];
 		ui.lblWaitor->setText("服务员" + str2qstr(idWaitor) + "为您服务！");
+		pCustomer->m_itNow->second.Assign();
 	}
 	else
 	{
