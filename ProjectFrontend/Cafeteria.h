@@ -360,4 +360,20 @@ public:
 	vector<char> arrSeatVacance;						//The seat vacancies  0 = no 1 = yes without using vector<char>
 };
 
+// Id regulations
+enum IDGENERATOR
+{
+	ID_COMMENT,
+	ID_CUISINE,
+	ID_ORDER,
+	ID_CUSTOMER,
+	ID_COOK,
+	ID_WAITOR,
+	ID_MANAGER,
+	ID_MAINTAINER
+};
+
+enum CharSel { CH_CUSTOMER, CH_MAINTAINER, CH_COOK, CH_WAITOR, CH_MANAGER };
+string IdGenerator(int nChar, size_t nRecord, int nDigits = 6);
+
 #endif 

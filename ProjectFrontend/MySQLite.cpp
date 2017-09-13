@@ -173,7 +173,7 @@ void MyDataBase::CreateTable(const string & strTableName, const vector<string> s
 	{
 		return;
 	}
-	const int nHeader = strTerms.size();
+	const auto nHeader = strTerms.size();
 	//Concatenate every parameters to a sql statement
 	string strSqlStatement = "CREATE TABLE " + strTableName + "(";
 	for (int i = 0; i < nHeader; ++i)
@@ -254,7 +254,7 @@ void MyDataBase::InsertValue(const string & strTableName, const vector<string> s
 	{
 		return;
 	}
-	int nHeader = strVals.size();
+	auto nHeader = strVals.size();
 	//Concatenate every parameters to a sql statement
 	string strSqlStatement = "INSERT intO " + strTableName + " VALUES(" ;
 	for (int i = 0; i < nHeader; ++i)
@@ -299,7 +299,7 @@ void MyDataBase::UpdateValue(const string & strTableName, const vector<string> s
 	{
 		return;
 	}
-	const int nTerms = strTermNames.size();
+	const auto nTerms = strTermNames.size();
 	//Concatenate every parameters to a sql statement
 	string strSqlStatement = "UPDATE " + strTableName + " SET ";
 	for (int i = 0; i < nTerms; ++i)
@@ -391,7 +391,7 @@ void MyDataBase::QuerySelection(const string & strTableName, vector<string>& rst
 		}
 		else
 		{
-			const int nHeader = strTerms.size();
+			const auto nHeader = strTerms.size();
 			for (int i = 0; i < nHeader; ++i)
 			{
 				strSqlStatement += strTerms[i];
