@@ -1,5 +1,5 @@
 /*
-**Cafeteria.cpp
+**ProjectBackend.cpp
 **This file contains all implementation of Backend's features.
 */
 
@@ -21,14 +21,14 @@ MainLogic * MainLogic::m_pInstance = nullptr;
 //Classes implementation
 
 MainLogic::MainLogic()
-	:MainDB("Main.db")
 {
+	MainDB.Open("Main.db");
 	pUser = nullptr;
 }
 
 MainLogic::~MainLogic()
 {
-	MainDB.~MyDataBase();
+	MainDB.Close();
 }
 
 MainLogic * MainLogic::GetInstance()
@@ -514,20 +514,30 @@ void Comment::DeleteMe(MyDataBase & theDB)
 	theDB.DeleteValue(strTableName, strCondition);
 }
 
-Cuisine::Cuisine(const string & strId, const string & strName, const int nPrice)
-	:Object(strId, strName), m_nPrice(nPrice)
+Cuisine::Cuisine(const string & strId, const string & strName, const double dPrice, const int nCate)
+	:Object(strId, strName), m_dPrice(dPrice), m_nCate(nCate)
 {
 
 }
 
-void Cuisine::SetPrice(const int nPrice)
+void Cuisine::SetPrice(const double dPrice)
 {
-	m_nPrice = nPrice;
+	m_dPrice = dPrice;
 }
 
-int Cuisine::GetPrice() const
+double Cuisine::GetPrice() const
 {
-	return m_nPrice;
+	return m_dPrice;
+}
+
+void Cuisine::SetCate(const int nCate)
+{
+	m_nCate = nCate;
+}
+
+int Cuisine::GetCate() const
+{
+	return m_nCate;
 }
 
 void Cuisine::LoadInfo(MyDataBase & theDB)
@@ -542,14 +552,15 @@ void Cuisine::LoadInfo(MyDataBase & theDB)
 		//Wrong database
 		throw invalid_argument(theDB.m_strFileName);
 	}
-	constexpr int nLength = 3;
+	constexpr int nLength = 4;
 	const string strTableName = "Cuisine";
 	//The schema
 	/*
 	TABLE Cuisine
 	ID NTEXT PRIMARY KEY NOT NULL
 	NAME NTEXT NOT NULL
-	PRICE int NOT NULL
+	PRICE REAL NOT NULL
+	CATE INT NOT NULL
 	*/
 	//Check the table is exist
 	if (!theDB.IsTableExist(strTableName))
@@ -563,7 +574,8 @@ void Cuisine::LoadInfo(MyDataBase & theDB)
 	{
 		m_strId = strResults[0];
 		m_strName = strResults[1];
-		m_nPrice = stoi(strResults[2]);
+		m_dPrice = stod(strResults[2]);
+		m_nCate = stoi(strResults[3]);
 	}
 }
 
@@ -579,20 +591,21 @@ void Cuisine::SaveInfo(MyDataBase & theDB)
 		//Wrong database
 		throw invalid_argument(theDB.m_strFileName);
 	}
-	vector<string> strVals{ MainLogic::ToSql(m_strId),MainLogic::ToSql(m_strName),to_string(m_nPrice) };
-	constexpr int nLength = 3;
+	vector<string> strVals{ MainLogic::ToSql(m_strId),MainLogic::ToSql(m_strName),to_string(m_dPrice),to_string(m_nCate) };
+	constexpr int nLength = 4;
 	const string strTableName = "Cuisine";
 	//The schema
 	/*
 	TABLE Cuisine
 	ID NTEXT PRIMARY KEY NOT NULL
 	NAME NTEXT NOT NULL
-	PRICE int NOT NULL
+	PRICE REAL NOT NULL
+	CATE INT NOT NULL
 	*/
 	//Check the table is exist
 	if (!theDB.IsTableExist(strTableName))
 	{
-		vector<string> strTerms{ "ID NTEXT","NAME NTEXT","PRICE int" };
+		vector<string> strTerms{ "ID NTEXT","NAME NTEXT","PRICE REAL","CATE INT" };
 		vector<string> strOptions(nLength, "NOT NULL");
 		theDB.CreateTable(strTableName, strTerms, strOptions);
 	}
@@ -671,16 +684,16 @@ int Order::GetTableNum() const
 void Order::Adjust(const Cuisine theDish, int nAmount)
 {
 	//Deal with the ordered
-	auto dish = m_mapOrderFood.find(theDish);
-	if (dish != m_mapOrderFood.end())
+	auto it = m_mapOrderFood.find(theDish);
+	if (it != m_mapOrderFood.end())
 	{
 		if (nAmount == 0)
 		{
-			m_mapOrderFood.erase(dish);
+			m_mapOrderFood.erase(it);
 		}
 		else
 		{
-			dish->second = nAmount;
+			it->second = nAmount;
 		}
 	}
 	else if (nAmount != 0)
@@ -707,15 +720,15 @@ void Order::Adjust(const Cuisine theDish, int nAmount)
 }
 
 
-int Order::CheckOut()
+double Order::CheckOut()
 {
-	int nResult = 0;
+	double dResult = 0.0;
 	for (auto m : m_mapBill)
 	{
-		nResult += m.second;
+		dResult += m.second;
 	}
 	m_mapFoodToDo = m_mapOrderFood;
-	return nResult;
+	return dResult;
 }
 
 void Order::Assign()

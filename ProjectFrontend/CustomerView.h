@@ -33,7 +33,6 @@ private:
 	bool IsNoVacance();
 	void SeatClicked(int num);
 	void HideAll();
-	void Subtotal(int nCost,int nRow,int nCol);
 	void PrepareMenu();
 	void MyResize(int w, int h);
 	void PrepareOrder();
@@ -43,5 +42,6 @@ private:
 	QVector<QPushButton *> matSeat;
 	Customer *pCustomer;
 	Waitor *pWaitor;
-	int nTotal;
+	double dTotal;
+	QVector<QIcon> icoCategories;
 };

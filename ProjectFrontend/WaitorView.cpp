@@ -9,11 +9,11 @@ WaitorView::WaitorView(QWidget *parent)
 	ui.setupUi(this);
 	if (pWaitor->IsIdle())
 	{
-		ui.lblInfo->setText("您好！尊敬的服务员" + str2qstr(pWaitor->GetId()));
+		ui.lblInfo->setText("您好！尊敬的服务员" + str2qstr(pWaitor->GetName()));
 	}
 	else
 	{
-		ui.lblInfo->setText("您好！尊敬的服务员" + str2qstr(pWaitor->GetId()) + ",您服务的桌号为" + QString::number(pWaitor->GetTableNum() + 1));
+		ui.lblInfo->setText("您好！尊敬的服务员" + str2qstr(pWaitor->GetName()) + ",您服务的桌号为" + QString::number(pWaitor->GetTableNum() + 1));
 	}
 	mdlDone = new QStandardItemModel(this);
 	PrepareDemand();

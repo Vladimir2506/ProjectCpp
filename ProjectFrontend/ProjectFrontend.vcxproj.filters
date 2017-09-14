@@ -57,9 +57,6 @@
     <ClCompile Include="RegisterForm.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Cafeteria.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="MySQLite.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -153,13 +150,13 @@
     <ClCompile Include="ProfileView.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="ProjectBackend.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GeneratedFiles\ui_RegisterForm.h">
       <Filter>Generated Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Cafeteria.h">
-      <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="MySQLite.h">
       <Filter>Header Files</Filter>
@@ -179,9 +176,6 @@
     <ClInclude Include="GeneratedFiles\ui_BrowseComment.h">
       <Filter>Generated Files</Filter>
     </ClInclude>
-    <ClInclude Include="sqlite3.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="stdafx.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -199,6 +193,9 @@
     </ClInclude>
     <ClInclude Include="GeneratedFiles\ui_ProfileView.h">
       <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ProjectBackend.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

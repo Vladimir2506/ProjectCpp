@@ -18,7 +18,6 @@ MaintainerView::MaintainerView(QWidget *parent)
 	pixMod.load("modify.png");
 	//Set data display of menu
 	PrepareMenu();
-	ui.tbMenu->setModel(mdlMenu);
 	//Init flags of menu
 	bMenuDelta = false;
 	bMenuLastEmpty = false;
@@ -27,7 +26,6 @@ MaintainerView::MaintainerView(QWidget *parent)
 	connect(ui.tbMenu->model(), SIGNAL(itemChanged(QStandardItem*)), this, SLOT(OnMenuDelta(QStandardItem*)));
 	//Set data display of user
 	PrepareUser();
-	ui.tbUser->setModel(mdlUser);
 	ui.lblCommit->setPixmap(pixCom);
 	//Set user catalog combobox
 	ui.cbCata->addItems(lstCata);
@@ -47,8 +45,9 @@ void MaintainerView::OnUserSelected(QModelIndex qInd)
 	bUserSelect = true;
 	nUserSel = qInd.row();
 	auto lastRow = mdlUser->rowCount() - 1;
+	auto colCount = mdlUser->columnCount();
 	bUserLastEmpty = true;
-	for (int i = 0; i < 3; ++i)
+	for (int i = 0; i < colCount; ++i)
 	{
 		if (!mdlUser->item(lastRow, i)->text().isEmpty())
 		{
@@ -101,7 +100,7 @@ void MaintainerView::NewCuisine()
 	//Add new row in display
 	if (!bMenuLastEmpty)
 	{
-		QList<QStandardItem*> lst{ new QStandardItem(""),new QStandardItem("") ,new QStandardItem("") };
+		QList<QStandardItem*> lst{ new QStandardItem(""),new QStandardItem("") ,new QStandardItem(""),new QStandardItem("") };
 		mdlMenu->appendRow(lst);
 		bMenuLastEmpty = true;
 		bMenuDelta = true;
@@ -128,7 +127,7 @@ void MaintainerView::NewUser()
 {
 	if (!bUserLastEmpty)
 	{
-		QList<QStandardItem*> lst{ new QStandardItem(""),new QStandardItem("") ,new QStandardItem("") };
+		QList<QStandardItem*> lst{ new QStandardItem(""),new QStandardItem("") ,new QStandardItem(""),new QStandardItem("") };
 		mdlUser->appendRow(lst);
 		bUserLastEmpty = true;
 		bUserDelta = true;
@@ -254,16 +253,18 @@ void MaintainerView::ResolveDeltaMenu()
 	{
 		string strId(qstr2str(mdlMenu->item(i, 0)->text()));
 		string strName(qstr2str(mdlMenu->item(i, 1)->text()));
-		int nPrice(mdlMenu->item(i, 2)->text().toInt());
+		double dPrice(mdlMenu->item(i, 2)->text().toDouble());
+		int nCate(mdlMenu->item(i, 3)->text().toInt());
 		auto it = MainLogic::s_currentMenu.find(strId);
 		if (it == MainLogic::s_currentMenu.end())
 		{
-			MainLogic::s_currentMenu.insert(make_pair(strId, Cuisine(strId, strName, nPrice)));
+			MainLogic::s_currentMenu.emplace(strId, Cuisine(strId, strName, dPrice, nCate));
 		}
 		else
 		{
 			it->second.SetName(strName);
-			it->second.SetPrice(nPrice);
+			it->second.SetPrice(dPrice);
+			it->second.SetCate(nCate);
 		}
 	}
 	//For delete-values
@@ -687,27 +688,33 @@ void MaintainerView::ResetUserButtons()
 void MaintainerView::PrepareMenu()
 {
 	//Load menu information from MainLogic
+	ui.tbMenu->reset();
 	mdlMenu->clear();
-	mdlMenu->setColumnCount(3);
+	mdlMenu->setColumnCount(4);
 	mdlMenu->setHeaderData(0, Qt::Horizontal, "ID");
 	mdlMenu->setHeaderData(1, Qt::Horizontal, "名称");
 	mdlMenu->setHeaderData(2, Qt::Horizontal, "价格");
+	mdlMenu->setHeaderData(3, Qt::Horizontal, "类别");
 	int nRow = 0;
 	for (auto &d : MainLogic::s_currentMenu)
 	{
 		QStandardItem *pId = new QStandardItem(str2qstr(d.first));
 		QStandardItem *pName = new QStandardItem(str2qstr(d.second.GetName()));
 		QStandardItem *pPrice = new QStandardItem(QString::number(d.second.GetPrice()));
+		QStandardItem *pCate = new QStandardItem(QString::number(d.second.GetCate()));
 		mdlMenu->setItem(nRow, 0, pId);
 		mdlMenu->setItem(nRow, 1, pName);
 		mdlMenu->setItem(nRow, 2, pPrice);
+		mdlMenu->setItem(nRow, 3, pCate);
 		++nRow;
 	}
+	ui.tbMenu->setModel(mdlMenu);
 }
 
 void MaintainerView::PrepareUser()
 {
 	//Load the catalogue of the user
+	ui.tbUser->reset();
 	mdlUser->clear();
 	mdlUser->setColumnCount(4);
 	mdlUser->setHeaderData(0, Qt::Horizontal, "ID");
@@ -734,6 +741,7 @@ void MaintainerView::PrepareUser()
 	default:
 		break;
 	}
+	ui.tbUser->setModel(mdlUser);
 }
 
 void MaintainerView::OnMenuSelected(QModelIndex qInd)
@@ -742,8 +750,9 @@ void MaintainerView::OnMenuSelected(QModelIndex qInd)
 	bMenuSelect = true;
 	nMenuSel = qInd.row();
 	auto lastRow = mdlMenu->rowCount() - 1;
+	auto colCount = mdlMenu->columnCount();
 	bMenuLastEmpty = true;
-	for (int i = 0; i < 3; ++i)
+	for (int i = 0; i < colCount; ++i)
 	{
 		if (!mdlMenu->item(lastRow, i)->text().isEmpty())
 		{
