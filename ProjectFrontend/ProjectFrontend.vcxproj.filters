@@ -179,9 +179,6 @@
     <ClInclude Include="GeneratedFiles\ui_BrowseComment.h">
       <Filter>Generated Files</Filter>
     </ClInclude>
-    <ClInclude Include="sqlite3.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="stdafx.h">
       <Filter>Header Files</Filter>
     </ClInclude>
