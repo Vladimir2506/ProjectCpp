@@ -1458,7 +1458,7 @@ void Waitor::SaveInfo(MyDataBase & theDB)
 		throw invalid_argument(theDB.m_strFileName);
 	}
 	vector<string> strResults;
-	vector<string> strVals{ MainLogic::ToSql(m_strId),MainLogic::ToSql(m_strName),MainLogic::ToSql(m_strPassword) };
+	vector<string> strVals{ MainLogic::ToSql(m_strId),MainLogic::ToSql(m_strName),MainLogic::ToSql(m_strPassword),MainLogic::ToSql(m_strPhone) };
 	constexpr int nLength = 4;
 	const string strTableName = "Waitor";
 	//The schema

@@ -117,7 +117,8 @@ bool ProfileView::CheckPhone()
 	}
 	else
 	{
-		if (MainLogic::GetInstance()->FindExist(qstr2str(strPhone)) != nullptr)
+		auto &&thePerson = MainLogic::GetInstance()->FindExist(qstr2str(strPhone));
+		if (thePerson != nullptr && thePerson != pMe)
 		{
 			ui.lblState1->setPixmap(pixWrong);
 			return false;

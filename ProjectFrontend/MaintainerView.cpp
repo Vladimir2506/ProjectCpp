@@ -325,15 +325,17 @@ void MaintainerView::CustomerDelta()
 		string strId(qstr2str(mdlUser->item(i, 0)->text()));
 		string strName(qstr2str(mdlUser->item(i, 1)->text()));
 		string strPassword(qstr2str(mdlUser->item(i, 2)->text()));
+		string strPhone(qstr2str(mdlUser->item(i, 3)->text()));
 		auto it = MainLogic::s_currentCustomers.find(strId);
 		if (it == MainLogic::s_currentCustomers.end())
 		{
-			MainLogic::s_currentCustomers.insert(make_pair(strId, Customer(strId, strName, strPassword)));
+			MainLogic::s_currentCustomers.emplace(strId, Customer(strId, strName, strPassword, strPhone));
 		}
 		else
 		{
 			it->second.SetName(strName);
 			it->second.SetPassword(strPassword);
+			it->second.SetPhone(strPhone);
 		}
 	}
 	//Del values
@@ -370,15 +372,17 @@ void MaintainerView::CookDelta()
 		string strId(qstr2str(mdlUser->item(i, 0)->text()));
 		string strName(qstr2str(mdlUser->item(i, 1)->text()));
 		string strPassword(qstr2str(mdlUser->item(i, 2)->text()));
+		string strPhone(qstr2str(mdlUser->item(i, 3)->text()));
 		auto it = MainLogic::s_currentCooks.find(strId);
 		if (it == MainLogic::s_currentCooks.end())
 		{
-			MainLogic::s_currentCooks.insert(make_pair(strId, Cook(strId, strName, strPassword)));
+			MainLogic::s_currentCooks.emplace(strId, Cook(strId, strName, strPassword, strPhone));
 		}
 		else
 		{
 			it->second.SetName(strName);
 			it->second.SetPassword(strPassword);
+			it->second.SetPhone(strPhone);
 		}
 	}
 	//Del values
@@ -415,15 +419,17 @@ void MaintainerView::WaitorDelta()
 		string strId(qstr2str(mdlUser->item(i, 0)->text()));
 		string strName(qstr2str(mdlUser->item(i, 1)->text()));
 		string strPassword(qstr2str(mdlUser->item(i, 2)->text()));
+		string strPhone(qstr2str(mdlUser->item(i, 3)->text()));
 		auto it = MainLogic::s_currentWaitors.find(strId);
 		if (it == MainLogic::s_currentWaitors.end())
 		{
-			MainLogic::s_currentWaitors.insert(make_pair(strId, Waitor(strId, strName, strPassword)));
+			MainLogic::s_currentWaitors.emplace(strId, Waitor(strId, strName, strPassword, strPhone));
 		}
 		else
 		{
 			it->second.SetName(strName);
 			it->second.SetPassword(strPassword);
+			it->second.SetPhone(strPhone);
 		}
 	}
 	//Del values
@@ -460,15 +466,17 @@ void MaintainerView::ManagerDelta()
 		string strId(qstr2str(mdlUser->item(i, 0)->text()));
 		string strName(qstr2str(mdlUser->item(i, 1)->text()));
 		string strPassword(qstr2str(mdlUser->item(i, 2)->text()));
+		string strPhone(qstr2str(mdlUser->item(i, 3)->text()));
 		auto it = MainLogic::s_currentManagers.find(strId);
 		if (it == MainLogic::s_currentManagers.end())
 		{
-			MainLogic::s_currentManagers.insert(make_pair(strId, Manager(strId, strName, strPassword)));
+			MainLogic::s_currentManagers.emplace(strId, Manager(strId, strName, strPassword, strPhone));
 		}
 		else
 		{
 			it->second.SetName(strName);
 			it->second.SetPassword(strPassword);
+			it->second.SetPhone(strPhone);
 		}
 	}
 	//Del values
@@ -505,15 +513,17 @@ void MaintainerView::MaintainerDelta()
 		string strId(qstr2str(mdlUser->item(i, 0)->text()));
 		string strName(qstr2str(mdlUser->item(i, 1)->text()));
 		string strPassword(qstr2str(mdlUser->item(i, 2)->text()));
+		string strPhone(qstr2str(mdlUser->item(i, 3)->text()));
 		auto it = MainLogic::s_currentMaintainers.find(strId);
 		if (it == MainLogic::s_currentMaintainers.end())
 		{
-			MainLogic::s_currentMaintainers.insert(make_pair(strId, Maintainer(strId, strName, strPassword)));
+			MainLogic::s_currentMaintainers.emplace(strId, Maintainer(strId, strName, strPassword, strPhone));
 		}
 		else
 		{
 			it->second.SetName(strName);
 			it->second.SetPassword(strPassword);
+			it->second.SetPhone(strPhone);
 		}
 	}
 	//Del values
@@ -550,9 +560,11 @@ void MaintainerView::CustomerPrepare()
 		QStandardItem *pId = new QStandardItem(str2qstr(d.first));
 		QStandardItem *pName = new QStandardItem(str2qstr(d.second.GetName()));
 		QStandardItem *pPassword = new QStandardItem(str2qstr(d.second.GetPassword()));
+		QStandardItem *pPhone = new QStandardItem(str2qstr(d.second.GetPhone()));
 		mdlUser->setItem(nRow, 0, pId);
 		mdlUser->setItem(nRow, 1, pName);
 		mdlUser->setItem(nRow, 2, pPassword);
+		mdlUser->setItem(nRow, 3, pPhone);
 		++nRow;
 	}
 }
@@ -565,9 +577,11 @@ void MaintainerView::CookPrepare()
 		QStandardItem *pId = new QStandardItem(str2qstr(d.first));
 		QStandardItem *pName = new QStandardItem(str2qstr(d.second.GetName()));
 		QStandardItem *pPassword = new QStandardItem(str2qstr(d.second.GetPassword()));
+		QStandardItem *pPhone = new QStandardItem(str2qstr(d.second.GetPhone()));
 		mdlUser->setItem(nRow, 0, pId);
 		mdlUser->setItem(nRow, 1, pName);
 		mdlUser->setItem(nRow, 2, pPassword);
+		mdlUser->setItem(nRow, 3, pPhone);
 		++nRow;
 	}
 }
@@ -580,9 +594,11 @@ void MaintainerView::WaitorPrepare()
 		QStandardItem *pId = new QStandardItem(str2qstr(d.first));
 		QStandardItem *pName = new QStandardItem(str2qstr(d.second.GetName()));
 		QStandardItem *pPassword = new QStandardItem(str2qstr(d.second.GetPassword()));
+		QStandardItem *pPhone = new QStandardItem(str2qstr(d.second.GetPhone()));
 		mdlUser->setItem(nRow, 0, pId);
 		mdlUser->setItem(nRow, 1, pName);
 		mdlUser->setItem(nRow, 2, pPassword);
+		mdlUser->setItem(nRow, 3, pPhone);
 		++nRow;
 	}
 }
@@ -595,9 +611,11 @@ void MaintainerView::ManagerPrepare()
 		QStandardItem *pId = new QStandardItem(str2qstr(d.first));
 		QStandardItem *pName = new QStandardItem(str2qstr(d.second.GetName()));
 		QStandardItem *pPassword = new QStandardItem(str2qstr(d.second.GetPassword()));
+		QStandardItem *pPhone = new QStandardItem(str2qstr(d.second.GetPhone()));
 		mdlUser->setItem(nRow, 0, pId);
 		mdlUser->setItem(nRow, 1, pName);
 		mdlUser->setItem(nRow, 2, pPassword);
+		mdlUser->setItem(nRow, 3, pPhone);
 		++nRow;
 	}
 }
@@ -610,9 +628,11 @@ void MaintainerView::MaintainerPrepare()
 		QStandardItem *pId = new QStandardItem(str2qstr(d.first));
 		QStandardItem *pName = new QStandardItem(str2qstr(d.second.GetName()));
 		QStandardItem *pPassword = new QStandardItem(str2qstr(d.second.GetPassword()));
+		QStandardItem *pPhone = new QStandardItem(str2qstr(d.second.GetPhone()));
 		mdlUser->setItem(nRow, 0, pId);
 		mdlUser->setItem(nRow, 1, pName);
 		mdlUser->setItem(nRow, 2, pPassword);
+		mdlUser->setItem(nRow, 3, pPhone);
 		++nRow;
 	}
 }
@@ -689,10 +709,11 @@ void MaintainerView::PrepareUser()
 {
 	//Load the catalogue of the user
 	mdlUser->clear();
-	mdlUser->setColumnCount(3);
+	mdlUser->setColumnCount(4);
 	mdlUser->setHeaderData(0, Qt::Horizontal, "ID");
-	mdlUser->setHeaderData(1, Qt::Horizontal, "电话号码");
+	mdlUser->setHeaderData(1, Qt::Horizontal, "用户名");
 	mdlUser->setHeaderData(2, Qt::Horizontal, "密码");
+	mdlUser->setHeaderData(3, Qt::Horizontal, "手机号码");
 	switch (nCata)
 	{
 	case CharSel::CH_CUSTOMER:
