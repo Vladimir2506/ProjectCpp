@@ -260,7 +260,8 @@ paket-files/
 __pycache__/
 *.pyc
 
-# Generated MOC, resource and UI files
-moc_*.cpp
-qrc_*.cpp
-ui_*.h
+#Specified
+/GeneratedFiles
+/x64
+*.db
+*.db3
