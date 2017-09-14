@@ -126,7 +126,7 @@ public:
 
     void retranslateUi(QDialog *AddComment)
     {
-        AddComment->setWindowTitle(QApplication::translate("AddComment", "\350\257\204\350\256\272\350\217\234\345\223\201", Q_NULLPTR));
+        AddComment->setWindowTitle(QApplication::translate("AddComment", "\346\267\273\345\212\240\350\257\204\350\256\272", Q_NULLPTR));
         gbStars->setTitle(QApplication::translate("AddComment", "\350\257\204\344\273\267\346\230\237\347\272\247", Q_NULLPTR));
         lbls3->setText(QString());
         lbls5->setText(QString());

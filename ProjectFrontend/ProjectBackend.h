@@ -1,5 +1,5 @@
 /*
-**Cafeteria,h
+**ProjectBackend,h
 **This file defines all classes used in the backend.
 **Usage of DataBases:
 **Main.db - Overall information and indecies
@@ -10,9 +10,9 @@
 
 #pragma once
 
-#ifndef CAFETERIA_H
+#ifndef PROJECTBACKEND_H
 
-#define CAFETERIA_H
+#define PROJECTBACKEND_H
 
 #include "MySQLite.h"
 #include <string>
@@ -118,20 +118,41 @@ public:
 };
 
 /*
+**enum CCG
+**CuisineCateGory describes the kind of each cuisine.
+*/
+enum CCG
+{
+	STPL = 0,
+	MEAT = 1,
+	VEGE = 2,
+	DESS = 3,
+	BEVE = 4,
+	SOUP = 5,
+	SEAF = 6,
+	SETM = 7
+};
+
+constexpr int nCategory = 8;
+
+/*
 **class Cuisine
 **The class defines a cuisine.
 */
 class Cuisine :public Object
 {
 protected:
-	int m_nPrice;	//Its price
+	double m_dPrice;	//Its price
+	int m_nCate;		//Its category
 public:
 	//Constructors
 	Cuisine(const string & strId = "", const string & strName = "",
-		const int nPrice = 0);
+		const double dPrice = 0.0, const int nCate = 0);
 	//Properties
-	virtual void SetPrice(const int nPrice);
-	virtual int GetPrice() const;
+	virtual void SetPrice(const double dPrice);
+	virtual double GetPrice() const;
+	virtual void SetCate(const int nCate);
+	virtual int GetCate() const;
 	//Interfaces
 	virtual void LoadInfo(MyDataBase &theDB);
 	virtual void SaveInfo(MyDataBase &theDB);
@@ -152,10 +173,11 @@ protected:
 	string m_strWaitorId;				//Waitor's Id
 	int m_nTableNum;					//The table number
 public:
-	map<Cuisine, int> m_mapBill;				//Bill's subtotal
+	map<Cuisine, double> m_mapBill;				//Bill's subtotal
 	map<Cuisine, int> m_mapFoodToDo;			//Food in service
 	//Constructors
-	Order(const string & strId = "", const string & strName = "", const string & strCustomerId = "", const string & strWaitorId = "");
+	Order(const string & strId = "", const string & strName = "", 
+		const string & strCustomerId = "", const string & strWaitorId = "");
 	//Properties
 	virtual void SetCustomerId(const string & strCustomerId);
 	virtual string GetCustomerId() const;
@@ -167,7 +189,7 @@ public:
 	virtual int GetTableNum() const;
 	//Behaviours
 	virtual void Adjust(const Cuisine theDish, int nAmount);	//Add Some dishes to the order		
-	virtual int CheckOut();										//Payment
+	virtual double CheckOut();										//Payment
 	virtual void Assign();										//Assign the task to a cook
 	virtual void Consume(const Cuisine theDish);				//A dish served
 	virtual string Appoint();									//Bind an idle waitor if no one serves
@@ -238,9 +260,9 @@ public:
 	virtual deque<pair<Cuisine, Order*>> GetToDoList() const;
 	virtual map<Cuisine, int> GetWorkDone() const;
 	//Behaviours
-	virtual void Pick(const pair<Cuisine, Order*> theDishByOrder);		//Pick one todo
-	virtual bool IsIdle();												//Get the state
-	virtual void DoCooking(deque<pair<Cuisine, Order*>>::iterator itCuisine);											//Cook a portion of cuisine
+	virtual void Pick(const pair<Cuisine, Order*> theDishByOrder);				//Pick one todo
+	virtual bool IsIdle();														//Get the state
+	virtual void DoCooking(deque<pair<Cuisine, Order*>>::iterator itCuisine);	//Cook a portion of cuisine
 	//Interfaces
 	virtual void LoadInfo(MyDataBase &theDB);
 	virtual void SaveInfo(MyDataBase &theDB);
@@ -248,7 +270,7 @@ public:
 	virtual void DeleteMe(MyDataBase &theDB);
 };
 
-constexpr int nService = 4;		//Appoint the types of services.
+constexpr int nService = 4;		//Assign the types of services.
 
 /*
 **class Waitor
@@ -325,7 +347,7 @@ class Maintainer :public People
 public:
 	//Constructors
 	Maintainer(const string & strId = "", const string & strName = "", 
-		const string & strPassword = "", const string &strPhone = "");
+		const string & strPassword = "", const string & strPhone = "");
 	//Interfaces
 	virtual void LoadInfo(MyDataBase &theDB);
 	virtual void SaveInfo(MyDataBase &theDB);
@@ -337,19 +359,27 @@ public:
 **class MainLogic
 **It wrap the main procedure of the backend.
 **It is designed as a single instance class.
+**This class cannot be derived.
 */
 class MainLogic final
 {
 private:
 	//Internal Actions
-	MainLogic();
-	~MainLogic();
-	static MainLogic *m_pInstance;						//The unqiue instance of the app
+	MainLogic();										//Constructor
+	~MainLogic();										//Destructor
+	static MainLogic * m_pInstance;						//The unqiue instance of the app
 public:
 	//External Actions
-	static MainLogic* GetInstance();
-	static void DestroyInstance();
-	static string ToSql(const string & str);
+	static MainLogic * GetInstance();					//Get or create the instance of MainLogic
+	static void DestroyInstance();						//Destroy the instance of MainLogic
+	static string ToSql(const string & str);			//Wrap a string by adding a pair of ''
+	void Initialise();									//Loading all data
+	void Finalise();									//Saving all data
+	People * FindExist(const string &strName);			//Find someone exists
+	People * pUser;										//The controller who is using this app
+	MyDataBase MainDB;									//Main Database
+	//Data Units
+	vector<char> arrSeatVacance;						//The seat vacancies  0 = no 1 = yes replacing vector<bool>
 	static map<string, Cuisine> s_currentMenu;			//1st
 	static map<string, Order> s_currentOrders;			//2nd
 	static map<string, Customer> s_currentCustomers;	//3rd
@@ -358,12 +388,6 @@ public:
 	static map<string, Waitor> s_currentWaitors;		//6th
 	static map<string, Manager> s_currentManagers;		//7th
 	static map<string, Maintainer> s_currentMaintainers;//8th
-	void Initialise();
-	void Finalise();
-	People * FindExist(const string &strName);			//Find someone exists
-	People *pUser;										//The controller who is using this app
-	MyDataBase MainDB;									//Main Database
-	vector<char> arrSeatVacance;						//The seat vacancies  0 = no 1 = yes without using vector<char>
 };
 
 // Id regulations
@@ -378,8 +402,19 @@ enum IDGENERATOR
 	ID_MANAGER,
 	ID_MAINTAINER
 };
-
+/*
+**enum CharSel
+**It denote the character of People.
+*/
 enum CharSel { CH_CUSTOMER, CH_MAINTAINER, CH_COOK, CH_WAITOR, CH_MANAGER };
+/*
+**Function: Id Generator
+**This functions returns the new id of an object based on the nRecord.
+**Parametres:
+**nChar: the character in CharSel
+**nRecord: the last one in map
+**nDigits: the length of the new id
+*/
 string IdGenerator(int nChar, size_t nRecord, int nDigits = 6);
 
 #endif 

@@ -4,7 +4,8 @@
 CustomerView::CustomerView(QWidget *parent)
 	: QDialog(parent),
 	pCustomer(dynamic_cast<Customer*>(MainLogic::GetInstance()->pUser)),
-	pWaitor(nullptr)
+	pWaitor(nullptr),
+	icoCategories{ QIcon("STPL.png"),QIcon("MEAT.png"),QIcon("VEGE.png"),QIcon("DESS.png"),QIcon("BEVE.png"),QIcon("SOUP.png"),QIcon("SEAF.png"),QIcon("SETM.png") }
 {
 	ui.setupUi(this);
 	switch (pCustomer->GetState())
@@ -34,7 +35,7 @@ void CustomerView::paintEvent(QPaintEvent * event)
 	ui.btnAddWater->setDisabled(pWaitor == nullptr);
 	ui.btnHasten->setDisabled(pWaitor == nullptr);
 	ui.btnPackUp->setDisabled(pWaitor == nullptr);
-	ui.btnSubmit->setDisabled(nTotal == 0);
+	ui.btnSubmit->setDisabled(dTotal < LDBL_EPSILON && dTotal > -LDBL_EPSILON );
 	ui.btnFinish->setDisabled(ui.pbGeneral->value() != 100);
 	ui.btnComWaitor->setDisabled(pWaitor == nullptr);
 	QDialog::paintEvent(event);
@@ -92,8 +93,8 @@ void CustomerView::PhaseOrderMake()
 	ui.lblInfo->setText(QString("您好！尊敬的顾客%0，您的桌号为%1").
 		arg(str2qstr(pCustomer->GetName())).
 		arg(pCustomer->GetTableNum() + 1));
-	nTotal = 0;
-	ui.lblTotal->setText(QString("总计：%0元").arg(nTotal));
+	dTotal = 0;
+	ui.lblTotal->setText(QString("总计：%0元").arg(dTotal));
 }
 
 void CustomerView::PhaseMealEat()
@@ -108,7 +109,7 @@ void CustomerView::PhaseMealEat()
 	{
 		pWaitor = &MainLogic::s_currentWaitors[idWaitor];
 		pCustomer->m_waitorComment[idWaitor];
-		ui.lblWaitor->setText("服务员" + str2qstr(idWaitor) + "为您服务！");
+		ui.lblWaitor->setText("服务员" + str2qstr(pWaitor->GetName()) + "为您服务！");
 		pCustomer->m_itNow->second.Assign();
 	}
 	else
@@ -236,15 +237,10 @@ void CustomerView::HideAll()
 	ui.btnProfile->hide();
 }
 
-void CustomerView::Subtotal(int nCost, int nRow, int nCol)
-{
-	ui.tbMenuDisp->setItem(nRow, nCol, new QTableWidgetItem(QString::number(nCost)));
-}
-
 void CustomerView::PrepareMenu()
 {
 	ui.tbMenuDisp->setColumnCount(6);
-	ui.tbMenuDisp->setHorizontalHeaderItem(0, new QTableWidgetItem("菜品ID"));			//Maybe turn to pics later
+	ui.tbMenuDisp->setHorizontalHeaderItem(0, new QTableWidgetItem("菜品类型"));			
 	ui.tbMenuDisp->setHorizontalHeaderItem(1, new QTableWidgetItem("菜品名称"));
 	ui.tbMenuDisp->setHorizontalHeaderItem(2, new QTableWidgetItem("价格（元/份）"));
 	ui.tbMenuDisp->setHorizontalHeaderItem(3, new QTableWidgetItem("数量（份）"));
@@ -254,7 +250,7 @@ void CustomerView::PrepareMenu()
 	for (auto &dish : MainLogic::s_currentMenu)
 	{
 		ui.tbMenuDisp->setRowCount(1 + nRow);
-		ui.tbMenuDisp->setItem(nRow, 0, new QTableWidgetItem(str2qstr(dish.first)));
+		ui.tbMenuDisp->setItem(nRow, 0, new QTableWidgetItem(icoCategories[dish.second.GetCate()],""));
 		ui.tbMenuDisp->setItem(nRow, 1, new QTableWidgetItem(str2qstr(dish.second.GetName())));
 		ui.tbMenuDisp->setItem(nRow, 2, new QTableWidgetItem(QString::number(dish.second.GetPrice())));
 		QSpinBox *sbQuant = new QSpinBox(ui.tbMenuDisp);
@@ -265,9 +261,9 @@ void CustomerView::PrepareMenu()
 		{
 			pCustomer->m_itNow->second.Adjust(dish.second, nVal);
 			auto cost = pCustomer->m_itNow->second.m_mapBill[dish.first];
-			Subtotal(cost, nRow, 4);
-			nTotal = pCustomer->m_itNow->second.CheckOut();
-			ui.lblTotal->setText(QString("总计：%0元").arg(nTotal));
+			ui.tbMenuDisp->setItem(nRow, 4, new QTableWidgetItem(QString::number(cost)));
+			dTotal = pCustomer->m_itNow->second.CheckOut();
+			ui.lblTotal->setText(QString("总计：%0元").arg(dTotal));
 		});
 		ui.tbMenuDisp->setCellWidget(nRow, 3, sbQuant);
 		ui.tbMenuDisp->setItem(nRow, 4, new QTableWidgetItem("0"));
