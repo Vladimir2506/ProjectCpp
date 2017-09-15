@@ -280,5 +280,8 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="ClassDiagram.cd" />
+    <None Include="MyUIOptimisation.css">
+      <Filter>Resource Files</Filter>
+    </None>
   </ItemGroup>
 </Project>

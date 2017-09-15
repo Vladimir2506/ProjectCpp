@@ -1,0 +1,77 @@
+/*Style Sheets for UI*/
+* {
+    font-family: 'Microsoft YaHei Light';
+    font-size: 16px;
+    text-align: center;
+    border-radius: 0;
+    background-color: white;
+}
+QLabel {
+    background: transparent;
+    background-repeat: no-repeat;
+}
+QLabel#lblLoginBGN {
+    background-image: url(login.png)
+}
+QPushButton {
+    font: 700;
+    font-size: 18px;
+    background-color: #039BE5;
+    border-radius: 2%;
+    color: ghostwhite;
+    border: 1px solid transparent;
+    padding: 2px 8px;
+}
+QPushButton:hover {
+    color: lightskyblue;
+}
+QPushButton:pressed {
+    color: white;
+}
+QPushButton:disabled{
+    color: gray;    
+}
+QLineEdit {
+    background: transparent;
+    border-bottom: solid;
+    border-color: #DBDBDB;
+    border-width: 2px;
+    font: 16px;
+}
+QLineEdit:focus {
+    background: transparent;
+    border-bottom: solid;
+    border-color: #039BE5;
+    border-width: 2px;
+}
+QComboBox {
+    background: transparent;
+    border-bottom: solid;
+    border-color: #DBDBDB;
+    border-width: 2px;
+    font: 16px;
+}
+QComboBox::drop-down {
+    background: transparent;
+    color: transparent;
+    width: 20px;
+}
+QComboBox::down-arrow {
+    image: url(dropdown.png);
+}
+QTableView {
+
+}
+QTableWidget {
+
+}
+QListView {
+
+}
+QTextEdit {
+    font-size: 18px;
+    background: transparent;
+    border: ridge;
+    border-width: 1px;
+    border-color: #039BE5;
+}

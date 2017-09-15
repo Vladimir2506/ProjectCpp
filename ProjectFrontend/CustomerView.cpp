@@ -86,7 +86,7 @@ void CustomerView::PhaseSeatPick()
 void CustomerView::PhaseOrderMake()
 {
 	HideAll();
-	MyResize(800, 750);
+	MyResize(900, 750);
 	ui.gbMenu->show();
 	ui.lblInfo->show();
 	PrepareMenu();

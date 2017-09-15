@@ -66,10 +66,10 @@ public:
         lblHint->setGeometry(QRect(25, 75, 600, 25));
         gbMenu = new QGroupBox(CustomerView);
         gbMenu->setObjectName(QStringLiteral("gbMenu"));
-        gbMenu->setGeometry(QRect(25, 75, 750, 650));
+        gbMenu->setGeometry(QRect(25, 75, 850, 650));
         tbMenuDisp = new QTableWidget(gbMenu);
         tbMenuDisp->setObjectName(QStringLiteral("tbMenuDisp"));
-        tbMenuDisp->setGeometry(QRect(25, 25, 700, 500));
+        tbMenuDisp->setGeometry(QRect(25, 25, 800, 500));
         tbMenuDisp->setEditTriggers(QAbstractItemView::NoEditTriggers);
         tbMenuDisp->setSelectionMode(QAbstractItemView::SingleSelection);
         tbMenuDisp->setSelectionBehavior(QAbstractItemView::SelectRows);
