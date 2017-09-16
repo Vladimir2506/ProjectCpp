@@ -7,7 +7,17 @@ ProjectFrontend::ProjectFrontend(QWidget *parent)
 	//UI Init
 	ui.setupUi(this);
 	//Data and logic Init
-	MainLogic::GetInstance()->Initialise();
+	try
+	{
+		MainLogic::GetInstance()->Initialise();
+	}
+	catch (const exception &ex)
+	{
+		QMessageBox::critical(nullptr, "检测到异常", ex.what());
+#ifdef WINVER
+		PostQuitMessage(-1);
+#endif
+	}
 	MainLogic::GetInstance()->arrSeatVacance = vector<char>(36, 1);
 	//Sign-in Init
 	pPreload = nullptr;
@@ -26,7 +36,17 @@ void ProjectFrontend::OnRegClicked()
 ProjectFrontend::~ProjectFrontend()
 {
 	//Data and logic Finale
-	MainLogic::GetInstance()->Finalise();
+	try
+	{
+		MainLogic::GetInstance()->Finalise();
+	}
+	catch (const exception &ex)
+	{
+		QMessageBox::critical(nullptr, "检测到异常", ex.what());
+#ifdef WINVER
+		PostQuitMessage(-1);
+#endif
+	}
 	MainLogic::DestroyInstance();
 }
 

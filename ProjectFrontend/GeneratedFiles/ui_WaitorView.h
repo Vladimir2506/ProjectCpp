@@ -37,20 +37,21 @@ public:
     QGroupBox *gbDone;
     QTableView *tbDone;
     QPushButton *btnProfile;
+    QLabel *lblWaitorBGN;
 
     void setupUi(QDialog *WaitorView)
     {
         if (WaitorView->objectName().isEmpty())
             WaitorView->setObjectName(QStringLiteral("WaitorView"));
-        WaitorView->resize(925, 600);
-        WaitorView->setMinimumSize(QSize(925, 600));
-        WaitorView->setMaximumSize(QSize(925, 600));
+        WaitorView->resize(925, 750);
+        WaitorView->setMinimumSize(QSize(925, 750));
+        WaitorView->setMaximumSize(QSize(925, 750));
         lblInfo = new QLabel(WaitorView);
         lblInfo->setObjectName(QStringLiteral("lblInfo"));
-        lblInfo->setGeometry(QRect(25, 25, 350, 25));
+        lblInfo->setGeometry(QRect(25, 175, 350, 25));
         gbTodo = new QGroupBox(WaitorView);
         gbTodo->setObjectName(QStringLiteral("gbTodo"));
-        gbTodo->setGeometry(QRect(25, 75, 525, 500));
+        gbTodo->setGeometry(QRect(25, 225, 525, 500));
         lstPlate = new QListWidget(gbTodo);
         lstPlate->setObjectName(QStringLiteral("lstPlate"));
         lstPlate->setGeometry(QRect(25, 75, 225, 325));
@@ -76,7 +77,7 @@ public:
         btnDemand->setGeometry(QRect(325, 425, 125, 40));
         gbDone = new QGroupBox(WaitorView);
         gbDone->setObjectName(QStringLiteral("gbDone"));
-        gbDone->setGeometry(QRect(575, 25, 325, 550));
+        gbDone->setGeometry(QRect(575, 175, 325, 550));
         tbDone = new QTableView(gbDone);
         tbDone->setObjectName(QStringLiteral("tbDone"));
         tbDone->setGeometry(QRect(25, 25, 275, 500));
@@ -84,7 +85,15 @@ public:
         tbDone->setSelectionMode(QAbstractItemView::NoSelection);
         btnProfile = new QPushButton(WaitorView);
         btnProfile->setObjectName(QStringLiteral("btnProfile"));
-        btnProfile->setGeometry(QRect(425, 25, 100, 40));
+        btnProfile->setGeometry(QRect(425, 175, 100, 40));
+        lblWaitorBGN = new QLabel(WaitorView);
+        lblWaitorBGN->setObjectName(QStringLiteral("lblWaitorBGN"));
+        lblWaitorBGN->setGeometry(QRect(0, 0, 925, 750));
+        lblWaitorBGN->raise();
+        lblInfo->raise();
+        gbTodo->raise();
+        gbDone->raise();
+        btnProfile->raise();
 
         retranslateUi(WaitorView);
         QObject::connect(lstDemand, SIGNAL(currentRowChanged(int)), WaitorView, SLOT(OnSelDemand(int)));
@@ -107,6 +116,7 @@ public:
         btnDemand->setText(QApplication::translate("WaitorView", "\345\256\214\346\210\220\351\200\211\345\256\232\346\234\215\345\212\241", Q_NULLPTR));
         gbDone->setTitle(QApplication::translate("WaitorView", "\345\267\262\345\256\214\346\210\220\347\232\204\344\273\273\345\212\241", Q_NULLPTR));
         btnProfile->setText(QApplication::translate("WaitorView", "\344\270\252\344\272\272\350\265\204\346\226\231", Q_NULLPTR));
+        lblWaitorBGN->setText(QString());
     } // retranslateUi
 
 };

@@ -51,15 +51,16 @@ public:
     QLabel *lblDate;
     QGroupBox *gbComments;
     QTableView *tbComments;
+    QLabel *lblProfBGN;
 
     void setupUi(QDialog *ProfileView)
     {
         if (ProfileView->objectName().isEmpty())
             ProfileView->setObjectName(QStringLiteral("ProfileView"));
-        ProfileView->resize(1000, 650);
+        ProfileView->resize(1036, 824);
         gbProfile = new QGroupBox(ProfileView);
         gbProfile->setObjectName(QStringLiteral("gbProfile"));
-        gbProfile->setGeometry(QRect(25, 25, 450, 325));
+        gbProfile->setGeometry(QRect(20, 175, 450, 325));
         lblID = new QLabel(gbProfile);
         lblID->setObjectName(QStringLiteral("lblID"));
         lblID->setGeometry(QRect(50, 25, 125, 25));
@@ -104,7 +105,7 @@ public:
         btnSave->setGeometry(QRect(75, 275, 100, 40));
         btnUndo = new QPushButton(gbProfile);
         btnUndo->setObjectName(QStringLiteral("btnUndo"));
-        btnUndo->setGeometry(QRect(240, 275, 100, 40));
+        btnUndo->setGeometry(QRect(255, 275, 100, 40));
         lblName = new QLabel(gbProfile);
         lblName->setObjectName(QStringLiteral("lblName"));
         lblName->setGeometry(QRect(50, 125, 125, 25));
@@ -117,10 +118,11 @@ public:
         lblState4->setGeometry(QRect(375, 125, 25, 25));
         gbOrders = new QGroupBox(ProfileView);
         gbOrders->setObjectName(QStringLiteral("gbOrders"));
-        gbOrders->setGeometry(QRect(525, 25, 450, 600));
+        gbOrders->setGeometry(QRect(520, 175, 450, 325));
+        gbOrders->setAlignment(Qt::AlignCenter);
         tbOrders = new QTableView(gbOrders);
         tbOrders->setObjectName(QStringLiteral("tbOrders"));
-        tbOrders->setGeometry(QRect(25, 150, 400, 425));
+        tbOrders->setGeometry(QRect(25, 150, 400, 150));
         tbOrders->setEditTriggers(QAbstractItemView::NoEditTriggers);
         tbOrders->setSelectionMode(QAbstractItemView::NoSelection);
         tbOrders->setSelectionBehavior(QAbstractItemView::SelectRows);
@@ -135,12 +137,20 @@ public:
         lblDate->setGeometry(QRect(150, 100, 150, 25));
         gbComments = new QGroupBox(ProfileView);
         gbComments->setObjectName(QStringLiteral("gbComments"));
-        gbComments->setGeometry(QRect(25, 400, 450, 225));
+        gbComments->setGeometry(QRect(20, 550, 950, 225));
+        gbComments->setAlignment(Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter);
         tbComments = new QTableView(gbComments);
         tbComments->setObjectName(QStringLiteral("tbComments"));
-        tbComments->setGeometry(QRect(25, 30, 400, 175));
+        tbComments->setGeometry(QRect(25, 30, 900, 175));
         tbComments->setEditTriggers(QAbstractItemView::NoEditTriggers);
         tbComments->setSelectionMode(QAbstractItemView::NoSelection);
+        lblProfBGN = new QLabel(ProfileView);
+        lblProfBGN->setObjectName(QStringLiteral("lblProfBGN"));
+        lblProfBGN->setGeometry(QRect(0, 0, 1000, 800));
+        lblProfBGN->raise();
+        gbProfile->raise();
+        gbOrders->raise();
+        gbComments->raise();
 
         retranslateUi(ProfileView);
         QObject::connect(lePhone, SIGNAL(textEdited(QString)), ProfileView, SLOT(OnDelta()));
@@ -156,22 +166,27 @@ public:
     void retranslateUi(QDialog *ProfileView)
     {
         ProfileView->setWindowTitle(QApplication::translate("ProfileView", "\344\270\252\344\272\272\350\265\204\346\226\231", Q_NULLPTR));
-        gbProfile->setTitle(QApplication::translate("ProfileView", "\344\277\256\346\224\271\350\264\246\345\217\267\344\277\241\346\201\257", Q_NULLPTR));
+        gbProfile->setTitle(QString());
         lblID->setText(QApplication::translate("ProfileView", "\347\224\250\346\210\267ID\357\274\232", Q_NULLPTR));
         lblPhone->setText(QApplication::translate("ProfileView", "\347\224\250\346\210\267\347\224\265\350\257\235\345\217\267\347\240\201\357\274\232", Q_NULLPTR));
         lblPassword->setText(QApplication::translate("ProfileView", "\347\224\250\346\210\267\345\257\206\347\240\201\357\274\232", Q_NULLPTR));
         lblDeux->setText(QApplication::translate("ProfileView", "\347\241\256\350\256\244\345\257\206\347\240\201\357\274\232", Q_NULLPTR));
+        lePassword->setPlaceholderText(QApplication::translate("ProfileView", "8\344\275\215\345\257\206\347\240\201", Q_NULLPTR));
+        leDeux->setPlaceholderText(QApplication::translate("ProfileView", "8\344\275\215\345\257\206\347\240\201", Q_NULLPTR));
+        lePhone->setPlaceholderText(QApplication::translate("ProfileView", "11\344\275\215\346\211\213\346\234\272\345\217\267\347\240\201", Q_NULLPTR));
         lblState1->setText(QString());
         lblState2->setText(QString());
         lblState3->setText(QString());
         btnSave->setText(QApplication::translate("ProfileView", "\344\277\235\345\255\230\344\277\256\346\224\271", Q_NULLPTR));
         btnUndo->setText(QApplication::translate("ProfileView", "\346\222\244\351\224\200\346\224\271\345\212\250", Q_NULLPTR));
         lblName->setText(QApplication::translate("ProfileView", "\347\224\250\346\210\267\345\220\215\357\274\232", Q_NULLPTR));
+        leName->setPlaceholderText(QApplication::translate("ProfileView", "10\344\270\252\345\255\227\347\254\246\344\271\213\345\206\205", Q_NULLPTR));
         lblState4->setText(QString());
         gbOrders->setTitle(QApplication::translate("ProfileView", "\346\237\245\347\234\213\345\216\206\345\217\262\350\256\242\345\215\225", Q_NULLPTR));
         lblOrders->setText(QApplication::translate("ProfileView", "\350\257\267\351\200\211\346\213\251\350\256\242\345\215\225\345\217\267\357\274\232", Q_NULLPTR));
         lblDate->setText(QString());
         gbComments->setTitle(QApplication::translate("ProfileView", "\346\237\245\347\234\213\345\216\206\345\217\262\350\257\204\350\256\272", Q_NULLPTR));
+        lblProfBGN->setText(QString());
     } // retranslateUi
 
 };

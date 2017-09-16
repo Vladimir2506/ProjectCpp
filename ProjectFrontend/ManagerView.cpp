@@ -12,7 +12,7 @@ ManagerView::ManagerView(QWidget *parent)
 	mdlCook = new QStandardItemModel(this);
 	mdlWaitor = new QStandardItemModel(this);
 	mdlComm = new QStandardItemModel(this);
-	ui.lblInfo->setText("欢迎！尊敬的经理" + str2qstr(pManager->GetName()));
+	ui.lblInfo->setText("欢迎！尊敬的经理" + str2qstr(pManager->GetName()) + "！");
 	QStringList lstCooks, lstWaitors;
 	for (auto &c : MainLogic::s_currentCooks)
 	{
@@ -151,7 +151,7 @@ void ManagerView::OnProfile()
 {
 	ProfileView profile(this);
 	profile.exec();
-	ui.lblInfo->setText("欢迎！尊敬的经理" + str2qstr(pManager->GetName()));
+	ui.lblInfo->setText("欢迎！尊敬的经理" + str2qstr(pManager->GetName()) + "！");
 }
 
 void ManagerView::OnSetTable()
@@ -159,7 +159,7 @@ void ManagerView::OnSetTable()
 	if (IsAllVacance())
 	{
 		auto now = MainLogic::GetInstance()->arrSeatVacance.size();
-		auto capa = static_cast<size_t>(QInputDialog::getInt(this, "设置", "请设置餐桌总数：", static_cast<int>(now), 1, 100));
+		auto capa = static_cast<size_t>(QInputDialog::getInt(this, "设置", "请设置餐桌总数：", static_cast<int>(now), 1, 36));
 		if (capa != now)
 		{
 			MainLogic::GetInstance()->arrSeatVacance = vector<char>(capa, 1);

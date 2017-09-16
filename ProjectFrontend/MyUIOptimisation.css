@@ -1,4 +1,5 @@
 /*Style Sheets for UI*/
+/*Global Settings for all widgets*/
 * {
     font-family: 'Microsoft YaHei Light';
     font-size: 16px;
@@ -10,11 +11,50 @@ QLabel {
     background: transparent;
     background-repeat: no-repeat;
 }
-QLabel#lblLoginBGN {
-    background-image: url(login.png)
+/*Important information needs a larger character*/
+QLabel#lblInfo,
+QLabel#lblTotal {
+    font-size: 18px;
 }
+/*Background for every form*/
+QLabel#lblLoginBGN {
+    background-image: url(login.png);
+}
+QLabel#lblRegisterBGN {
+    background-image: url(register.png);
+}
+QLabel#lblAddcBGN {
+    background-image: url(addc.png);
+}
+QLabel#lblProfBGN {
+    background-image: url(prof.png);
+}
+QLabel#lblCommSVBGN {
+    background-image: url(commsv.png);
+}
+QLabel#lblbrcommBGN {
+    background-image: url(brcomm.png);
+}
+QLabel#lblMaintainerBGN {
+    background-image: url(maintainerview.png);
+}
+QLabel#lblOrdSVBGN {
+    background-image: url(ordsv.png);
+}
+QLabel#lblCustomerBGN {
+    background-image: url(customerview.png);
+}
+QLabel#lblManagerBGN {
+    background-image: url(managerview.png);
+}
+QLabel#lblCookBGN {
+    background-image: url(cookview.png);
+}
+QLabel#lblWaitorBGN {
+    background-image: url(waitorview.png);
+}
+/*Buttons style*/
 QPushButton {
-    font: 700;
     font-size: 18px;
     background-color: #039BE5;
     border-radius: 2%;
@@ -29,12 +69,13 @@ QPushButton:pressed {
     color: white;
 }
 QPushButton:disabled{
-    color: gray;    
+    background-color: #BDBDBD;    
 }
+/*Line-edits Style*/
 QLineEdit {
     background: transparent;
     border-bottom: solid;
-    border-color: #DBDBDB;
+    border-color: #BDBDBD;
     border-width: 2px;
     font: 16px;
 }
@@ -47,9 +88,8 @@ QLineEdit:focus {
 QComboBox {
     background: transparent;
     border-bottom: solid;
-    border-color: #DBDBDB;
+    border-color: #BDBDBD;
     border-width: 2px;
-    font: 16px;
 }
 QComboBox::drop-down {
     background: transparent;
@@ -59,19 +99,69 @@ QComboBox::drop-down {
 QComboBox::down-arrow {
     image: url(dropdown.png);
 }
+/*Tables Style*/
+QHeaderView {
+    background-color: transparent;
+    text-align: center;
+}
 QTableView {
-
+    background-color: transparent;
+    gridline-color: #BDBDBD;
+    text-align: center;
 }
-QTableWidget {
-
+/*Buttons in tables Style*/
+QTableWidget QPushButton {
+    background-color: #81D4FA;
+    color: black;
 }
-QListView {
-
+QTableWidget QPushButton:hover {
+    color: white;
 }
+QTableWidget QPushButton:pressed {
+    color: lightskyblue;
+}
+/*Scroll Style*/
+QScrollBar {
+    background-color: transparent;
+    border-radius: 0;
+}
+QScrollBar::Handle {
+    background-color: #BDBDBD;
+    border-radius: 5%;
+}
+QScrollBar::Handle:hover {
+    background-color: #9E9E9E;
+}
+QScrollBar::add-line,
+QScrollBar::sub-line,
+QScrollBar::add-page,
+QScrollBar::sub-page {
+    color: transparent;
+    background-color: transparent;
+}
+/*TextEdit Style*/
 QTextEdit {
     font-size: 18px;
     background: transparent;
     border: ridge;
     border-width: 1px;
     border-color: #039BE5;
+}
+QSpinBox {
+    background-color: transparent;
+    border-bottom: solid;
+    border-width: 2px;
+    border-bottom-color: #BDBDBD;
+}
+QSpinBox:focus {
+    border-bottom-color: #039BE5;
+}
+QSpinBox::up-button {
+    image: url(upbtn.png);
+}
+QSpinBox::down-button {
+    image: url(downbtn.png);
+}
+QGroupBox {
+    font: bold;
 }

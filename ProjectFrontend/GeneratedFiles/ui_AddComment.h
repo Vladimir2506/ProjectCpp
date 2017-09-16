@@ -42,17 +42,18 @@ public:
     QGroupBox *gbTitle;
     QLineEdit *leTitle;
     QLabel *lblName;
+    QLabel *lblAddcBGN;
 
     void setupUi(QDialog *AddComment)
     {
         if (AddComment->objectName().isEmpty())
             AddComment->setObjectName(QStringLiteral("AddComment"));
-        AddComment->resize(500, 600);
-        AddComment->setMinimumSize(QSize(500, 600));
-        AddComment->setMaximumSize(QSize(500, 600));
+        AddComment->resize(500, 750);
+        AddComment->setMinimumSize(QSize(500, 750));
+        AddComment->setMaximumSize(QSize(500, 750));
         gbStars = new QGroupBox(AddComment);
         gbStars->setObjectName(QStringLiteral("gbStars"));
-        gbStars->setGeometry(QRect(50, 125, 400, 75));
+        gbStars->setGeometry(QRect(50, 275, 400, 75));
         lbls3 = new QLabel(gbStars);
         lbls3->setObjectName(QStringLiteral("lbls3"));
         lbls3->setGeometry(QRect(230, 25, 30, 30));
@@ -75,42 +76,53 @@ public:
         sbStars->setValue(0);
         gbContent = new QGroupBox(AddComment);
         gbContent->setObjectName(QStringLiteral("gbContent"));
-        gbContent->setGeometry(QRect(50, 225, 400, 350));
+        gbContent->setGeometry(QRect(50, 375, 400, 350));
         teContent = new QTextEdit(gbContent);
         teContent->setObjectName(QStringLiteral("teContent"));
         teContent->setGeometry(QRect(25, 25, 350, 300));
         teContent->setReadOnly(false);
         btnBack = new QPushButton(AddComment);
         btnBack->setObjectName(QStringLiteral("btnBack"));
-        btnBack->setGeometry(QRect(50, 60, 40, 40));
+        btnBack->setGeometry(QRect(50, 215, 40, 40));
         QIcon icon;
         icon.addFile(QStringLiteral("back.png"), QSize(), QIcon::Normal, QIcon::Off);
         btnBack->setIcon(icon);
         btnBack->setIconSize(QSize(25, 25));
         btnNext = new QPushButton(AddComment);
         btnNext->setObjectName(QStringLiteral("btnNext"));
-        btnNext->setGeometry(QRect(150, 60, 40, 40));
+        btnNext->setGeometry(QRect(150, 215, 40, 40));
         QIcon icon1;
         icon1.addFile(QStringLiteral("next.png"), QSize(), QIcon::Normal, QIcon::Off);
         btnNext->setIcon(icon1);
         btnNext->setIconSize(QSize(25, 25));
         btnCommit = new QPushButton(AddComment);
         btnCommit->setObjectName(QStringLiteral("btnCommit"));
-        btnCommit->setGeometry(QRect(100, 60, 40, 40));
+        btnCommit->setGeometry(QRect(100, 215, 40, 40));
         QIcon icon2;
         icon2.addFile(QStringLiteral("submit.png"), QSize(), QIcon::Normal, QIcon::Off);
         btnCommit->setIcon(icon2);
         btnCommit->setIconSize(QSize(25, 25));
         gbTitle = new QGroupBox(AddComment);
         gbTitle->setObjectName(QStringLiteral("gbTitle"));
-        gbTitle->setGeometry(QRect(225, 25, 225, 90));
+        gbTitle->setGeometry(QRect(225, 175, 225, 90));
         leTitle = new QLineEdit(gbTitle);
         leTitle->setObjectName(QStringLiteral("leTitle"));
         leTitle->setGeometry(QRect(25, 40, 175, 25));
         lblName = new QLabel(AddComment);
         lblName->setObjectName(QStringLiteral("lblName"));
-        lblName->setGeometry(QRect(50, 25, 150, 25));
+        lblName->setGeometry(QRect(50, 175, 150, 25));
         lblName->setAlignment(Qt::AlignCenter);
+        lblAddcBGN = new QLabel(AddComment);
+        lblAddcBGN->setObjectName(QStringLiteral("lblAddcBGN"));
+        lblAddcBGN->setGeometry(QRect(0, 0, 500, 750));
+        lblAddcBGN->raise();
+        gbStars->raise();
+        gbContent->raise();
+        btnBack->raise();
+        btnNext->raise();
+        btnCommit->raise();
+        gbTitle->raise();
+        lblName->raise();
 
         retranslateUi(AddComment);
         QObject::connect(sbStars, SIGNAL(valueChanged(int)), AddComment, SLOT(SetStars(int)));
@@ -139,6 +151,7 @@ public:
         btnCommit->setText(QString());
         gbTitle->setTitle(QApplication::translate("AddComment", "\350\257\204\350\256\272\346\240\207\351\242\230", Q_NULLPTR));
         lblName->setText(QString());
+        lblAddcBGN->setText(QString());
     } // retranslateUi
 
 };

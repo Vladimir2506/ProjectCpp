@@ -29,6 +29,13 @@ void CookView::OnSelect(int nRow)
 	itThis = pCook->m_deqTodo.begin() + nRow;
 }
 
+void CookView::OnProfile()
+{
+	ProfileView profile(this);
+	profile.exec();
+	ui.lblInfo->setText("ÄúºÃ£¡×ð¾´µÄ³øÊ¦" + str2qstr(pCook->GetName()));
+}
+
 void CookView::PrepareTodo()
 {
 	ui.lstTodo->clear();
