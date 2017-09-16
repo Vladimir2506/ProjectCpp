@@ -16,6 +16,7 @@ protected:
 private slots:
 	void CookOne();
 	void OnSelect(int nRow);
+	void OnProfile();
 private:
 	void PrepareTodo();
 	void PrepareDone();

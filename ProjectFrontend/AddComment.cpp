@@ -76,10 +76,10 @@ void AddComment::PrepareComment()
 	switch (nMode)
 	{
 	case IDGENERATOR::ID_CUISINE:
-		ui.lblName->setText("菜名：" + str2qstr(MainLogic::s_currentMenu[itThis->first].GetName()));
+		ui.lblName->setText(str2qstr(MainLogic::s_currentMenu[itThis->first].GetName()));
 		break;
 	case IDGENERATOR::ID_WAITOR:
-		ui.lblName->setText("服务员用户名：" + str2qstr(MainLogic::s_currentWaitors[itThis->first].GetName()));
+		ui.lblName->setText(str2qstr(MainLogic::s_currentWaitors[itThis->first].GetName()));
 		break;
 	default:
 		break;

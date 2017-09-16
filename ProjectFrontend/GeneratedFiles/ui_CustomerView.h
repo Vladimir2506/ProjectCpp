@@ -47,29 +47,31 @@ public:
     QPushButton *btnComDish;
     QPushButton *btnComWaitor;
     QPushButton *btnProfile;
+    QLabel *lblCustomerBGN;
 
     void setupUi(QDialog *CustomerView)
     {
         if (CustomerView->objectName().isEmpty())
             CustomerView->setObjectName(QStringLiteral("CustomerView"));
         CustomerView->setWindowModality(Qt::WindowModal);
-        CustomerView->resize(950, 850);
+        CustomerView->resize(600, 850);
         gbSeatPick = new QGroupBox(CustomerView);
         gbSeatPick->setObjectName(QStringLiteral("gbSeatPick"));
-        gbSeatPick->setGeometry(QRect(25, 125, 800, 800));
+        gbSeatPick->setGeometry(QRect(25, 275, 550, 550));
         gbSeatPick->setAlignment(Qt::AlignCenter);
         lblInfo = new QLabel(CustomerView);
         lblInfo->setObjectName(QStringLiteral("lblInfo"));
-        lblInfo->setGeometry(QRect(25, 25, 400, 25));
+        lblInfo->setGeometry(QRect(25, 175, 400, 25));
+        lblInfo->setAlignment(Qt::AlignCenter);
         lblHint = new QLabel(CustomerView);
         lblHint->setObjectName(QStringLiteral("lblHint"));
-        lblHint->setGeometry(QRect(25, 75, 600, 25));
+        lblHint->setGeometry(QRect(25, 225, 600, 25));
         gbMenu = new QGroupBox(CustomerView);
         gbMenu->setObjectName(QStringLiteral("gbMenu"));
-        gbMenu->setGeometry(QRect(25, 75, 750, 650));
+        gbMenu->setGeometry(QRect(25, 225, 850, 650));
         tbMenuDisp = new QTableWidget(gbMenu);
         tbMenuDisp->setObjectName(QStringLiteral("tbMenuDisp"));
-        tbMenuDisp->setGeometry(QRect(25, 25, 700, 500));
+        tbMenuDisp->setGeometry(QRect(25, 25, 800, 500));
         tbMenuDisp->setEditTriggers(QAbstractItemView::NoEditTriggers);
         tbMenuDisp->setSelectionMode(QAbstractItemView::SingleSelection);
         tbMenuDisp->setSelectionBehavior(QAbstractItemView::SelectRows);
@@ -84,7 +86,7 @@ public:
         btnReturn->setGeometry(QRect(525, 575, 150, 50));
         gbOrder = new QGroupBox(CustomerView);
         gbOrder->setObjectName(QStringLiteral("gbOrder"));
-        gbOrder->setGeometry(QRect(25, 75, 550, 500));
+        gbOrder->setGeometry(QRect(25, 225, 550, 500));
         tbOrder = new QTableWidget(gbOrder);
         tbOrder->setObjectName(QStringLiteral("tbOrder"));
         tbOrder->setGeometry(QRect(25, 25, 500, 400));
@@ -103,7 +105,7 @@ public:
         lblProgress->setGeometry(QRect(150, 450, 75, 25));
         gbInstruction = new QGroupBox(CustomerView);
         gbInstruction->setObjectName(QStringLiteral("gbInstruction"));
-        gbInstruction->setGeometry(QRect(600, 25, 350, 550));
+        gbInstruction->setGeometry(QRect(600, 175, 350, 550));
         lblWaitor = new QLabel(gbInstruction);
         lblWaitor->setObjectName(QStringLiteral("lblWaitor"));
         lblWaitor->setGeometry(QRect(50, 50, 250, 25));
@@ -124,7 +126,18 @@ public:
         btnComWaitor->setGeometry(QRect(125, 450, 125, 40));
         btnProfile = new QPushButton(CustomerView);
         btnProfile->setObjectName(QStringLiteral("btnProfile"));
-        btnProfile->setGeometry(QRect(450, 25, 100, 40));
+        btnProfile->setGeometry(QRect(450, 175, 100, 40));
+        lblCustomerBGN = new QLabel(CustomerView);
+        lblCustomerBGN->setObjectName(QStringLiteral("lblCustomerBGN"));
+        lblCustomerBGN->setGeometry(QRect(0, 0, 1000, 1100));
+        lblCustomerBGN->raise();
+        gbSeatPick->raise();
+        lblInfo->raise();
+        lblHint->raise();
+        gbMenu->raise();
+        gbOrder->raise();
+        gbInstruction->raise();
+        btnProfile->raise();
 
         retranslateUi(CustomerView);
         QObject::connect(btnReturn, SIGNAL(clicked()), CustomerView, SLOT(PhaseSeatPick()));
@@ -143,7 +156,7 @@ public:
     void retranslateUi(QDialog *CustomerView)
     {
         CustomerView->setWindowTitle(QApplication::translate("CustomerView", "\351\241\276\345\256\242", Q_NULLPTR));
-        gbSeatPick->setTitle(QApplication::translate("CustomerView", "\351\200\211\346\213\251\351\244\220\346\241\214", Q_NULLPTR));
+        gbSeatPick->setTitle(QString());
         lblInfo->setText(QString());
         lblHint->setText(QString());
         gbMenu->setTitle(QApplication::translate("CustomerView", "\346\237\245\347\234\213\350\217\234\345\215\225\345\271\266\347\202\271\351\244\220", Q_NULLPTR));
@@ -161,6 +174,7 @@ public:
         btnComDish->setText(QApplication::translate("CustomerView", "\350\257\204\344\273\267\345\267\262\347\202\271\350\217\234\345\223\201", Q_NULLPTR));
         btnComWaitor->setText(QApplication::translate("CustomerView", "\350\257\204\344\273\267\346\234\215\345\212\241\345\221\230", Q_NULLPTR));
         btnProfile->setText(QApplication::translate("CustomerView", "\344\270\252\344\272\272\350\265\204\346\226\231", Q_NULLPTR));
+        lblCustomerBGN->setText(QString());
     } // retranslateUi
 
 };

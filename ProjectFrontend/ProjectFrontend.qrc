@@ -11,5 +11,21 @@
         <file>starnil.png</file>
         <file>submit.png</file>
         <file>subtract.png</file>
+        <file>addc.png</file>
+        <file>brcomm.png</file>
+        <file>commsv.png</file>
+        <file>login.png</file>
+        <file>maintainerview.png</file>
+        <file>ordsv.png</file>
+        <file>prof.png</file>
+        <file>register.png</file>
+        <file>BEVE.png</file>
+        <file>DESS.png</file>
+        <file>MEAT.png</file>
+        <file>SEAF.png</file>
+        <file>SETM.png</file>
+        <file>SOUP.png</file>
+        <file>STPL.png</file>
+        <file>VEGE.png</file>
     </qresource>
 </RCC>

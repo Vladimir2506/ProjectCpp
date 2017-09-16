@@ -10,7 +10,7 @@ ProfileView::ProfileView(QWidget *parent)
 	pMe = MainLogic::GetInstance()->pUser;
 	if (pMe->GetId()[0] == '3')
 	{
-		MyResize(1000, 650);
+		MyResize(1000, 800);
 		mdlComments = new QStandardItemModel(this);
 		mdlOrders = new QStandardItemModel(this);
 		for (auto &ord : MainLogic::s_currentOrders)
@@ -26,7 +26,7 @@ ProfileView::ProfileView(QWidget *parent)
 	}
 	else
 	{
-		MyResize(500, 375);
+		MyResize(500, 525);
 		mdlComments = nullptr;
 		mdlOrders = nullptr;
 	}

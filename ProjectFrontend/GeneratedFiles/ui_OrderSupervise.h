@@ -47,34 +47,35 @@ public:
     QPushButton *btnUndo;
     QPushButton *btnAdd;
     QPushButton *btnDel;
+    QLabel *lblOrdSVBGN;
 
     void setupUi(QDialog *OrderSupervise)
     {
         if (OrderSupervise->objectName().isEmpty())
             OrderSupervise->setObjectName(QStringLiteral("OrderSupervise"));
-        OrderSupervise->resize(900, 500);
-        OrderSupervise->setMinimumSize(QSize(900, 500));
-        OrderSupervise->setMaximumSize(QSize(900, 500));
+        OrderSupervise->resize(900, 650);
+        OrderSupervise->setMinimumSize(QSize(900, 650));
+        OrderSupervise->setMaximumSize(QSize(900, 650));
         btnBack = new QPushButton(OrderSupervise);
         btnBack->setObjectName(QStringLiteral("btnBack"));
-        btnBack->setGeometry(QRect(25, 25, 40, 40));
+        btnBack->setGeometry(QRect(25, 175, 40, 40));
         QIcon icon;
         icon.addFile(QStringLiteral("back.png"), QSize(), QIcon::Normal, QIcon::Off);
         btnBack->setIcon(icon);
         btnBack->setIconSize(QSize(25, 25));
         btnNext = new QPushButton(OrderSupervise);
         btnNext->setObjectName(QStringLiteral("btnNext"));
-        btnNext->setGeometry(QRect(75, 25, 40, 40));
+        btnNext->setGeometry(QRect(395, 175, 40, 40));
         QIcon icon1;
         icon1.addFile(QStringLiteral("next.png"), QSize(), QIcon::Normal, QIcon::Off);
         btnNext->setIcon(icon1);
         btnNext->setIconSize(QSize(25, 25));
         gbContent = new QGroupBox(OrderSupervise);
         gbContent->setObjectName(QStringLiteral("gbContent"));
-        gbContent->setGeometry(QRect(450, 25, 425, 450));
+        gbContent->setGeometry(QRect(450, 175, 425, 450));
         tbFood = new QTableView(gbContent);
         tbFood->setObjectName(QStringLiteral("tbFood"));
-        tbFood->setGeometry(QRect(50, 50, 325, 325));
+        tbFood->setGeometry(QRect(25, 50, 375, 325));
         tbFood->setSelectionMode(QAbstractItemView::SingleSelection);
         tbFood->setSelectionBehavior(QAbstractItemView::SelectRows);
         btnNLine = new QPushButton(gbContent);
@@ -85,7 +86,7 @@ public:
         btnDLine->setGeometry(QRect(250, 390, 100, 40));
         gbProperty = new QGroupBox(OrderSupervise);
         gbProperty->setObjectName(QStringLiteral("gbProperty"));
-        gbProperty->setGeometry(QRect(25, 75, 410, 400));
+        gbProperty->setGeometry(QRect(25, 225, 410, 400));
         leID = new QLineEdit(gbProperty);
         leID->setObjectName(QStringLiteral("leID"));
         leID->setGeometry(QRect(200, 50, 150, 25));
@@ -118,24 +119,36 @@ public:
         leTableNO->setGeometry(QRect(200, 350, 150, 25));
         btnSave = new QPushButton(OrderSupervise);
         btnSave->setObjectName(QStringLiteral("btnSave"));
-        btnSave->setGeometry(QRect(125, 25, 100, 40));
+        btnSave->setGeometry(QRect(125, 175, 100, 40));
         btnUndo = new QPushButton(OrderSupervise);
         btnUndo->setObjectName(QStringLiteral("btnUndo"));
-        btnUndo->setGeometry(QRect(235, 25, 100, 40));
+        btnUndo->setGeometry(QRect(235, 175, 100, 40));
         btnAdd = new QPushButton(OrderSupervise);
         btnAdd->setObjectName(QStringLiteral("btnAdd"));
-        btnAdd->setGeometry(QRect(345, 25, 40, 40));
+        btnAdd->setGeometry(QRect(75, 175, 40, 40));
         QIcon icon2;
         icon2.addFile(QStringLiteral("add.png"), QSize(), QIcon::Normal, QIcon::Off);
         btnAdd->setIcon(icon2);
         btnAdd->setIconSize(QSize(25, 25));
         btnDel = new QPushButton(OrderSupervise);
         btnDel->setObjectName(QStringLiteral("btnDel"));
-        btnDel->setGeometry(QRect(395, 25, 40, 40));
+        btnDel->setGeometry(QRect(345, 175, 40, 40));
         QIcon icon3;
         icon3.addFile(QStringLiteral("subtract.png"), QSize(), QIcon::Normal, QIcon::Off);
         btnDel->setIcon(icon3);
         btnDel->setIconSize(QSize(25, 25));
+        lblOrdSVBGN = new QLabel(OrderSupervise);
+        lblOrdSVBGN->setObjectName(QStringLiteral("lblOrdSVBGN"));
+        lblOrdSVBGN->setGeometry(QRect(0, 0, 900, 650));
+        lblOrdSVBGN->raise();
+        btnBack->raise();
+        btnNext->raise();
+        gbContent->raise();
+        gbProperty->raise();
+        btnSave->raise();
+        btnUndo->raise();
+        btnAdd->raise();
+        btnDel->raise();
 
         retranslateUi(OrderSupervise);
         QObject::connect(leID, SIGNAL(textEdited(QString)), OrderSupervise, SLOT(OnDelta()));
@@ -161,10 +174,10 @@ public:
         OrderSupervise->setWindowTitle(QApplication::translate("OrderSupervise", "\350\256\242\345\215\225\347\256\241\347\220\206", Q_NULLPTR));
         btnBack->setText(QString());
         btnNext->setText(QString());
-        gbContent->setTitle(QApplication::translate("OrderSupervise", "\350\256\242\345\215\225\345\206\205\345\256\271", Q_NULLPTR));
+        gbContent->setTitle(QApplication::translate("OrderSupervise", "\347\202\271\351\244\220\345\206\205\345\256\271", Q_NULLPTR));
         btnNLine->setText(QApplication::translate("OrderSupervise", "\346\267\273\345\212\240\350\217\234\345\223\201", Q_NULLPTR));
         btnDLine->setText(QApplication::translate("OrderSupervise", "\345\210\240\351\231\244\350\217\234\345\223\201", Q_NULLPTR));
-        gbProperty->setTitle(QApplication::translate("OrderSupervise", "\350\256\242\345\215\225\345\261\236\346\200\247", Q_NULLPTR));
+        gbProperty->setTitle(QString());
         leCustomer->setInputMask(QString());
         leCustomer->setText(QString());
         lblID->setText(QApplication::translate("OrderSupervise", "\350\256\242\345\215\225ID\357\274\232", Q_NULLPTR));
@@ -176,6 +189,7 @@ public:
         btnUndo->setText(QApplication::translate("OrderSupervise", "\346\222\244\351\224\200\346\224\271\345\212\250", Q_NULLPTR));
         btnAdd->setText(QString());
         btnDel->setText(QString());
+        lblOrdSVBGN->setText(QString());
     } // retranslateUi
 
 };

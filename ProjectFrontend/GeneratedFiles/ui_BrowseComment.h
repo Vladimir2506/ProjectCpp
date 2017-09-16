@@ -37,31 +37,32 @@ public:
     QTextEdit *teContent;
     QLabel *lblDate;
     QLabel *lblTitle;
+    QLabel *lblbrcommBGN;
 
     void setupUi(QDialog *BrowseComment)
     {
         if (BrowseComment->objectName().isEmpty())
             BrowseComment->setObjectName(QStringLiteral("BrowseComment"));
-        BrowseComment->resize(500, 600);
-        BrowseComment->setMinimumSize(QSize(500, 600));
-        BrowseComment->setMaximumSize(QSize(500, 600));
+        BrowseComment->resize(500, 750);
+        BrowseComment->setMinimumSize(QSize(500, 750));
+        BrowseComment->setMaximumSize(QSize(500, 750));
         btnBack = new QPushButton(BrowseComment);
         btnBack->setObjectName(QStringLiteral("btnBack"));
-        btnBack->setGeometry(QRect(50, 35, 40, 40));
+        btnBack->setGeometry(QRect(50, 185, 40, 40));
         QIcon icon;
         icon.addFile(QStringLiteral("back.png"), QSize(), QIcon::Normal, QIcon::Off);
         btnBack->setIcon(icon);
         btnBack->setIconSize(QSize(25, 25));
         btnNext = new QPushButton(BrowseComment);
         btnNext->setObjectName(QStringLiteral("btnNext"));
-        btnNext->setGeometry(QRect(125, 35, 40, 40));
+        btnNext->setGeometry(QRect(410, 185, 40, 40));
         QIcon icon1;
         icon1.addFile(QStringLiteral("next.png"), QSize(), QIcon::Normal, QIcon::Off);
         btnNext->setIcon(icon1);
         btnNext->setIconSize(QSize(25, 25));
         groupBox = new QGroupBox(BrowseComment);
         groupBox->setObjectName(QStringLiteral("groupBox"));
-        groupBox->setGeometry(QRect(50, 125, 400, 80));
+        groupBox->setGeometry(QRect(50, 275, 400, 80));
         lbls3 = new QLabel(groupBox);
         lbls3->setObjectName(QStringLiteral("lbls3"));
         lbls3->setGeometry(QRect(180, 30, 30, 30));
@@ -79,19 +80,23 @@ public:
         lbls1->setGeometry(QRect(100, 30, 30, 30));
         gbContent = new QGroupBox(BrowseComment);
         gbContent->setObjectName(QStringLiteral("gbContent"));
-        gbContent->setGeometry(QRect(50, 225, 400, 350));
+        gbContent->setGeometry(QRect(50, 375, 400, 350));
         teContent = new QTextEdit(gbContent);
         teContent->setObjectName(QStringLiteral("teContent"));
         teContent->setGeometry(QRect(25, 25, 350, 300));
         teContent->setReadOnly(true);
         lblDate = new QLabel(BrowseComment);
         lblDate->setObjectName(QStringLiteral("lblDate"));
-        lblDate->setGeometry(QRect(225, 75, 200, 25));
+        lblDate->setGeometry(QRect(150, 225, 200, 25));
         lblDate->setAlignment(Qt::AlignCenter);
         lblTitle = new QLabel(BrowseComment);
         lblTitle->setObjectName(QStringLiteral("lblTitle"));
-        lblTitle->setGeometry(QRect(225, 25, 200, 25));
+        lblTitle->setGeometry(QRect(150, 175, 200, 25));
         lblTitle->setAlignment(Qt::AlignCenter);
+        lblbrcommBGN = new QLabel(BrowseComment);
+        lblbrcommBGN->setObjectName(QStringLiteral("lblbrcommBGN"));
+        lblbrcommBGN->setGeometry(QRect(0, 0, 500, 750));
+        lblbrcommBGN->raise();
         gbContent->raise();
         btnBack->raise();
         btnNext->raise();
@@ -120,6 +125,7 @@ public:
         gbContent->setTitle(QApplication::translate("BrowseComment", "\350\257\204\344\273\267\345\206\205\345\256\271", Q_NULLPTR));
         lblDate->setText(QString());
         lblTitle->setText(QString());
+        lblbrcommBGN->setText(QString());
     } // retranslateUi
 
 };

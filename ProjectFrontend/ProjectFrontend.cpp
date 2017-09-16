@@ -7,7 +7,17 @@ ProjectFrontend::ProjectFrontend(QWidget *parent)
 	//UI Init
 	ui.setupUi(this);
 	//Data and logic Init
-	MainLogic::GetInstance()->Initialise();
+	try
+	{
+		MainLogic::GetInstance()->Initialise();
+	}
+	catch (const exception &ex)
+	{
+		QMessageBox::critical(nullptr, "检测到异常", ex.what());
+#ifdef WINVER
+		PostQuitMessage(-1);
+#endif
+	}
 	MainLogic::GetInstance()->arrSeatVacance = vector<char>(36, 1);
 	//Sign-in Init
 	pPreload = nullptr;
@@ -17,14 +27,26 @@ ProjectFrontend::ProjectFrontend(QWidget *parent)
 void ProjectFrontend::OnRegClicked()
 {
 	//Invoke sign-up view
-	RegisterForm subReg(this);
+	hide();
+	RegisterForm subReg(nullptr);
 	subReg.exec();
+	show();
 }
 
 ProjectFrontend::~ProjectFrontend()
 {
 	//Data and logic Finale
-	MainLogic::GetInstance()->Finalise();
+	try
+	{
+		MainLogic::GetInstance()->Finalise();
+	}
+	catch (const exception &ex)
+	{
+		QMessageBox::critical(nullptr, "检测到异常", ex.what());
+#ifdef WINVER
+		PostQuitMessage(-1);
+#endif
+	}
 	MainLogic::DestroyInstance();
 }
 
@@ -49,25 +71,27 @@ void ProjectFrontend::OnLogClicked()
 	switch (pPreload->GetId()[0])
 	{
 	case '7':	//Maintainer
-		pView = new MaintainerView(this);
+		pView = new MaintainerView(nullptr);
 		break;
 	case '3':	//Customer
-		pView = new CustomerView(this);
+		pView = new CustomerView(nullptr);
 		break;
 	case '5':	//Waitor
-		pView = new WaitorView(this);
+		pView = new WaitorView(nullptr);
 		break;
 	case '4':	//Cook
-		pView = new CookView(this);
+		pView = new CookView(nullptr);
 		break;
 	case '6':	//Manager
-		pView = new ManagerView(this);
+		pView = new ManagerView(nullptr);
 	}
 	if (pView != nullptr)
 	{
 		//Load the corresponding view
+		hide();
 		pView->exec();
-		pView->deleteLater();		//Prevent the data duplication
+		show();
+		pView->deleteLater();
 	}
 }
 

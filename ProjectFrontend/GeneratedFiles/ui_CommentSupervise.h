@@ -56,29 +56,32 @@ public:
     QPushButton *btnUndo;
     QPushButton *btnDel;
     QPushButton *btnAdd;
+    QLabel *lblCommSVBGN;
 
     void setupUi(QDialog *CommentSupervise)
     {
         if (CommentSupervise->objectName().isEmpty())
             CommentSupervise->setObjectName(QStringLiteral("CommentSupervise"));
-        CommentSupervise->resize(900, 500);
+        CommentSupervise->resize(900, 650);
+        CommentSupervise->setMinimumSize(QSize(900, 650));
+        CommentSupervise->setMaximumSize(QSize(900, 650));
         btnBack = new QPushButton(CommentSupervise);
         btnBack->setObjectName(QStringLiteral("btnBack"));
-        btnBack->setGeometry(QRect(25, 25, 40, 40));
+        btnBack->setGeometry(QRect(25, 175, 40, 40));
         QIcon icon;
         icon.addFile(QStringLiteral("back.png"), QSize(), QIcon::Normal, QIcon::Off);
         btnBack->setIcon(icon);
         btnBack->setIconSize(QSize(25, 25));
         btnNext = new QPushButton(CommentSupervise);
         btnNext->setObjectName(QStringLiteral("btnNext"));
-        btnNext->setGeometry(QRect(75, 25, 40, 40));
+        btnNext->setGeometry(QRect(395, 175, 40, 40));
         QIcon icon1;
         icon1.addFile(QStringLiteral("next.png"), QSize(), QIcon::Normal, QIcon::Off);
         btnNext->setIcon(icon1);
         btnNext->setIconSize(QSize(25, 25));
         gbComment = new QGroupBox(CommentSupervise);
         gbComment->setObjectName(QStringLiteral("gbComment"));
-        gbComment->setGeometry(QRect(450, 25, 425, 450));
+        gbComment->setGeometry(QRect(450, 175, 425, 450));
         teContent = new QTextEdit(gbComment);
         teContent->setObjectName(QStringLiteral("teContent"));
         teContent->setGeometry(QRect(50, 200, 325, 225));
@@ -111,7 +114,7 @@ public:
         lblContent->setGeometry(QRect(50, 150, 125, 25));
         gbProperty = new QGroupBox(CommentSupervise);
         gbProperty->setObjectName(QStringLiteral("gbProperty"));
-        gbProperty->setGeometry(QRect(25, 75, 410, 400));
+        gbProperty->setGeometry(QRect(25, 225, 410, 400));
         deDate = new QDateEdit(gbProperty);
         deDate->setObjectName(QStringLiteral("deDate"));
         deDate->setGeometry(QRect(200, 275, 150, 25));
@@ -147,24 +150,36 @@ public:
         leTitle->setGeometry(QRect(200, 350, 150, 25));
         btnSave = new QPushButton(CommentSupervise);
         btnSave->setObjectName(QStringLiteral("btnSave"));
-        btnSave->setGeometry(QRect(125, 25, 100, 40));
+        btnSave->setGeometry(QRect(125, 175, 100, 40));
         btnUndo = new QPushButton(CommentSupervise);
         btnUndo->setObjectName(QStringLiteral("btnUndo"));
-        btnUndo->setGeometry(QRect(235, 25, 100, 40));
+        btnUndo->setGeometry(QRect(235, 175, 100, 40));
         btnDel = new QPushButton(CommentSupervise);
         btnDel->setObjectName(QStringLiteral("btnDel"));
-        btnDel->setGeometry(QRect(395, 25, 40, 40));
+        btnDel->setGeometry(QRect(345, 175, 40, 40));
         QIcon icon2;
         icon2.addFile(QStringLiteral("subtract.png"), QSize(), QIcon::Normal, QIcon::Off);
         btnDel->setIcon(icon2);
         btnDel->setIconSize(QSize(25, 25));
         btnAdd = new QPushButton(CommentSupervise);
         btnAdd->setObjectName(QStringLiteral("btnAdd"));
-        btnAdd->setGeometry(QRect(345, 25, 40, 40));
+        btnAdd->setGeometry(QRect(75, 175, 40, 40));
         QIcon icon3;
         icon3.addFile(QStringLiteral("add.png"), QSize(), QIcon::Normal, QIcon::Off);
         btnAdd->setIcon(icon3);
         btnAdd->setIconSize(QSize(25, 25));
+        lblCommSVBGN = new QLabel(CommentSupervise);
+        lblCommSVBGN->setObjectName(QStringLiteral("lblCommSVBGN"));
+        lblCommSVBGN->setGeometry(QRect(0, 0, 900, 650));
+        lblCommSVBGN->raise();
+        btnBack->raise();
+        btnNext->raise();
+        gbComment->raise();
+        gbProperty->raise();
+        btnSave->raise();
+        btnUndo->raise();
+        btnDel->raise();
+        btnAdd->raise();
 
         retranslateUi(CommentSupervise);
         QObject::connect(sbStar, SIGNAL(valueChanged(int)), CommentSupervise, SLOT(SetStars(int)));
@@ -190,7 +205,7 @@ public:
         CommentSupervise->setWindowTitle(QApplication::translate("CommentSupervise", "\350\257\204\350\256\272\347\256\241\347\220\206", Q_NULLPTR));
         btnBack->setText(QString());
         btnNext->setText(QString());
-        gbComment->setTitle(QApplication::translate("CommentSupervise", "\350\257\204\350\256\272\345\206\205\345\256\271", Q_NULLPTR));
+        gbComment->setTitle(QString());
         lblStar->setText(QApplication::translate("CommentSupervise", "\350\257\204\344\273\267\346\230\237\347\272\247\357\274\232", Q_NULLPTR));
         lbls1->setText(QString());
         lbls2->setText(QString());
@@ -198,7 +213,7 @@ public:
         lbls5->setText(QString());
         lbls4->setText(QString());
         lblContent->setText(QApplication::translate("CommentSupervise", "\346\226\207\345\255\227\345\206\205\345\256\271\357\274\232", Q_NULLPTR));
-        gbProperty->setTitle(QApplication::translate("CommentSupervise", "\350\257\204\350\256\272\345\261\236\346\200\247", Q_NULLPTR));
+        gbProperty->setTitle(QString());
         deDate->setDisplayFormat(QApplication::translate("CommentSupervise", "yyyy/MM/dd", Q_NULLPTR));
         lblComId->setText(QApplication::translate("CommentSupervise", "\350\257\204\350\256\272ID\357\274\232", Q_NULLPTR));
         lblSrcId->setText(QApplication::translate("CommentSupervise", "\350\257\204\350\256\272\350\200\205ID\357\274\232", Q_NULLPTR));
@@ -209,6 +224,7 @@ public:
         btnUndo->setText(QApplication::translate("CommentSupervise", "\346\222\244\351\224\200\346\224\271\345\212\250", Q_NULLPTR));
         btnDel->setText(QString());
         btnAdd->setText(QString());
+        lblCommSVBGN->setText(QString());
     } // retranslateUi
 
 };

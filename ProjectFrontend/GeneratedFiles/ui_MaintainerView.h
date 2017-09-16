@@ -44,18 +44,19 @@ public:
     QLabel *lblInfo;
     QPushButton *btnComment;
     QPushButton *btnOrder;
+    QLabel *lblMaintainerBGN;
 
     void setupUi(QDialog *MaintainerView)
     {
         if (MaintainerView->objectName().isEmpty())
             MaintainerView->setObjectName(QStringLiteral("MaintainerView"));
         MaintainerView->setWindowModality(Qt::WindowModal);
-        MaintainerView->resize(1500, 750);
-        MaintainerView->setMinimumSize(QSize(1500, 750));
-        MaintainerView->setMaximumSize(QSize(1500, 750));
+        MaintainerView->resize(1500, 900);
+        MaintainerView->setMinimumSize(QSize(1500, 900));
+        MaintainerView->setMaximumSize(QSize(1500, 900));
         gbMenu = new QGroupBox(MaintainerView);
         gbMenu->setObjectName(QStringLiteral("gbMenu"));
-        gbMenu->setGeometry(QRect(25, 75, 700, 650));
+        gbMenu->setGeometry(QRect(25, 225, 700, 650));
         gbMenu->setAlignment(Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter);
         tbMenu = new QTableView(gbMenu);
         tbMenu->setObjectName(QStringLiteral("tbMenu"));
@@ -80,7 +81,7 @@ public:
         btnUndoMenu->setGeometry(QRect(525, 550, 100, 40));
         gbAccount = new QGroupBox(MaintainerView);
         gbAccount->setObjectName(QStringLiteral("gbAccount"));
-        gbAccount->setGeometry(QRect(775, 25, 700, 700));
+        gbAccount->setGeometry(QRect(775, 175, 700, 700));
         gbAccount->setAlignment(Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter);
         cbCata = new QComboBox(gbAccount);
         cbCata->setObjectName(QStringLiteral("cbCata"));
@@ -111,14 +112,23 @@ public:
         btnUndoUser->setGeometry(QRect(525, 600, 100, 40));
         lblInfo = new QLabel(MaintainerView);
         lblInfo->setObjectName(QStringLiteral("lblInfo"));
-        lblInfo->setGeometry(QRect(25, 25, 400, 25));
+        lblInfo->setGeometry(QRect(25, 175, 400, 25));
         lblInfo->setAlignment(Qt::AlignCenter);
         btnComment = new QPushButton(MaintainerView);
         btnComment->setObjectName(QStringLiteral("btnComment"));
-        btnComment->setGeometry(QRect(450, 25, 125, 40));
+        btnComment->setGeometry(QRect(450, 175, 125, 40));
         btnOrder = new QPushButton(MaintainerView);
         btnOrder->setObjectName(QStringLiteral("btnOrder"));
-        btnOrder->setGeometry(QRect(600, 25, 125, 40));
+        btnOrder->setGeometry(QRect(600, 175, 125, 40));
+        lblMaintainerBGN = new QLabel(MaintainerView);
+        lblMaintainerBGN->setObjectName(QStringLiteral("lblMaintainerBGN"));
+        lblMaintainerBGN->setGeometry(QRect(0, 0, 1500, 900));
+        lblMaintainerBGN->raise();
+        gbMenu->raise();
+        gbAccount->raise();
+        lblInfo->raise();
+        btnComment->raise();
+        btnOrder->raise();
 
         retranslateUi(MaintainerView);
         QObject::connect(btnSaveMenu, SIGNAL(clicked()), MaintainerView, SLOT(SaveChangedMenu()));
@@ -156,6 +166,7 @@ public:
         lblInfo->setText(QString());
         btnComment->setText(QApplication::translate("MaintainerView", "\350\257\204\350\256\272\347\256\241\347\220\206", Q_NULLPTR));
         btnOrder->setText(QApplication::translate("MaintainerView", "\350\256\242\345\215\225\347\256\241\347\220\206", Q_NULLPTR));
+        lblMaintainerBGN->setText(QString());
     } // retranslateUi
 
 };

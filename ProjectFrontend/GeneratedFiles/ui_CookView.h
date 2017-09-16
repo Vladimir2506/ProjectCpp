@@ -33,20 +33,22 @@ public:
     QLabel *lblTodo;
     QGroupBox *gbDone;
     QTableView *tbDone;
+    QLabel *lblCookBGN;
+    QPushButton *btnProfile;
 
     void setupUi(QDialog *CookView)
     {
         if (CookView->objectName().isEmpty())
             CookView->setObjectName(QStringLiteral("CookView"));
-        CookView->resize(825, 600);
-        CookView->setMinimumSize(QSize(825, 600));
-        CookView->setMaximumSize(QSize(825, 600));
+        CookView->resize(825, 750);
+        CookView->setMinimumSize(QSize(825, 750));
+        CookView->setMaximumSize(QSize(825, 750));
         lblInfo = new QLabel(CookView);
         lblInfo->setObjectName(QStringLiteral("lblInfo"));
-        lblInfo->setGeometry(QRect(25, 25, 275, 25));
+        lblInfo->setGeometry(QRect(25, 175, 275, 25));
         gbTodo = new QGroupBox(CookView);
         gbTodo->setObjectName(QStringLiteral("gbTodo"));
-        gbTodo->setGeometry(QRect(25, 75, 400, 500));
+        gbTodo->setGeometry(QRect(25, 225, 400, 500));
         lstTodo = new QListWidget(gbTodo);
         lstTodo->setObjectName(QStringLiteral("lstTodo"));
         lstTodo->setGeometry(QRect(25, 75, 350, 350));
@@ -62,17 +64,29 @@ public:
         lblTodo->setAlignment(Qt::AlignCenter);
         gbDone = new QGroupBox(CookView);
         gbDone->setObjectName(QStringLiteral("gbDone"));
-        gbDone->setGeometry(QRect(450, 25, 350, 550));
+        gbDone->setGeometry(QRect(450, 175, 350, 550));
         gbDone->setFocusPolicy(Qt::NoFocus);
         tbDone = new QTableView(gbDone);
         tbDone->setObjectName(QStringLiteral("tbDone"));
         tbDone->setGeometry(QRect(25, 25, 300, 500));
         tbDone->setEditTriggers(QAbstractItemView::NoEditTriggers);
         tbDone->setSelectionMode(QAbstractItemView::NoSelection);
+        lblCookBGN = new QLabel(CookView);
+        lblCookBGN->setObjectName(QStringLiteral("lblCookBGN"));
+        lblCookBGN->setGeometry(QRect(0, 0, 825, 750));
+        btnProfile = new QPushButton(CookView);
+        btnProfile->setObjectName(QStringLiteral("btnProfile"));
+        btnProfile->setGeometry(QRect(325, 175, 100, 40));
+        lblCookBGN->raise();
+        lblInfo->raise();
+        gbTodo->raise();
+        gbDone->raise();
+        btnProfile->raise();
 
         retranslateUi(CookView);
         QObject::connect(lstTodo, SIGNAL(currentRowChanged(int)), CookView, SLOT(OnSelect(int)));
         QObject::connect(btnFinish, SIGNAL(clicked()), CookView, SLOT(CookOne()));
+        QObject::connect(btnProfile, SIGNAL(clicked()), CookView, SLOT(OnProfile()));
 
         QMetaObject::connectSlotsByName(CookView);
     } // setupUi
@@ -85,6 +99,8 @@ public:
         btnFinish->setText(QApplication::translate("CookView", "\345\256\214\346\210\220\351\200\211\345\256\232\347\203\271\351\245\252", Q_NULLPTR));
         lblTodo->setText(QApplication::translate("CookView", "\345\210\206\351\205\215\347\232\204\350\217\234\345\223\201", Q_NULLPTR));
         gbDone->setTitle(QApplication::translate("CookView", "\345\267\262\345\256\214\346\210\220\347\232\204\350\217\234\345\223\201", Q_NULLPTR));
+        lblCookBGN->setText(QString());
+        btnProfile->setText(QApplication::translate("CookView", "\344\270\252\344\272\272\350\265\204\346\226\231", Q_NULLPTR));
     } // retranslateUi
 
 };

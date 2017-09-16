@@ -65,13 +65,13 @@ void CustomerView::PhaseSeatPick()
 		st = -1;
 	}
 	HideAll();
-	MyResize(850, 950);
+	MyResize(600, 850);
 	ui.gbSeatPick->show();
 	ui.lblHint->show();
 	ui.lblInfo->show();
 	ui.btnProfile->show();
 	nSeat = MainLogic::GetInstance()->arrSeatVacance.size();
-	ui.lblInfo->setText("欢迎光临！尊敬的" + str2qstr(pCustomer->GetName()) + "顾客");
+	ui.lblInfo->setText("欢迎光临！尊敬的顾客" + str2qstr(pCustomer->GetName()) + "！");
 	PrepareSeats();
 	if (IsNoVacance())
 	{
@@ -79,14 +79,14 @@ void CustomerView::PhaseSeatPick()
 	}
 	else
 	{
-		ui.lblHint->setText("请您在下方的\"选择餐桌\"中挑选座位！");
+		ui.lblHint->setText("请您在下方的餐桌列表中挑选座位！");
 	}
 }
 
 void CustomerView::PhaseOrderMake()
 {
 	HideAll();
-	MyResize(800, 750);
+	MyResize(900, 900);
 	ui.gbMenu->show();
 	ui.lblInfo->show();
 	PrepareMenu();
@@ -100,7 +100,7 @@ void CustomerView::PhaseOrderMake()
 void CustomerView::PhaseMealEat()
 {
 	HideAll();
-	MyResize(1000, 600);
+	MyResize(1000, 750);
 	ui.gbOrder->show();
 	ui.gbInstruction->show();
 	ui.lblInfo->show();
@@ -179,17 +179,7 @@ void CustomerView::PrepareSeats()
 		}
 	}
 	int nCol = round(sqrt(nSeat));
-	int nSize, nDiv;
-	if (nSeat > 64)
-	{
-		nSize = 65;
-		nDiv = 75;
-	}
-	else
-	{
-		nSize = 80;
-		nDiv = 90;
-	}
+	int nSize = 80, nDiv = 90;
 	for (int i = 0; i < nSeat; ++i)
 	{
 		matSeat[i]->setGeometry(25 + (i % nCol) * nDiv, 25 + (i / nCol) * nDiv, nSize, nSize);

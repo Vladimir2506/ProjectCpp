@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1000</width>
-    <height>650</height>
+    <width>1036</width>
+    <height>824</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -16,14 +16,14 @@
   <widget class="QGroupBox" name="gbProfile">
    <property name="geometry">
     <rect>
-     <x>25</x>
-     <y>25</y>
+     <x>20</x>
+     <y>175</y>
      <width>450</width>
      <height>325</height>
     </rect>
    </property>
    <property name="title">
-    <string>修改账号信息</string>
+    <string/>
    </property>
    <widget class="QLabel" name="lblID">
     <property name="geometry">
@@ -92,6 +92,9 @@
     <property name="echoMode">
      <enum>QLineEdit::Password</enum>
     </property>
+    <property name="placeholderText">
+     <string>8位密码</string>
+    </property>
    </widget>
    <widget class="QLineEdit" name="leDeux">
     <property name="geometry">
@@ -108,6 +111,9 @@
     <property name="echoMode">
      <enum>QLineEdit::Password</enum>
     </property>
+    <property name="placeholderText">
+     <string>8位密码</string>
+    </property>
    </widget>
    <widget class="QLineEdit" name="lePhone">
     <property name="geometry">
@@ -120,6 +126,9 @@
     </property>
     <property name="maxLength">
      <number>11</number>
+    </property>
+    <property name="placeholderText">
+     <string>11位手机号码</string>
     </property>
    </widget>
    <widget class="QLineEdit" name="leID">
@@ -190,7 +199,7 @@
    <widget class="QPushButton" name="btnUndo">
     <property name="geometry">
      <rect>
-      <x>240</x>
+      <x>255</x>
       <y>275</y>
       <width>100</width>
       <height>40</height>
@@ -225,6 +234,9 @@
     <property name="maxLength">
      <number>10</number>
     </property>
+    <property name="placeholderText">
+     <string>10个字符之内</string>
+    </property>
    </widget>
    <widget class="QLabel" name="lblState4">
     <property name="geometry">
@@ -243,14 +255,17 @@
   <widget class="QGroupBox" name="gbOrders">
    <property name="geometry">
     <rect>
-     <x>525</x>
-     <y>25</y>
+     <x>520</x>
+     <y>175</y>
      <width>450</width>
-     <height>600</height>
+     <height>325</height>
     </rect>
    </property>
    <property name="title">
     <string>查看历史订单</string>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignCenter</set>
    </property>
    <widget class="QTableView" name="tbOrders">
     <property name="geometry">
@@ -258,7 +273,7 @@
       <x>25</x>
       <y>150</y>
       <width>400</width>
-      <height>425</height>
+      <height>150</height>
      </rect>
     </property>
     <property name="editTriggers">
@@ -311,21 +326,24 @@
   <widget class="QGroupBox" name="gbComments">
    <property name="geometry">
     <rect>
-     <x>25</x>
-     <y>400</y>
-     <width>450</width>
+     <x>20</x>
+     <y>550</y>
+     <width>950</width>
      <height>225</height>
     </rect>
    </property>
    <property name="title">
     <string>查看历史评论</string>
    </property>
+   <property name="alignment">
+    <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+   </property>
    <widget class="QTableView" name="tbComments">
     <property name="geometry">
      <rect>
       <x>25</x>
       <y>30</y>
-      <width>400</width>
+      <width>900</width>
       <height>175</height>
      </rect>
     </property>
@@ -337,6 +355,23 @@
     </property>
    </widget>
   </widget>
+  <widget class="QLabel" name="lblProfBGN">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>1000</width>
+     <height>800</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
+  <zorder>lblProfBGN</zorder>
+  <zorder>gbProfile</zorder>
+  <zorder>gbOrders</zorder>
+  <zorder>gbComments</zorder>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
  <resources/>
