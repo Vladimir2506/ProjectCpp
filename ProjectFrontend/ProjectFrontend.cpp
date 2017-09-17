@@ -76,8 +76,8 @@ void ProjectFrontend::OnLogClicked()
 	case '3':	//Customer
 		pView = new CustomerView(nullptr);
 		break;
-	case '5':	//Waitor
-		pView = new WaitorView(nullptr);
+	case '5':	//Waiter
+		pView = new WaiterView(nullptr);
 		break;
 	case '4':	//Cook
 		pView = new CookView(nullptr);

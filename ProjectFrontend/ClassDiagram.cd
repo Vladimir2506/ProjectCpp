@@ -49,7 +49,7 @@
       <FileName>Cafeteria.h</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="Waitor" Collapsed="true">
+  <Class Name="Waiter" Collapsed="true">
     <Position X="8" Y="3.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAEAIAACAAAQACBAAAIAAAAAAABACSACAAAIAAACQ=</HashCode>
@@ -84,11 +84,11 @@
       <FileName>MySQLite.h</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="WaitorView" Collapsed="true">
+  <Class Name="WaiterView" Collapsed="true">
     <Position X="21.25" Y="2.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAQAAAAAAEAABHIAAggIQAgAAACAAAAAAAAAIAAA=</HashCode>
-      <FileName>WaitorView.h</FileName>
+      <FileName>WaiterView.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="AddComment" Collapsed="true">
@@ -196,11 +196,11 @@
       <FileName>GeneratedFiles\ui_ProfileView.h</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="Ui_WaitorView" Collapsed="true">
+  <Class Name="Ui_WaiterView" Collapsed="true">
     <Position X="9.5" Y="4.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAgAAABAAFQAAAAAAIIAAAAAAQQIAAACAAABBAAAAA=</HashCode>
-      <FileName>GeneratedFiles\ui_WaitorView.h</FileName>
+      <FileName>GeneratedFiles\ui_WaiterView.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Ui_BrowseComment" Collapsed="true">
@@ -273,11 +273,11 @@
       <FileName>GeneratedFiles\ui_ProfileView.h</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="Ui::WaitorView" Collapsed="true">
+  <Class Name="Ui::WaiterView" Collapsed="true">
     <Position X="9.5" Y="5.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>GeneratedFiles\ui_WaitorView.h</FileName>
+      <FileName>GeneratedFiles\ui_WaiterView.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Ui::BrowseComment" Collapsed="true">
@@ -532,11 +532,11 @@
       <FileName>GeneratedFiles\Debug\moc_RegisterForm.cpp</FileName>
     </TypeIdentifier>
   </Struct>
-  <Struct Name="qt_meta_stringdata_WaitorView_t" Collapsed="true">
+  <Struct Name="qt_meta_stringdata_WaiterView_t" Collapsed="true">
     <Position X="26.5" Y="5.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAQAAAAAAA=</HashCode>
-      <FileName>GeneratedFiles\Debug\moc_WaitorView.cpp</FileName>
+      <FileName>GeneratedFiles\Debug\moc_WaiterView.cpp</FileName>
     </TypeIdentifier>
   </Struct>
   <Struct Name="`anonymous-namespace'::initializer" Collapsed="true">

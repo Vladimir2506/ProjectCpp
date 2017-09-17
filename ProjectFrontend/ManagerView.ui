@@ -90,7 +90,7 @@
     </property>
    </widget>
   </widget>
-  <widget class="QGroupBox" name="gbWaitor">
+  <widget class="QGroupBox" name="gbWaiter">
    <property name="geometry">
     <rect>
      <x>525</x>
@@ -102,7 +102,7 @@
    <property name="title">
     <string>服务员工作情况</string>
    </property>
-   <widget class="QComboBox" name="cbWaitor">
+   <widget class="QComboBox" name="cbWaiter">
     <property name="geometry">
      <rect>
       <x>225</x>
@@ -112,7 +112,7 @@
      </rect>
     </property>
    </widget>
-   <widget class="QLabel" name="lblWaitor">
+   <widget class="QLabel" name="lblWaiter">
     <property name="geometry">
      <rect>
       <x>50</x>
@@ -125,7 +125,7 @@
      <string>请选择一名服务员</string>
     </property>
    </widget>
-   <widget class="QTableView" name="tbWaitor">
+   <widget class="QTableView" name="tbWaiter">
     <property name="geometry">
      <rect>
       <x>50</x>
@@ -245,7 +245,7 @@
   <zorder>lblManagerBGN</zorder>
   <zorder>lblInfo</zorder>
   <zorder>gbCook</zorder>
-  <zorder>gbWaitor</zorder>
+  <zorder>gbWaiter</zorder>
   <zorder>btnProfile</zorder>
   <zorder>btnSeatVacance</zorder>
   <zorder>gbVolume</zorder>
@@ -270,10 +270,10 @@
    </hints>
   </connection>
   <connection>
-   <sender>cbWaitor</sender>
+   <sender>cbWaiter</sender>
    <signal>currentTextChanged(QString)</signal>
    <receiver>ManagerView</receiver>
-   <slot>BindWaitor(QString)</slot>
+   <slot>BindWaiter(QString)</slot>
    <hints>
     <hint type="sourcelabel">
      <x>858</x>
@@ -320,7 +320,7 @@
  </connections>
  <slots>
   <slot>BindCook(QString)</slot>
-  <slot>BindWaitor(QString)</slot>
+  <slot>BindWaiter(QString)</slot>
   <slot>OnProfile()</slot>
   <slot>OnSetTable()</slot>
  </slots>

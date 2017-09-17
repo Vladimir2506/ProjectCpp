@@ -13,21 +13,21 @@ public:
 	~ManagerView();
 private:
 	void PrepareCook();
-	void PrepareWaitor();
+	void PrepareWaiter();
 	bool IsAllVacance();
 	void PrepareVolume();
 private slots :
 	void BindCook(QString qstrCook);
-	void BindWaitor(QString qstrWaitor);
+	void BindWaiter(QString qstrWaiter);
 	void OnProfile();
 	void OnSetTable();
 private:
 	Ui::ManagerView ui;
 	string idCook;
-	string idWaitor;
+	string idWaiter;
 	Manager *pManager;
 	QStandardItemModel *mdlCook;
-	QStandardItemModel *mdlWaitor;
+	QStandardItemModel *mdlWaiter;
 	QStandardItemModel *mdlComm;
 	QStringList lstService;
 };

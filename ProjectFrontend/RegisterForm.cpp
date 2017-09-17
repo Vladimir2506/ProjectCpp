@@ -61,13 +61,13 @@ void RegisterForm::SubmitReg()
 		MainLogic::s_currentCooks.emplace(pSignup->GetId(), *dynamic_cast<Cook*>(pSignup));
 		break;
 	case CharSel::CH_WAITOR:
-		if (!MainLogic::s_currentWaitors.empty())
+		if (!MainLogic::s_currentWaiters.empty())
 		{
-			nRecorder = stoi(MainLogic::s_currentWaitors.rbegin()->first.substr(1, string::npos));
+			nRecorder = stoi(MainLogic::s_currentWaiters.rbegin()->first.substr(1, string::npos));
 		}
 		strId = IdGenerator(IDGENERATOR::ID_WAITOR, nRecorder);
-		pSignup = new Waitor(strId, strName, strPassword, strPhone);
-		MainLogic::s_currentWaitors.emplace(pSignup->GetId(), *dynamic_cast<Waitor*>(pSignup));
+		pSignup = new Waiter(strId, strName, strPassword, strPhone);
+		MainLogic::s_currentWaiters.emplace(pSignup->GetId(), *dynamic_cast<Waiter*>(pSignup));
 		break;
 	case CharSel::CH_MANAGER:
 		if (!MainLogic::s_currentManagers.empty())

@@ -302,7 +302,7 @@ void MaintainerView::ResolveDeltaUser()
 		CustomerDelta();
 		break;
 	case CharSel::CH_WAITOR:
-		WaitorDelta();
+		WaiterDelta();
 		break;
 	case CharSel::CH_COOK:
 		CookDelta();
@@ -412,7 +412,7 @@ void MaintainerView::CookDelta()
 	}
 }
 
-void MaintainerView::WaitorDelta()
+void MaintainerView::WaiterDelta()
 {
 	//Add or adjust values
 	for (int i = 0; i < mdlUser->rowCount(); ++i)
@@ -421,10 +421,10 @@ void MaintainerView::WaitorDelta()
 		string strName(qstr2str(mdlUser->item(i, 1)->text()));
 		string strPassword(qstr2str(mdlUser->item(i, 2)->text()));
 		string strPhone(qstr2str(mdlUser->item(i, 3)->text()));
-		auto it = MainLogic::s_currentWaitors.find(strId);
-		if (it == MainLogic::s_currentWaitors.end())
+		auto it = MainLogic::s_currentWaiters.find(strId);
+		if (it == MainLogic::s_currentWaiters.end())
 		{
-			MainLogic::s_currentWaitors.emplace(strId, Waitor(strId, strName, strPassword, strPhone));
+			MainLogic::s_currentWaiters.emplace(strId, Waiter(strId, strName, strPassword, strPhone));
 		}
 		else
 		{
@@ -435,7 +435,7 @@ void MaintainerView::WaitorDelta()
 	}
 	//Del values
 	vector<string> idDeleteLaters;
-	for (auto &d : MainLogic::s_currentWaitors)
+	for (auto &d : MainLogic::s_currentWaiters)
 	{
 		bool bFound = false;
 		QString qstrOrigin(str2qstr(d.first));
@@ -454,8 +454,8 @@ void MaintainerView::WaitorDelta()
 	}
 	for (auto &id : idDeleteLaters)
 	{
-		MainLogic::s_currentWaitors[id].DeleteMe(MainLogic::GetInstance()->MainDB);
-		MainLogic::s_currentWaitors.erase(id);
+		MainLogic::s_currentWaiters[id].DeleteMe(MainLogic::GetInstance()->MainDB);
+		MainLogic::s_currentWaiters.erase(id);
 	}
 }
 
@@ -587,10 +587,10 @@ void MaintainerView::CookPrepare()
 	}
 }
 
-void MaintainerView::WaitorPrepare()
+void MaintainerView::WaiterPrepare()
 {
 	int nRow = 0;
-	for (auto &d : MainLogic::s_currentWaitors)
+	for (auto &d : MainLogic::s_currentWaiters)
 	{
 		QStandardItem *pId = new QStandardItem(str2qstr(d.first));
 		QStandardItem *pName = new QStandardItem(str2qstr(d.second.GetName()));
@@ -730,7 +730,7 @@ void MaintainerView::PrepareUser()
 		CookPrepare();
 		break;
 	case CharSel::CH_WAITOR:
-		WaitorPrepare();
+		WaiterPrepare();
 		break;
 	case CharSel::CH_MANAGER:
 		ManagerPrepare();

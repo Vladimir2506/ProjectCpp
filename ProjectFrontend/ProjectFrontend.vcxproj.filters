@@ -123,12 +123,6 @@
     <ClCompile Include="CookView.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="GeneratedFiles\Debug\moc_WaitorView.cpp">
-      <Filter>Generated Files</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Release\moc_WaitorView.cpp">
-      <Filter>Generated Files</Filter>
-    </ClCompile>
     <ClCompile Include="GeneratedFiles\Debug\moc_ManagerView.cpp">
       <Filter>Generated Files</Filter>
     </ClCompile>
@@ -136,9 +130,6 @@
       <Filter>Generated Files</Filter>
     </ClCompile>
     <ClCompile Include="ManagerView.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="WaitorView.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="GeneratedFiles\Debug\moc_ProfileView.cpp">
@@ -151,6 +142,12 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="ProjectBackend.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_WaiterView.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="WaiterView.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -185,9 +182,6 @@
     <ClInclude Include="GeneratedFiles\ui_CookView.h">
       <Filter>Generated Files</Filter>
     </ClInclude>
-    <ClInclude Include="GeneratedFiles\ui_WaitorView.h">
-      <Filter>Generated Files</Filter>
-    </ClInclude>
     <ClInclude Include="GeneratedFiles\ui_ManagerView.h">
       <Filter>Generated Files</Filter>
     </ClInclude>
@@ -196,6 +190,9 @@
     </ClInclude>
     <ClInclude Include="ProjectBackend.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GeneratedFiles\ui_WaiterView.h">
+      <Filter>Generated Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -256,12 +253,6 @@
     <CustomBuild Include="CookView.ui">
       <Filter>Form Files</Filter>
     </CustomBuild>
-    <CustomBuild Include="WaitorView.h">
-      <Filter>Header Files</Filter>
-    </CustomBuild>
-    <CustomBuild Include="WaitorView.ui">
-      <Filter>Form Files</Filter>
-    </CustomBuild>
     <CustomBuild Include="ManagerView.h">
       <Filter>Header Files</Filter>
     </CustomBuild>
@@ -273,6 +264,12 @@
     </CustomBuild>
     <CustomBuild Include="ProfileView.ui">
       <Filter>Form Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="WaiterView.ui">
+      <Filter>Form Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="WaiterView.h">
+      <Filter>Header Files</Filter>
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>

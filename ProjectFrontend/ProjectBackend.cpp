@@ -13,7 +13,7 @@ map<string, Order> MainLogic::s_currentOrders;
 map<string, Cook> MainLogic::s_currentCooks;
 map<string, Customer> MainLogic::s_currentCustomers;
 map<string, Comment> MainLogic::s_currentComments;
-map<string, Waitor> MainLogic::s_currentWaitors;
+map<string, Waiter> MainLogic::s_currentWaiters;
 map<string, Manager> MainLogic::s_currentManagers;
 map<string, Maintainer> MainLogic::s_currentMaintainers;
 MainLogic * MainLogic::m_pInstance = nullptr;
@@ -137,15 +137,15 @@ void MainLogic::Initialise()
 		ptr = nullptr;
 	}
 	MainDB.EndQuery();
-	//Waitors 6th
-	strTableName = "Waitor";
+	//Waiters 6th
+	strTableName = "Waiter";
 	while ((!MainDB.IsEnd()) && MainDB.IsTableExist(strTableName))
 	{
-		ptr = new Waitor;
+		ptr = new Waiter;
 		ptr->LoadInfo(MainDB);
-		if (*ptr != Waitor())
+		if (*ptr != Waiter())
 		{
-			s_currentWaitors.emplace(ptr->GetId(), *dynamic_cast<Waitor*>(ptr));
+			s_currentWaiters.emplace(ptr->GetId(), *dynamic_cast<Waiter*>(ptr));
 		}
 		delete ptr;
 		ptr = nullptr;
@@ -221,7 +221,7 @@ void MainLogic::Finalise()
 			rc.second.SaveInfo(MainDB);
 		}
 	}
-	for (auto &rc : s_currentWaitors)
+	for (auto &rc : s_currentWaiters)
 	{
 		if (rc.first != "")
 		{
@@ -274,7 +274,7 @@ People * MainLogic::FindExist(const string & strPhone)
 			return &r.second;
 		}
 	}
-	for (auto &r : MainLogic::s_currentWaitors)
+	for (auto &r : MainLogic::s_currentWaiters)
 	{
 		if (r.second.GetPhone() == strPhone)
 		{
@@ -635,8 +635,8 @@ void Cuisine::DeleteMe(MyDataBase & theDB)
 	theDB.DeleteValue(strTableName, strCondition);
 }
 
-Order::Order(const string & strId, const string & strName, const string & strCustomerId, const string & strWaitorId)
-	:Object(strId, strName), m_strCustomerId(strCustomerId), m_strWaitorId(strWaitorId)
+Order::Order(const string & strId, const string & strName, const string & strCustomerId, const string & strWaiterId)
+	:Object(strId, strName), m_strCustomerId(strCustomerId), m_strWaiterId(strWaiterId)
 {
 	bAssigned = false;
 }
@@ -651,14 +651,14 @@ string Order::GetCustomerId() const
 	return m_strCustomerId;
 }
 
-void Order::SetWaitorId(const string & strWaitorId)
+void Order::SetWaiterId(const string & strWaiterId)
 {
-	m_strWaitorId = strWaitorId;
+	m_strWaiterId = strWaiterId;
 }
 
-string Order::GetWaitorId() const
+string Order::GetWaiterId() const
 {
-	return m_strWaitorId;
+	return m_strWaiterId;
 }
 
 map<Cuisine, int> Order::GetFoodMap() const
@@ -769,30 +769,30 @@ void Order::Consume(const Cuisine theDish)
 
 string Order::Appoint()
 {
-	if (!m_strWaitorId.empty())
+	if (!m_strWaiterId.empty())
 	{
-		return m_strWaitorId;
+		return m_strWaiterId;
 	}
-	auto it = find_if(MainLogic::s_currentWaitors.begin(), MainLogic::s_currentWaitors.end(),
-		[](pair<const string &, Waitor> obj)
+	auto it = find_if(MainLogic::s_currentWaiters.begin(), MainLogic::s_currentWaiters.end(),
+		[](pair<const string &, Waiter> obj)
 	{
 		return obj.second.IsIdle();
 	});
-	if (it != MainLogic::s_currentWaitors.end())
+	if (it != MainLogic::s_currentWaiters.end())
 	{
 		it->second.SetTableNum(m_nTableNum);
-		m_strWaitorId = it->first;
+		m_strWaiterId = it->first;
 	}
 	else
 	{
-		m_strWaitorId = "";
+		m_strWaiterId = "";
 	}
-	return m_strWaitorId;
+	return m_strWaiterId;
 }
 
 bool Order::IsServed()
 {
-	return !m_strWaitorId.empty();
+	return !m_strWaiterId.empty();
 }
 
 void Order::LoadInfo(MyDataBase & theDB)
@@ -831,7 +831,7 @@ void Order::LoadInfo(MyDataBase & theDB)
 		m_strId = strResults[0];
 		m_strName = strResults[1];
 		m_strCustomerId = strResults[2];
-		m_strWaitorId = strResults[3];
+		m_strWaiterId = strResults[3];
 		m_nTableNum = stoi(strResults[4]);
 	}
 	strResults.clear();
@@ -875,7 +875,7 @@ void Order::SaveInfo(MyDataBase & theDB)
 		throw invalid_argument(theDB.m_strFileName);
 	}
 	vector<string> strResults;
-	vector<string> strVals{ MainLogic::ToSql(m_strId),MainLogic::ToSql(m_strName),MainLogic::ToSql(m_strCustomerId),MainLogic::ToSql(m_strWaitorId),to_string(m_nTableNum) };
+	vector<string> strVals{ MainLogic::ToSql(m_strId),MainLogic::ToSql(m_strName),MainLogic::ToSql(m_strCustomerId),MainLogic::ToSql(m_strWaiterId),to_string(m_nTableNum) };
 	constexpr int nLength = 5;
 	const string strTableName = "Orders";
 	//The schema
@@ -987,7 +987,7 @@ string Customer::MakeOrder()
 void Customer::Finish()
 {
 	m_nState = CSSTATE::Absent;
-	MainLogic::s_currentWaitors[m_itNow->second.GetWaitorId()].Liberate();
+	MainLogic::s_currentWaiters[m_itNow->second.GetWaiterId()].Liberate();
 	m_itNow = MainLogic::s_currentOrders.end();
 	m_statusComment.clear();
 	m_waitorComment.clear();
@@ -1142,7 +1142,7 @@ bool Cook::IsIdle()
 void Cook::DoCooking(deque<pair<Cuisine, Order*>>::iterator itCuisine)
 {
 	auto theDish = itCuisine->first;
-	auto &theWaitor = MainLogic::s_currentWaitors[itCuisine->second->GetWaitorId()];
+	auto &theWaiter = MainLogic::s_currentWaiters[itCuisine->second->GetWaiterId()];
 	if (IsIdle())
 	{
 		return;
@@ -1157,7 +1157,7 @@ void Cook::DoCooking(deque<pair<Cuisine, Order*>>::iterator itCuisine)
 	{
 		m_mapWorkDone.emplace(theDish, 1);
 	}
-	theWaitor.m_deqReady.emplace_back(*itCuisine);
+	theWaiter.m_deqReady.emplace_back(*itCuisine);
 	m_deqTodo.erase(itCuisine);
 }
 
@@ -1338,30 +1338,30 @@ void Cook::DeleteMe(MyDataBase & theDB)
 	subDB.DeleteTable(strSubName);
 }
 
-Waitor::Waitor(const string & strId, const string & strName, const string & strPassword, const string & strPhone)
+Waiter::Waiter(const string & strId, const string & strName, const string & strPassword, const string & strPhone)
 	:People(strId, strName, strPassword, strPhone),m_arrServDone{0}
 {
 	m_nTableNum = -1;
 }
 
 
-void Waitor::SetTableNum(const int &nTableNum)
+void Waiter::SetTableNum(const int &nTableNum)
 {
 	m_nTableNum = nTableNum;
 }
 
-int Waitor::GetTableNum() const
+int Waiter::GetTableNum() const
 {
 	return m_nTableNum;
 }
 
-array<int, nService> Waitor::GetServDone() const
+array<int, nService> Waiter::GetServDone() const
 {
 	return m_arrServDone;
 }
 
 
-void Waitor::ServePlate(deque<pair<Cuisine, Order*>>::iterator itCuisine)
+void Waiter::ServePlate(deque<pair<Cuisine, Order*>>::iterator itCuisine)
 {
 	auto &target = itCuisine->second->m_mapFoodToDo;
 	if (target[itCuisine->first] > 1)
@@ -1376,24 +1376,24 @@ void Waitor::ServePlate(deque<pair<Cuisine, Order*>>::iterator itCuisine)
 	++m_arrServDone[SRVS::Plate];
 }
 
-void Waitor::DoDemand(deque<int>::iterator itDemand)
+void Waiter::DoDemand(deque<int>::iterator itDemand)
 {
 	++m_arrServDone[*itDemand];
 	m_deqTodo.erase(itDemand);
 }
-void Waitor::Liberate()
+void Waiter::Liberate()
 {
 	m_nTableNum = -1;
 	m_deqReady.clear();
 	m_deqTodo.clear();
 }
 
-bool Waitor::IsIdle()
+bool Waiter::IsIdle()
 {
 	return m_nTableNum == -1;
 }
 
-void Waitor::LoadInfo(MyDataBase & theDB)
+void Waiter::LoadInfo(MyDataBase & theDB)
 {
 	//Check the status of DataBase
 	if (!(theDB.IsReady() || theDB.IsProcess()))
@@ -1406,10 +1406,10 @@ void Waitor::LoadInfo(MyDataBase & theDB)
 		throw invalid_argument(theDB.m_strFileName);
 	}
 	constexpr int nLength = 4;
-	const string strTableName = "Waitor";
+	const string strTableName = "Waiter";
 	//The schema
 	/*
-	TABLE Waitor
+	TABLE Waiter
 	ID NTEXT PRIMARY KEY NOT NULL
 	NAME NTEXT NOT NULL
 	PASSWORD NTEXT NOT NULL
@@ -1458,7 +1458,7 @@ void Waitor::LoadInfo(MyDataBase & theDB)
 	servDB.EndQuery();
 }
 
-void Waitor::SaveInfo(MyDataBase & theDB)
+void Waiter::SaveInfo(MyDataBase & theDB)
 {
 	//Check the status of DataBase
 	if (!theDB.IsReady())
@@ -1473,10 +1473,10 @@ void Waitor::SaveInfo(MyDataBase & theDB)
 	vector<string> strResults;
 	vector<string> strVals{ MainLogic::ToSql(m_strId),MainLogic::ToSql(m_strName),MainLogic::ToSql(m_strPassword),MainLogic::ToSql(m_strPhone) };
 	constexpr int nLength = 4;
-	const string strTableName = "Waitor";
+	const string strTableName = "Waiter";
 	//The schema
 	/*
-	TABLE Waitor
+	TABLE Waiter
 	ID NTEXT PRIMARY KEY NOT NULL
 	NAME NTEXT NOT NULL
 	PASSWORD NTEXT NOT NULL
@@ -1519,7 +1519,7 @@ void Waitor::SaveInfo(MyDataBase & theDB)
 	}
 }
 
-vector<string> Waitor::CollectComment() const
+vector<string> Waiter::CollectComment() const
 {
 	vector<string> strResults;
 	for (auto &c : MainLogic::s_currentComments)
@@ -1532,7 +1532,7 @@ vector<string> Waitor::CollectComment() const
 	return strResults;
 }
 
-void Waitor::DeleteMe(MyDataBase & theDB)
+void Waiter::DeleteMe(MyDataBase & theDB)
 {
 	//Check the status of DataBase
 	if (!theDB.IsReady())
@@ -1544,7 +1544,7 @@ void Waitor::DeleteMe(MyDataBase & theDB)
 		//Wrong database
 		throw invalid_argument(theDB.m_strFileName);
 	}
-	const string strTableName = "Waitor";
+	const string strTableName = "Waiter";
 	const string strCondition = "ID = '" + m_strId + "'";
 	theDB.DeleteValue(strTableName, strCondition);
 	MyDataBase subDB("Service.db");
@@ -1580,7 +1580,7 @@ tuple<vector<string>, map<Cuisine, int>, int> Manager::CheckCook(const Cook & co
 	return make_tuple(get<0>(res), done, get<1>(res));
 }
 
-tuple<vector<string>, array<int, nService>, int> Manager::CheckWaitor(const Waitor & waitorWhoever)
+tuple<vector<string>, array<int, nService>, int> Manager::CheckWaiter(const Waiter & waitorWhoever)
 {
 	auto res = CheckComment(waitorWhoever);
 	auto done = waitorWhoever.GetServDone();

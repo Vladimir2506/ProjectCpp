@@ -1,16 +1,16 @@
 #pragma once
 
 #include <QDialog>
-#include "ui_WaitorView.h"
+#include "ui_WaiterView.h"
 #include "ProfileView.h"
 
-class WaitorView : public QDialog
+class WaiterView : public QDialog
 {
 	Q_OBJECT
 
 public:
-	WaitorView(QWidget *parent = Q_NULLPTR);
-	~WaitorView();
+	WaiterView(QWidget *parent = Q_NULLPTR);
+	~WaiterView();
 protected:
 	void paintEvent(QPaintEvent *event) override;
 private slots:
@@ -24,8 +24,8 @@ private:
 	void PrepareDemand();
 	void PrepareDone();
 private:
-	Ui::WaitorView ui;
-	Waitor *pWaitor;
+	Ui::WaiterView ui;
+	Waiter *pWaiter;
 	deque<pair<Cuisine, Order*>>::iterator itDish;
 	deque<int>::iterator itDemand;
 	QStandardItemModel *mdlDone;

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>WaitorView</class>
- <widget class="QDialog" name="WaitorView">
+ <class>WaiterView</class>
+ <widget class="QDialog" name="WaiterView">
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -180,7 +180,7 @@
     <string>个人资料</string>
    </property>
   </widget>
-  <widget class="QLabel" name="lblWaitorBGN">
+  <widget class="QLabel" name="lblWaiterBGN">
    <property name="geometry">
     <rect>
      <x>0</x>
@@ -193,7 +193,7 @@
     <string/>
    </property>
   </widget>
-  <zorder>lblWaitorBGN</zorder>
+  <zorder>lblWaiterBGN</zorder>
   <zorder>lblInfo</zorder>
   <zorder>gbTodo</zorder>
   <zorder>gbDone</zorder>
@@ -205,7 +205,7 @@
   <connection>
    <sender>lstDemand</sender>
    <signal>currentRowChanged(int)</signal>
-   <receiver>WaitorView</receiver>
+   <receiver>WaiterView</receiver>
    <slot>OnSelDemand(int)</slot>
    <hints>
     <hint type="sourcelabel">
@@ -221,7 +221,7 @@
   <connection>
    <sender>lstPlate</sender>
    <signal>currentRowChanged(int)</signal>
-   <receiver>WaitorView</receiver>
+   <receiver>WaiterView</receiver>
    <slot>OnSelPlate(int)</slot>
    <hints>
     <hint type="sourcelabel">
@@ -237,7 +237,7 @@
   <connection>
    <sender>btnDemand</sender>
    <signal>clicked()</signal>
-   <receiver>WaitorView</receiver>
+   <receiver>WaiterView</receiver>
    <slot>OnDemand()</slot>
    <hints>
     <hint type="sourcelabel">
@@ -253,7 +253,7 @@
   <connection>
    <sender>btnServe</sender>
    <signal>clicked()</signal>
-   <receiver>WaitorView</receiver>
+   <receiver>WaiterView</receiver>
    <slot>OnDeliver()</slot>
    <hints>
     <hint type="sourcelabel">
@@ -269,7 +269,7 @@
   <connection>
    <sender>btnProfile</sender>
    <signal>clicked()</signal>
-   <receiver>WaitorView</receiver>
+   <receiver>WaiterView</receiver>
    <slot>OnProfile()</slot>
    <hints>
     <hint type="sourcelabel">
