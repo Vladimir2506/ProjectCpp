@@ -21,8 +21,8 @@ AddComment::AddComment(int nIdMode, Customer *p,QWidget *parent)
 		pComm = nullptr;
 	}
 	arrStars = { ui.lbls1,ui.lbls2,ui.lbls3,ui.lbls4,ui.lbls5 };
-	pixStarFul.load("starful.png");
-	pixStarNil.load("starnil.png");
+	pixStarFul.load("Resources/starful.png");
+	pixStarNil.load("Resources/starnil.png");
 	itThis = pComm->begin();
 	itEnd = pComm->end();
 	--itEnd;

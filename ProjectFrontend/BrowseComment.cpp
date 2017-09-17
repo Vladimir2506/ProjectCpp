@@ -5,8 +5,8 @@ BrowseComment::BrowseComment(const string &strCuisineId, QWidget *parent)
 	: QDialog(parent)
 {
 	ui.setupUi(this);
-	pixStarFul.load("starful.png");
-	pixStarNil.load("starnil.png");
+	pixStarFul.load("Resources/starful.png");
+	pixStarNil.load("Resources/starnil.png");
 	for (auto &c : MainLogic::s_currentComments)
 	{
 		if (c.second.GetDishId() == strCuisineId)

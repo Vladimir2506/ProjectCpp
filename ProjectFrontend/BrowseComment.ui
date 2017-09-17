@@ -39,7 +39,7 @@
    </property>
    <property name="icon">
     <iconset>
-     <normaloff>back.png</normaloff>back.png</iconset>
+     <normaloff>Resources/back.png</normaloff>Resources/back.png</iconset>
    </property>
    <property name="iconSize">
     <size>
@@ -62,7 +62,7 @@
    </property>
    <property name="icon">
     <iconset>
-     <normaloff>next.png</normaloff>next.png</iconset>
+     <normaloff>Resources/next.png</normaloff>Resources/next.png</iconset>
    </property>
    <property name="iconSize">
     <size>

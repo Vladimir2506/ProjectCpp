@@ -14,8 +14,8 @@ MaintainerView::MaintainerView(QWidget *parent)
 	//Set welcome
 	ui.lblInfo->setText("欢迎！尊敬的" + str2qstr(pMaintainer->GetName()) + "管理员");
 	//Load Icons
-	pixCom.load("commit.png");
-	pixMod.load("modify.png");
+	pixCom.load("Resources/commit.png");
+	pixMod.load("Resources/modify.png");
 	//Set data display of menu
 	PrepareMenu();
 	//Init flags of menu

@@ -9,8 +9,8 @@ CommentSupervise::CommentSupervise(QWidget *parent)
 	itThis = MainLogic::s_currentComments.begin();
 	//Stars Init
 	lblStars = { ui.lbls1,ui.lbls2,ui.lbls3,ui.lbls4,ui.lbls5 };
-	pixStarFul.load("starful.png");
-	pixStarNil.load("starnil.png");
+	pixStarFul.load("Resources/starful.png");
+	pixStarNil.load("Resources/starnil.png");
 	//Buttons Init
 	ui.btnUndo->setDisabled(true);
 	PrepareComment();

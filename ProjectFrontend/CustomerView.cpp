@@ -5,7 +5,17 @@ CustomerView::CustomerView(QWidget *parent)
 	: QDialog(parent),
 	pCustomer(dynamic_cast<Customer*>(MainLogic::GetInstance()->pUser)),
 	pWaiter(nullptr),
-	icoCategories{ QIcon("STPL.png"),QIcon("MEAT.png"),QIcon("VEGE.png"),QIcon("DESS.png"),QIcon("BEVE.png"),QIcon("SOUP.png"),QIcon("SEAF.png"),QIcon("SETM.png") },
+	icoCategories
+	{ 
+		QIcon("Resources/STPL.png"),
+		QIcon("Resources/MEAT.png"),
+		QIcon("Resources/VEGE.png"),
+		QIcon("Resources/DESS.png"),
+		QIcon("Resources/BEVE.png"),
+		QIcon("Resources/SOUP.png"),
+		QIcon("Resources/SEAF.png"),
+		QIcon("Resources/SETM.png")
+	},
 	qstrCategories{ "主食","肉","蔬菜","甜品","饮料","汤","海鲜","套餐" }
 {
 	ui.setupUi(this);
