@@ -5,7 +5,8 @@ CustomerView::CustomerView(QWidget *parent)
 	: QDialog(parent),
 	pCustomer(dynamic_cast<Customer*>(MainLogic::GetInstance()->pUser)),
 	pWaiter(nullptr),
-	icoCategories{ QIcon("STPL.png"),QIcon("MEAT.png"),QIcon("VEGE.png"),QIcon("DESS.png"),QIcon("BEVE.png"),QIcon("SOUP.png"),QIcon("SEAF.png"),QIcon("SETM.png") }
+	icoCategories{ QIcon("STPL.png"),QIcon("MEAT.png"),QIcon("VEGE.png"),QIcon("DESS.png"),QIcon("BEVE.png"),QIcon("SOUP.png"),QIcon("SEAF.png"),QIcon("SETM.png") },
+	qstrCategories{ "Ö÷Ê³","Èâ","Êß²Ë","ÌðÆ·","ÒûÁÏ","ÌÀ","º£ÏÊ","Ì×²Í" }
 {
 	ui.setupUi(this);
 	switch (pCustomer->GetState())
@@ -240,7 +241,7 @@ void CustomerView::PrepareMenu()
 	for (auto &dish : MainLogic::s_currentMenu)
 	{
 		ui.tbMenuDisp->setRowCount(1 + nRow);
-		ui.tbMenuDisp->setItem(nRow, 0, new QTableWidgetItem(icoCategories[dish.second.GetCate()],""));
+		ui.tbMenuDisp->setItem(nRow, 0, new QTableWidgetItem(icoCategories[dish.second.GetCate()],qstrCategories[dish.second.GetCate()]));
 		ui.tbMenuDisp->setItem(nRow, 1, new QTableWidgetItem(str2qstr(dish.second.GetName())));
 		ui.tbMenuDisp->setItem(nRow, 2, new QTableWidgetItem(QString::number(dish.second.GetPrice())));
 		QSpinBox *sbQuant = new QSpinBox(ui.tbMenuDisp);
@@ -269,6 +270,7 @@ void CustomerView::PrepareMenu()
 		ui.tbMenuDisp->setCellWidget(nRow, 5, btnComment);
 		++nRow;
 	}
+	ui.tbMenuDisp->setIconSize(QSize(25,25));
 }
 
 void CustomerView::MyResize(int w, int h)

@@ -102,12 +102,14 @@ QComboBox::down-arrow {
 /*Tables Style*/
 QHeaderView {
     background-color: transparent;
+    gridline-color: ghostwhite;
     text-align: center;
 }
 QTableView {
     background-color: transparent;
-    gridline-color: #BDBDBD;
+    gridline-color: ghostwhite;
     text-align: center;
+    selection-background-color: #81D4FA;
 }
 /*Buttons in tables Style*/
 QTableWidget QPushButton {
@@ -143,10 +145,14 @@ QScrollBar::sub-page {
 QTextEdit {
     font-size: 18px;
     background: transparent;
-    border: ridge;
-    border-width: 1px;
+    border: solid;
+    border-width: 2px;
+    border-color: #BDBDBD;
+}
+QTextEdit:focus {
     border-color: #039BE5;
 }
+/*SpinBox Style*/
 QSpinBox {
     background-color: transparent;
     border-bottom: solid;
@@ -162,6 +168,22 @@ QSpinBox::up-button {
 QSpinBox::down-button {
     image: url(downbtn.png);
 }
+/*DateEdit Style*/
+QDateEdit {
+    border-bottom: solid;
+    border-width: 2px;
+    border-bottom-color: #BDBDBD;
+}
+QDateEdit:focus {
+    border-bottom-color: #039BE5;
+}
+QDateEdit::up-button {
+    image: url(upbtn.png);
+}
+QDateEdit::down-button {
+    image: url(downbtn.png);
+}
+/*GroupBox Style*/
 QGroupBox {
     font: bold;
 }
