@@ -44,4 +44,5 @@ private:
 	Waiter *pWaiter;
 	double dTotal;
 	QVector<QIcon> icoCategories;
+	QVector<QString> qstrCategories;
 };

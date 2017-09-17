@@ -73,7 +73,7 @@ public:
         tbMenuDisp->setObjectName(QStringLiteral("tbMenuDisp"));
         tbMenuDisp->setGeometry(QRect(25, 25, 800, 500));
         tbMenuDisp->setEditTriggers(QAbstractItemView::NoEditTriggers);
-        tbMenuDisp->setSelectionMode(QAbstractItemView::SingleSelection);
+        tbMenuDisp->setSelectionMode(QAbstractItemView::NoSelection);
         tbMenuDisp->setSelectionBehavior(QAbstractItemView::SelectRows);
         lblTotal = new QLabel(gbMenu);
         lblTotal->setObjectName(QStringLiteral("lblTotal"));

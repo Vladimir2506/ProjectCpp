@@ -207,11 +207,6 @@ public:
         btnNext->setText(QString());
         gbComment->setTitle(QString());
         lblStar->setText(QApplication::translate("CommentSupervise", "\350\257\204\344\273\267\346\230\237\347\272\247\357\274\232", Q_NULLPTR));
-        lbls1->setText(QString());
-        lbls2->setText(QString());
-        lbls3->setText(QString());
-        lbls5->setText(QString());
-        lbls4->setText(QString());
         lblContent->setText(QApplication::translate("CommentSupervise", "\346\226\207\345\255\227\345\206\205\345\256\271\357\274\232", Q_NULLPTR));
         gbProperty->setTitle(QString());
         deDate->setDisplayFormat(QApplication::translate("CommentSupervise", "yyyy/MM/dd", Q_NULLPTR));

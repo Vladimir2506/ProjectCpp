@@ -119,7 +119,7 @@ bool MyDataBase::IsTableExist(const string & strTableName)
 	string strResult;
 	char *err = nullptr;
 	int nExResult = sqlite3_exec(m_pDBCore, strSqlStatement.c_str(),
-		[](void *pRes, int argc, char **szVals, char**column)
+		[](void *pRes, int argc, char **szVals, char **column)
 	{
 		static_cast<string*>(pRes)->operator=(szVals[0]);
 		return 0;
