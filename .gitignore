@@ -261,7 +261,7 @@ __pycache__/
 *.pyc
 
 #Specified
-/GeneratedFiles
-/x64
+GeneratedFiles/
+x64/
 *.db
 *.db3
