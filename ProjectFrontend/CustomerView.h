@@ -25,7 +25,7 @@ private slots:
 	void OnAddWater();
 	void OnHasten();
 	void OnCommentDish();
-	void OnCommentWaitor();
+	void OnCommentWaiter();
 	void OnFinish();
 	void OnProfile();
 private:
@@ -41,7 +41,7 @@ private:
 	size_t nSeat;
 	QVector<QPushButton *> matSeat;
 	Customer *pCustomer;
-	Waitor *pWaitor;
+	Waiter *pWaiter;
 	double dTotal;
 	QVector<QIcon> icoCategories;
 };

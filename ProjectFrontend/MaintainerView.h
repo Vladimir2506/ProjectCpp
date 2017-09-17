@@ -38,12 +38,12 @@ private:
 	void ResolveDeltaUser();
 	void CustomerDelta();
 	void CookDelta();
-	void WaitorDelta();
+	void WaiterDelta();
 	void ManagerDelta();
 	void MaintainerDelta();
 	void CustomerPrepare();
 	void CookPrepare();
-	void WaitorPrepare();
+	void WaiterPrepare();
 	void ManagerPrepare();
 	void MaintainerPrepare();
 	void CheckDataValidity(QStandardItemModel *mdl);

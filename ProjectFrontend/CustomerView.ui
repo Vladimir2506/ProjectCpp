@@ -9,7 +9,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>600</width>
+    <width>1003</width>
     <height>850</height>
    </rect>
   </property>
@@ -215,7 +215,7 @@
    <property name="title">
     <string>额外命令</string>
    </property>
-   <widget class="QLabel" name="lblWaitor">
+   <widget class="QLabel" name="lblWaiter">
     <property name="geometry">
      <rect>
       <x>50</x>
@@ -280,7 +280,7 @@
      <string>评价已点菜品</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="btnComWaitor">
+   <widget class="QPushButton" name="btnComWaiter">
     <property name="geometry">
      <rect>
       <x>125</x>
@@ -445,10 +445,10 @@
    </hints>
   </connection>
   <connection>
-   <sender>btnComWaitor</sender>
+   <sender>btnComWaiter</sender>
    <signal>clicked()</signal>
    <receiver>CustomerView</receiver>
-   <slot>OnCommentWaitor()</slot>
+   <slot>OnCommentWaiter()</slot>
    <hints>
     <hint type="sourcelabel">
      <x>800</x>
@@ -486,7 +486,7 @@
   <slot>OnCommentDish()</slot>
   <slot>OnFinish()</slot>
   <slot>OnCommentCook()</slot>
-  <slot>OnCommentWaitor()</slot>
+  <slot>OnCommentWaiter()</slot>
   <slot>OnProfile()</slot>
  </slots>
 </ui>

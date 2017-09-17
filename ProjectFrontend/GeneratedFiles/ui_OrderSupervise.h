@@ -35,11 +35,11 @@ public:
     QGroupBox *gbProperty;
     QLineEdit *leID;
     QLineEdit *leName;
-    QLineEdit *leWaitor;
+    QLineEdit *leWaiter;
     QLineEdit *leCustomer;
     QLabel *lblID;
     QLabel *lblName;
-    QLabel *lblWaitorID;
+    QLabel *lblWaiterID;
     QLabel *lblCustomer;
     QLabel *lblTableNO;
     QLineEdit *leTableNO;
@@ -93,9 +93,9 @@ public:
         leName = new QLineEdit(gbProperty);
         leName->setObjectName(QStringLiteral("leName"));
         leName->setGeometry(QRect(200, 125, 150, 25));
-        leWaitor = new QLineEdit(gbProperty);
-        leWaitor->setObjectName(QStringLiteral("leWaitor"));
-        leWaitor->setGeometry(QRect(200, 200, 150, 25));
+        leWaiter = new QLineEdit(gbProperty);
+        leWaiter->setObjectName(QStringLiteral("leWaiter"));
+        leWaiter->setGeometry(QRect(200, 200, 150, 25));
         leCustomer = new QLineEdit(gbProperty);
         leCustomer->setObjectName(QStringLiteral("leCustomer"));
         leCustomer->setGeometry(QRect(200, 275, 150, 25));
@@ -105,9 +105,9 @@ public:
         lblName = new QLabel(gbProperty);
         lblName->setObjectName(QStringLiteral("lblName"));
         lblName->setGeometry(QRect(50, 125, 125, 25));
-        lblWaitorID = new QLabel(gbProperty);
-        lblWaitorID->setObjectName(QStringLiteral("lblWaitorID"));
-        lblWaitorID->setGeometry(QRect(50, 200, 125, 25));
+        lblWaiterID = new QLabel(gbProperty);
+        lblWaiterID->setObjectName(QStringLiteral("lblWaiterID"));
+        lblWaiterID->setGeometry(QRect(50, 200, 125, 25));
         lblCustomer = new QLabel(gbProperty);
         lblCustomer->setObjectName(QStringLiteral("lblCustomer"));
         lblCustomer->setGeometry(QRect(50, 275, 125, 25));
@@ -153,7 +153,7 @@ public:
         retranslateUi(OrderSupervise);
         QObject::connect(leID, SIGNAL(textEdited(QString)), OrderSupervise, SLOT(OnDelta()));
         QObject::connect(leName, SIGNAL(textEdited(QString)), OrderSupervise, SLOT(OnDelta()));
-        QObject::connect(leWaitor, SIGNAL(textEdited(QString)), OrderSupervise, SLOT(OnDelta()));
+        QObject::connect(leWaiter, SIGNAL(textEdited(QString)), OrderSupervise, SLOT(OnDelta()));
         QObject::connect(leCustomer, SIGNAL(textEdited(QString)), OrderSupervise, SLOT(OnDelta()));
         QObject::connect(tbFood, SIGNAL(clicked(QModelIndex)), OrderSupervise, SLOT(OnSelected(QModelIndex)));
         QObject::connect(btnNLine, SIGNAL(clicked()), OrderSupervise, SLOT(NewLine()));
@@ -182,7 +182,7 @@ public:
         leCustomer->setText(QString());
         lblID->setText(QApplication::translate("OrderSupervise", "\350\256\242\345\215\225ID\357\274\232", Q_NULLPTR));
         lblName->setText(QApplication::translate("OrderSupervise", "\350\256\242\345\215\225\346\227\245\346\234\237\357\274\232", Q_NULLPTR));
-        lblWaitorID->setText(QApplication::translate("OrderSupervise", "\346\234\215\345\212\241\345\221\230ID\357\274\232", Q_NULLPTR));
+        lblWaiterID->setText(QApplication::translate("OrderSupervise", "\346\234\215\345\212\241\345\221\230ID\357\274\232", Q_NULLPTR));
         lblCustomer->setText(QApplication::translate("OrderSupervise", "\347\224\250\346\210\267ID\357\274\232", Q_NULLPTR));
         lblTableNO->setText(QApplication::translate("OrderSupervise", "\346\241\214\345\217\267\357\274\232", Q_NULLPTR));
         btnSave->setText(QApplication::translate("OrderSupervise", "\344\277\235\345\255\230\346\224\271\345\212\250", Q_NULLPTR));

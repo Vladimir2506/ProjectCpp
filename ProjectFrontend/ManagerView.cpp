@@ -10,24 +10,24 @@ ManagerView::ManagerView(QWidget *parent)
 {
 	ui.setupUi(this);
 	mdlCook = new QStandardItemModel(this);
-	mdlWaitor = new QStandardItemModel(this);
+	mdlWaiter = new QStandardItemModel(this);
 	mdlComm = new QStandardItemModel(this);
 	ui.lblInfo->setText("欢迎！尊敬的经理" + str2qstr(pManager->GetName()) + "！");
-	QStringList lstCooks, lstWaitors;
+	QStringList lstCooks, lstWaiters;
 	for (auto &c : MainLogic::s_currentCooks)
 	{
 		lstCooks.push_back(str2qstr(c.first));
 	}
-	for (auto &w : MainLogic::s_currentWaitors)
+	for (auto &w : MainLogic::s_currentWaiters)
 	{
-		lstWaitors.push_back(str2qstr(w.first));
+		lstWaiters.push_back(str2qstr(w.first));
 	}
 	ui.cbCook->addItems(lstCooks);
-	ui.cbWaitor->addItems(lstWaitors);
+	ui.cbWaiter->addItems(lstWaiters);
 	ui.cbCook->setCurrentIndex(0);
-	ui.cbWaitor->setCurrentIndex(0);
+	ui.cbWaiter->setCurrentIndex(0);
 	PrepareCook();
-	PrepareWaitor();
+	PrepareWaiter();
 	PrepareVolume();
 }
 
@@ -59,25 +59,25 @@ void ManagerView::PrepareCook()
 	}
 }
 
-void ManagerView::PrepareWaitor()
+void ManagerView::PrepareWaiter()
 {
-	if (!idWaitor.empty())
+	if (!idWaiter.empty())
 	{
-		ui.tbWaitor->reset();
-		mdlWaitor->clear();
-		mdlWaitor->setColumnCount(2);
-		mdlWaitor->setHeaderData(0, Qt::Horizontal, "服务名");
-		mdlWaitor->setHeaderData(1, Qt::Horizontal, "完成量");
-		auto res = pManager->CheckWaitor(MainLogic::s_currentWaitors[idWaitor]);
+		ui.tbWaiter->reset();
+		mdlWaiter->clear();
+		mdlWaiter->setColumnCount(2);
+		mdlWaiter->setHeaderData(0, Qt::Horizontal, "服务名");
+		mdlWaiter->setHeaderData(1, Qt::Horizontal, "完成量");
+		auto res = pManager->CheckWaiter(MainLogic::s_currentWaiters[idWaiter]);
 		auto &done = get<1>(res);
 		int nRow = 0;
 		for (auto &serv : done)
 		{
-			mdlWaitor->setItem(nRow, 0, new QStandardItem(lstService[nRow]));
-			mdlWaitor->setItem(nRow, 1, new QStandardItem(QString::number(serv)));
+			mdlWaiter->setItem(nRow, 0, new QStandardItem(lstService[nRow]));
+			mdlWaiter->setItem(nRow, 1, new QStandardItem(QString::number(serv)));
 			++nRow;
 		}
-		ui.tbWaitor->setModel(mdlWaitor);
+		ui.tbWaiter->setModel(mdlWaiter);
 		auto idComms = get<0>(res);
 		ui.tbComm->reset();
 		mdlComm->clear();
@@ -141,10 +141,10 @@ void ManagerView::BindCook(QString qstrCook)
 	PrepareCook();
 }
 
-void ManagerView::BindWaitor(QString qstrWaitor)
+void ManagerView::BindWaiter(QString qstrWaiter)
 {
-	idWaitor = qstr2str(qstrWaitor);
-	PrepareWaitor();
+	idWaiter = qstr2str(qstrWaiter);
+	PrepareWaiter();
 }
 
 void ManagerView::OnProfile()

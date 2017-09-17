@@ -7,7 +7,7 @@
 #include "MaintainerView.h"
 #include "CustomerView.h"
 #include "CookView.h"
-#include "WaitorView.h"
+#include "WaiterView.h"
 #include "ManagerView.h"
 
 class ProjectFrontend : public QMainWindow

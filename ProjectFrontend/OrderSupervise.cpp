@@ -172,7 +172,7 @@ void OrderSupervise::OnDelClick()
 	ui.leCustomer->setText("");
 	ui.leID->setText("");
 	ui.leName->setText("");
-	ui.leWaitor->setText("");
+	ui.leWaiter->setText("");
 	ui.leTableNO->setText("");
 	mdlFoodMap->clear();
 	bSel = false;
@@ -187,7 +187,7 @@ void OrderSupervise::PrepareOrder()
 		ui.leCustomer->setText(str2qstr(itThis->second.GetCustomerId()));
 		ui.leID->setText(str2qstr(itThis->second.GetId()));
 		ui.leName->setText(str2qstr(itThis->second.GetName()));
-		ui.leWaitor->setText(str2qstr(itThis->second.GetWaitorId()));
+		ui.leWaiter->setText(str2qstr(itThis->second.GetWaiterId()));
 		ui.leTableNO->setText(QString::number(itThis->second.GetTableNum()));
 	}
 	else
@@ -195,7 +195,7 @@ void OrderSupervise::PrepareOrder()
 		ui.leCustomer->setText("");
 		ui.leID->setText("");
 		ui.leName->setText("");
-		ui.leWaitor->setText("");
+		ui.leWaiter->setText("");
 		ui.leTableNO->setText("");
 		InitModel();
 	}
@@ -230,7 +230,7 @@ bool OrderSupervise::IsEmptyAll()
 	return ui.leCustomer->text().isEmpty()
 		&& ui.leID->text().isEmpty()
 		&& ui.leName->text().isEmpty()
-		&& ui.leWaitor->text().isEmpty()
+		&& ui.leWaiter->text().isEmpty()
 		&& ui.leTableNO->text().isEmpty()
 		&& mdlFoodMap->rowCount() == 0;
 }
@@ -240,7 +240,7 @@ bool OrderSupervise::IsFullNow()
 	return !ui.leCustomer->text().isEmpty()
 		&& !ui.leID->text().isEmpty()
 		&& !ui.leName->text().isEmpty()
-		&& !ui.leWaitor->text().isEmpty()
+		&& !ui.leWaiter->text().isEmpty()
 		&& !ui.leTableNO->text().isEmpty()
 		&& mdlFoodMap->rowCount() != 0;
 }
@@ -283,7 +283,7 @@ void OrderSupervise::ResolveDelta()
 	}
 	if (itThis == MainLogic::s_currentOrders.end())
 	{
-		Order oin(qstr2str(ui.leID->text()), qstr2str(ui.leName->text()), qstr2str(ui.leCustomer->text()), qstr2str(ui.leWaitor->text()));
+		Order oin(qstr2str(ui.leID->text()), qstr2str(ui.leName->text()), qstr2str(ui.leCustomer->text()), qstr2str(ui.leWaiter->text()));
 		oin.SetTableNum(ui.leTableNO->text().toInt());
 		oin.SetFoodMap(tmp);
 		MainLogic::s_currentOrders.insert(make_pair(oin.GetId(), oin));
@@ -295,7 +295,7 @@ void OrderSupervise::ResolveDelta()
 		itThis->second.SetId(qstr2str(ui.leID->text()));
 		itThis->second.SetName(qstr2str(ui.leName->text()));
 		itThis->second.SetCustomerId(qstr2str(ui.leCustomer->text()));
-		itThis->second.SetWaitorId(qstr2str(ui.leWaitor->text()));
+		itThis->second.SetWaiterId(qstr2str(ui.leWaiter->text()));
 		itThis->second.SetTableNum(ui.leTableNO->text().toInt());
 	}
 }

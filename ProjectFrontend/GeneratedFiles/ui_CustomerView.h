@@ -40,12 +40,12 @@ public:
     QPushButton *btnFinish;
     QLabel *lblProgress;
     QGroupBox *gbInstruction;
-    QLabel *lblWaitor;
+    QLabel *lblWaiter;
     QPushButton *btnAddWater;
     QPushButton *btnPackUp;
     QPushButton *btnHasten;
     QPushButton *btnComDish;
-    QPushButton *btnComWaitor;
+    QPushButton *btnComWaiter;
     QPushButton *btnProfile;
     QLabel *lblCustomerBGN;
 
@@ -54,7 +54,7 @@ public:
         if (CustomerView->objectName().isEmpty())
             CustomerView->setObjectName(QStringLiteral("CustomerView"));
         CustomerView->setWindowModality(Qt::WindowModal);
-        CustomerView->resize(600, 850);
+        CustomerView->resize(1003, 850);
         gbSeatPick = new QGroupBox(CustomerView);
         gbSeatPick->setObjectName(QStringLiteral("gbSeatPick"));
         gbSeatPick->setGeometry(QRect(25, 275, 550, 550));
@@ -106,9 +106,9 @@ public:
         gbInstruction = new QGroupBox(CustomerView);
         gbInstruction->setObjectName(QStringLiteral("gbInstruction"));
         gbInstruction->setGeometry(QRect(600, 175, 350, 550));
-        lblWaitor = new QLabel(gbInstruction);
-        lblWaitor->setObjectName(QStringLiteral("lblWaitor"));
-        lblWaitor->setGeometry(QRect(50, 50, 250, 25));
+        lblWaiter = new QLabel(gbInstruction);
+        lblWaiter->setObjectName(QStringLiteral("lblWaiter"));
+        lblWaiter->setGeometry(QRect(50, 50, 250, 25));
         btnAddWater = new QPushButton(gbInstruction);
         btnAddWater->setObjectName(QStringLiteral("btnAddWater"));
         btnAddWater->setGeometry(QRect(50, 150, 100, 40));
@@ -121,9 +121,9 @@ public:
         btnComDish = new QPushButton(gbInstruction);
         btnComDish->setObjectName(QStringLiteral("btnComDish"));
         btnComDish->setGeometry(QRect(125, 400, 125, 40));
-        btnComWaitor = new QPushButton(gbInstruction);
-        btnComWaitor->setObjectName(QStringLiteral("btnComWaitor"));
-        btnComWaitor->setGeometry(QRect(125, 450, 125, 40));
+        btnComWaiter = new QPushButton(gbInstruction);
+        btnComWaiter->setObjectName(QStringLiteral("btnComWaiter"));
+        btnComWaiter->setGeometry(QRect(125, 450, 125, 40));
         btnProfile = new QPushButton(CustomerView);
         btnProfile->setObjectName(QStringLiteral("btnProfile"));
         btnProfile->setGeometry(QRect(450, 175, 100, 40));
@@ -147,7 +147,7 @@ public:
         QObject::connect(btnHasten, SIGNAL(clicked()), CustomerView, SLOT(OnHasten()));
         QObject::connect(btnFinish, SIGNAL(clicked()), CustomerView, SLOT(OnFinish()));
         QObject::connect(btnComDish, SIGNAL(clicked()), CustomerView, SLOT(OnCommentDish()));
-        QObject::connect(btnComWaitor, SIGNAL(clicked()), CustomerView, SLOT(OnCommentWaitor()));
+        QObject::connect(btnComWaiter, SIGNAL(clicked()), CustomerView, SLOT(OnCommentWaiter()));
         QObject::connect(btnProfile, SIGNAL(clicked()), CustomerView, SLOT(OnProfile()));
 
         QMetaObject::connectSlotsByName(CustomerView);
@@ -167,12 +167,12 @@ public:
         btnFinish->setText(QApplication::translate("CustomerView", "\347\224\250\351\244\220\345\256\214\346\257\225", Q_NULLPTR));
         lblProgress->setText(QApplication::translate("CustomerView", "\345\256\214\346\210\220\350\277\233\345\272\246\357\274\232", Q_NULLPTR));
         gbInstruction->setTitle(QApplication::translate("CustomerView", "\351\242\235\345\244\226\345\221\275\344\273\244", Q_NULLPTR));
-        lblWaitor->setText(QString());
+        lblWaiter->setText(QString());
         btnAddWater->setText(QApplication::translate("CustomerView", "\345\212\240\346\260\264", Q_NULLPTR));
         btnPackUp->setText(QApplication::translate("CustomerView", "\346\211\223\345\214\205", Q_NULLPTR));
         btnHasten->setText(QApplication::translate("CustomerView", "\345\202\254\345\215\225", Q_NULLPTR));
         btnComDish->setText(QApplication::translate("CustomerView", "\350\257\204\344\273\267\345\267\262\347\202\271\350\217\234\345\223\201", Q_NULLPTR));
-        btnComWaitor->setText(QApplication::translate("CustomerView", "\350\257\204\344\273\267\346\234\215\345\212\241\345\221\230", Q_NULLPTR));
+        btnComWaiter->setText(QApplication::translate("CustomerView", "\350\257\204\344\273\267\346\234\215\345\212\241\345\221\230", Q_NULLPTR));
         btnProfile->setText(QApplication::translate("CustomerView", "\344\270\252\344\272\272\350\265\204\346\226\231", Q_NULLPTR));
         lblCustomerBGN->setText(QString());
     } // retranslateUi

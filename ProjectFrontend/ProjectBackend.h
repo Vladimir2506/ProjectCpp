@@ -170,19 +170,19 @@ private:
 protected:
 	map<Cuisine, int> m_mapOrderFood;	//Food Ordered
 	string m_strCustomerId;				//Customer's Id
-	string m_strWaitorId;				//Waitor's Id
+	string m_strWaiterId;				//Waiter's Id
 	int m_nTableNum;					//The table number
 public:
 	map<Cuisine, double> m_mapBill;				//Bill's subtotal
 	map<Cuisine, int> m_mapFoodToDo;			//Food in service
 	//Constructors
 	Order(const string & strId = "", const string & strName = "", 
-		const string & strCustomerId = "", const string & strWaitorId = "");
+		const string & strCustomerId = "", const string & strWaiterId = "");
 	//Properties
 	virtual void SetCustomerId(const string & strCustomerId);
 	virtual string GetCustomerId() const;
-	virtual void SetWaitorId(const string & strWaitorId);
-	virtual string GetWaitorId() const;
+	virtual void SetWaiterId(const string & strWaiterId);
+	virtual string GetWaiterId() const;
 	virtual map<Cuisine, int> GetFoodMap() const;
 	virtual void SetFoodMap(const map<Cuisine, int> &mapOrderFood);
 	virtual void SetTableNum(const int &nTableNum);
@@ -212,7 +212,7 @@ protected:
 public:
 	map<string, Order>::iterator m_itNow;			//The iter to current order
 	map<string, string> m_statusComment;			//The status of comments made of cuisine
-	map<string, string> m_waitorComment;			//Waitor comment status
+	map<string, string> m_waitorComment;			//Waiter comment status
 	//Constructors
 	Customer(const string & strId = "", const string & strName = "",
 		const string & strPassword = "", const string & strPhone = "");
@@ -273,10 +273,10 @@ public:
 constexpr int nService = 4;		//Assign the types of services.
 
 /*
-**class Waitor
+**class Waiter
 **The class defines a waitor.
 */
-class Waitor :public People
+class Waiter :public People
 {
 protected:
 	array<int, nService> m_arrServDone;
@@ -285,7 +285,7 @@ public:
 	deque<pair<Cuisine, Order*>> m_deqReady;
 	deque<int> m_deqTodo;
 	//Constructors
-	Waitor(const string & strId = "", const string & strName = "",
+	Waiter(const string & strId = "", const string & strName = "",
 		const string & strPassword = "", const string & strPhone = "");
 	//Properties
 	virtual void SetTableNum(const int & nTableNum);
@@ -330,7 +330,7 @@ public:
 		const string & strPassword = "", const string & strPhone = "");
 	//Behaviours
 	virtual tuple<vector<string>, map<Cuisine, int>, int> CheckCook(const Cook & cookWhoever);
-	virtual tuple<vector<string>, array<int, nService>, int> CheckWaitor(const Waitor & waitorWhoever);
+	virtual tuple<vector<string>, array<int, nService>, int> CheckWaiter(const Waiter & waitorWhoever);
 	//Interfaces
 	virtual void LoadInfo(MyDataBase &theDB);
 	virtual void SaveInfo(MyDataBase &theDB);
@@ -385,7 +385,7 @@ public:
 	static map<string, Customer> s_currentCustomers;	//3rd
 	static map<string, Comment> s_currentComments;		//4th
 	static map<string, Cook> s_currentCooks;			//5th
-	static map<string, Waitor> s_currentWaitors;		//6th
+	static map<string, Waiter> s_currentWaiters;		//6th
 	static map<string, Manager> s_currentManagers;		//7th
 	static map<string, Maintainer> s_currentMaintainers;//8th
 };

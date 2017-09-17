@@ -79,7 +79,7 @@ void AddComment::PrepareComment()
 		ui.lblName->setText(str2qstr(MainLogic::s_currentMenu[itThis->first].GetName()));
 		break;
 	case IDGENERATOR::ID_WAITOR:
-		ui.lblName->setText(str2qstr(MainLogic::s_currentWaitors[itThis->first].GetName()));
+		ui.lblName->setText(str2qstr(MainLogic::s_currentWaiters[itThis->first].GetName()));
 		break;
 	default:
 		break;

@@ -50,8 +50,8 @@ QLabel#lblManagerBGN {
 QLabel#lblCookBGN {
     background-image: url(cookview.png);
 }
-QLabel#lblWaitorBGN {
-    background-image: url(waitorview.png);
+QLabel#lblWaiterBGN {
+    background-image: url(waiterview.png);
 }
 /*Buttons style*/
 QPushButton {

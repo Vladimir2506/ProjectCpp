@@ -4,7 +4,7 @@
 CustomerView::CustomerView(QWidget *parent)
 	: QDialog(parent),
 	pCustomer(dynamic_cast<Customer*>(MainLogic::GetInstance()->pUser)),
-	pWaitor(nullptr),
+	pWaiter(nullptr),
 	icoCategories{ QIcon("STPL.png"),QIcon("MEAT.png"),QIcon("VEGE.png"),QIcon("DESS.png"),QIcon("BEVE.png"),QIcon("SOUP.png"),QIcon("SEAF.png"),QIcon("SETM.png") }
 {
 	ui.setupUi(this);
@@ -32,12 +32,12 @@ CustomerView::~CustomerView()
 
 void CustomerView::paintEvent(QPaintEvent * event)
 {
-	ui.btnAddWater->setDisabled(pWaitor == nullptr);
-	ui.btnHasten->setDisabled(pWaitor == nullptr);
-	ui.btnPackUp->setDisabled(pWaitor == nullptr);
+	ui.btnAddWater->setDisabled(pWaiter == nullptr);
+	ui.btnHasten->setDisabled(pWaiter == nullptr);
+	ui.btnPackUp->setDisabled(pWaiter == nullptr);
 	ui.btnSubmit->setDisabled(dTotal < LDBL_EPSILON && dTotal > -LDBL_EPSILON );
 	ui.btnFinish->setDisabled(ui.pbGeneral->value() != 100);
-	ui.btnComWaitor->setDisabled(pWaitor == nullptr);
+	ui.btnComWaiter->setDisabled(pWaiter == nullptr);
 	QDialog::paintEvent(event);
 }
 
@@ -104,18 +104,18 @@ void CustomerView::PhaseMealEat()
 	ui.gbOrder->show();
 	ui.gbInstruction->show();
 	ui.lblInfo->show();
-	auto idWaitor = pCustomer->MakeOrder();
-	if (idWaitor != "")
+	auto idWaiter = pCustomer->MakeOrder();
+	if (idWaiter != "")
 	{
-		pWaitor = &MainLogic::s_currentWaitors[idWaitor];
-		pCustomer->m_waitorComment[idWaitor];
-		ui.lblWaitor->setText("服务员" + str2qstr(pWaitor->GetName()) + "为您服务！");
+		pWaiter = &MainLogic::s_currentWaiters[idWaiter];
+		pCustomer->m_waitorComment[idWaiter];
+		ui.lblWaiter->setText("服务员" + str2qstr(pWaiter->GetName()) + "为您服务！");
 		pCustomer->m_itNow->second.Assign();
 	}
 	else
 	{
-		pWaitor = nullptr;
-		ui.lblWaitor->setText("暂无服务员为您服务！");
+		pWaiter = nullptr;
+		ui.lblWaiter->setText("暂无服务员为您服务！");
 	}
 	ui.lblInfo->setText(QString("您好！尊敬的顾客%0，您的桌号为%1").
 		arg(str2qstr(pCustomer->GetName())).
@@ -125,19 +125,19 @@ void CustomerView::PhaseMealEat()
 
 void CustomerView::OnPackUp()
 {
-	pWaitor->m_deqTodo.push_back(SRVS::Package);
+	pWaiter->m_deqTodo.push_back(SRVS::Package);
 	QMessageBox::information(this, "通知", "信息 打包 已发送给服务员！");
 }
 
 void CustomerView::OnAddWater()
 {
-	pWaitor->m_deqTodo.push_back(SRVS::Water);
+	pWaiter->m_deqTodo.push_back(SRVS::Water);
 	QMessageBox::information(this, "通知", "信息 加水 已发送给服务员！");
 }
 
 void CustomerView::OnHasten()
 {
-	pWaitor->m_deqTodo.push_back(SRVS::Hasten);
+	pWaiter->m_deqTodo.push_back(SRVS::Hasten);
 	QMessageBox::information(this, "通知", "信息 催单 已发送给服务员！");
 }
 
@@ -147,7 +147,7 @@ void CustomerView::OnCommentDish()
 	addc.exec();
 }
 
-void CustomerView::OnCommentWaitor()
+void CustomerView::OnCommentWaiter()
 {
 	AddComment addc(IDGENERATOR::ID_WAITOR, pCustomer, this);
 	addc.exec();

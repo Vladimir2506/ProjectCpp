@@ -158,7 +158,7 @@
      </rect>
     </property>
    </widget>
-   <widget class="QLineEdit" name="leWaitor">
+   <widget class="QLineEdit" name="leWaiter">
     <property name="geometry">
      <rect>
       <x>200</x>
@@ -210,7 +210,7 @@
      <string>订单日期：</string>
     </property>
    </widget>
-   <widget class="QLabel" name="lblWaitorID">
+   <widget class="QLabel" name="lblWaiterID">
     <property name="geometry">
      <rect>
       <x>50</x>
@@ -391,7 +391,7 @@
    </hints>
   </connection>
   <connection>
-   <sender>leWaitor</sender>
+   <sender>leWaiter</sender>
    <signal>textEdited(QString)</signal>
    <receiver>OrderSupervise</receiver>
    <slot>OnDelta()</slot>
