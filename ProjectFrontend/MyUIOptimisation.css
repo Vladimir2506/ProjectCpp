@@ -18,40 +18,40 @@ QLabel#lblTotal {
 }
 /*Background for every form*/
 QLabel#lblLoginBGN {
-    background-image: url(login.png);
+    background-image: url(Resources/login.png);
 }
 QLabel#lblRegisterBGN {
-    background-image: url(register.png);
+    background-image: url(Resources/register.png);
 }
 QLabel#lblAddcBGN {
-    background-image: url(addc.png);
+    background-image: url(Resources/addc.png);
 }
 QLabel#lblProfBGN {
-    background-image: url(prof.png);
+    background-image: url(Resources/prof.png);
 }
 QLabel#lblCommSVBGN {
-    background-image: url(commsv.png);
+    background-image: url(Resources/commsv.png);
 }
 QLabel#lblbrcommBGN {
-    background-image: url(brcomm.png);
+    background-image: url(Resources/brcomm.png);
 }
 QLabel#lblMaintainerBGN {
-    background-image: url(maintainerview.png);
+    background-image: url(Resources/maintainerview.png);
 }
 QLabel#lblOrdSVBGN {
-    background-image: url(ordsv.png);
+    background-image: url(Resources/ordsv.png);
 }
 QLabel#lblCustomerBGN {
-    background-image: url(customerview.png);
+    background-image: url(Resources/customerview.png);
 }
 QLabel#lblManagerBGN {
-    background-image: url(managerview.png);
+    background-image: url(Resources/managerview.png);
 }
 QLabel#lblCookBGN {
-    background-image: url(cookview.png);
+    background-image: url(Resources/cookview.png);
 }
 QLabel#lblWaiterBGN {
-    background-image: url(waiterview.png);
+    background-image: url(Resources/waiterview.png);
 }
 /*Buttons style*/
 QPushButton {
@@ -97,7 +97,7 @@ QComboBox::drop-down {
     width: 20px;
 }
 QComboBox::down-arrow {
-    image: url(dropdown.png);
+    image: url(Resources/dropdown.png);
 }
 /*Tables Style*/
 QHeaderView {
@@ -163,10 +163,10 @@ QSpinBox:focus {
     border-bottom-color: #039BE5;
 }
 QSpinBox::up-button {
-    image: url(upbtn.png);
+    image: url(Resources/upbtn.png);
 }
 QSpinBox::down-button {
-    image: url(downbtn.png);
+    image: url(Resources/downbtn.png);
 }
 /*DateEdit Style*/
 QDateEdit {
@@ -178,10 +178,10 @@ QDateEdit:focus {
     border-bottom-color: #039BE5;
 }
 QDateEdit::up-button {
-    image: url(upbtn.png);
+    image: url(Resources/upbtn.png);
 }
 QDateEdit::down-button {
-    image: url(downbtn.png);
+    image: url(Resources/downbtn.png);
 }
 /*GroupBox Style*/
 QGroupBox {

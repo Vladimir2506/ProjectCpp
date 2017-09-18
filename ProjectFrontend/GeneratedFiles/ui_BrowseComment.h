@@ -50,14 +50,14 @@ public:
         btnBack->setObjectName(QStringLiteral("btnBack"));
         btnBack->setGeometry(QRect(50, 185, 40, 40));
         QIcon icon;
-        icon.addFile(QStringLiteral("back.png"), QSize(), QIcon::Normal, QIcon::Off);
+        icon.addFile(QStringLiteral("Resources/back.png"), QSize(), QIcon::Normal, QIcon::Off);
         btnBack->setIcon(icon);
         btnBack->setIconSize(QSize(25, 25));
         btnNext = new QPushButton(BrowseComment);
         btnNext->setObjectName(QStringLiteral("btnNext"));
         btnNext->setGeometry(QRect(410, 185, 40, 40));
         QIcon icon1;
-        icon1.addFile(QStringLiteral("next.png"), QSize(), QIcon::Normal, QIcon::Off);
+        icon1.addFile(QStringLiteral("Resources/next.png"), QSize(), QIcon::Normal, QIcon::Off);
         btnNext->setIcon(icon1);
         btnNext->setIconSize(QSize(25, 25));
         groupBox = new QGroupBox(BrowseComment);

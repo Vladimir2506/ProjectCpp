@@ -8,8 +8,8 @@ RegisterForm::RegisterForm(QWidget *parent)
 	//UI Init
 	ui.setupUi(this);
 	//Pixmap Init
-	pixWrong.load("wrong.png");
-	pixRight.load("right.png");
+	pixWrong.load("Resources/wrong.png");
+	pixRight.load("Resources/right.png");
 	//Buttons Init
 	ui.btnSubmit->setDisabled(true);
 	ui.btnSubmit->clearFocus();

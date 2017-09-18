@@ -5,8 +5,8 @@ ProfileView::ProfileView(QWidget *parent)
 	: QDialog(parent)
 {
 	ui.setupUi(this);
-	pixRight.load("right.png");
-	pixWrong.load("wrong.png");
+	pixRight.load("Resources/right.png");
+	pixWrong.load("Resources/wrong.png");
 	pMe = MainLogic::GetInstance()->pUser;
 	if (pMe->GetId()[0] == '3')
 	{
