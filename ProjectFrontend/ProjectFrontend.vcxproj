@@ -80,7 +80,9 @@
   <ItemGroup>
     <ClCompile Include="AddComment.cpp" />
     <ClCompile Include="BrowseComment.cpp" />
-    <ClCompile Include="GeneratedFiles\Debug\moc_WaiterView.cpp" />
+    <ClCompile Include="GeneratedFiles\Debug\moc_WaiterView.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="ProjectBackend.cpp" />
     <ClCompile Include="CommentSupervise.cpp" />
     <ClCompile Include="CookView.cpp" />

@@ -374,6 +374,18 @@
   <zorder>gbComments</zorder>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
+ <tabstops>
+  <tabstop>lePhone</tabstop>
+  <tabstop>leName</tabstop>
+  <tabstop>lePassword</tabstop>
+  <tabstop>leDeux</tabstop>
+  <tabstop>btnSave</tabstop>
+  <tabstop>btnUndo</tabstop>
+  <tabstop>leID</tabstop>
+  <tabstop>tbOrders</tabstop>
+  <tabstop>cbOrders</tabstop>
+  <tabstop>tbComments</tabstop>
+ </tabstops>
  <resources/>
  <connections>
   <connection>

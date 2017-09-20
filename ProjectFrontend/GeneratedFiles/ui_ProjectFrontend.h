@@ -81,6 +81,12 @@ public:
         statusBar = new QStatusBar(ProjectFrontendClass);
         statusBar->setObjectName(QStringLiteral("statusBar"));
         ProjectFrontendClass->setStatusBar(statusBar);
+#ifndef QT_NO_SHORTCUT
+        lblLoginBGN->setBuddy(lblLoginBGN);
+#endif // QT_NO_SHORTCUT
+        QWidget::setTabOrder(lePhone, lePW);
+        QWidget::setTabOrder(lePW, btnSignIn);
+        QWidget::setTabOrder(btnSignIn, btnSignUp);
 
         retranslateUi(ProjectFrontendClass);
         QObject::connect(btnSignUp, SIGNAL(clicked()), ProjectFrontendClass, SLOT(OnRegClicked()));
