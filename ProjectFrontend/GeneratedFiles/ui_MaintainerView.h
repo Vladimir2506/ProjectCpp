@@ -62,7 +62,7 @@ public:
         tbMenu->setObjectName(QStringLiteral("tbMenu"));
         tbMenu->setGeometry(QRect(50, 50, 600, 450));
         tbMenu->setSelectionMode(QAbstractItemView::SingleSelection);
-        tbMenu->setSelectionBehavior(QAbstractItemView::SelectRows);
+        tbMenu->setSelectionBehavior(QAbstractItemView::SelectItems);
         tbMenu->setSortingEnabled(true);
         tbMenu->setCornerButtonEnabled(true);
         tbMenu->horizontalHeader()->setMinimumSectionSize(40);
@@ -94,7 +94,7 @@ public:
         tbUser->setObjectName(QStringLiteral("tbUser"));
         tbUser->setGeometry(QRect(50, 100, 600, 450));
         tbUser->setSelectionMode(QAbstractItemView::SingleSelection);
-        tbUser->setSelectionBehavior(QAbstractItemView::SelectRows);
+        tbUser->setSelectionBehavior(QAbstractItemView::SelectItems);
         lblCommit = new QLabel(gbAccount);
         lblCommit->setObjectName(QStringLiteral("lblCommit"));
         lblCommit->setGeometry(QRect(525, 50, 25, 25));

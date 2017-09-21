@@ -23,21 +23,8 @@
    </size>
   </property>
   <property name="windowTitle">
-   <string>服务员</string>
+   <string>WaiterView</string>
   </property>
-  <widget class="QLabel" name="lblInfo">
-   <property name="geometry">
-    <rect>
-     <x>25</x>
-     <y>175</y>
-     <width>350</width>
-     <height>25</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string/>
-   </property>
-  </widget>
   <widget class="QGroupBox" name="gbTodo">
    <property name="geometry">
     <rect>
@@ -138,6 +125,19 @@
     </property>
    </widget>
   </widget>
+  <widget class="QLabel" name="lblWaiterBGN">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>925</width>
+     <height>750</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
   <widget class="QGroupBox" name="gbDone">
    <property name="geometry">
     <rect>
@@ -167,6 +167,19 @@
     </property>
    </widget>
   </widget>
+  <widget class="QLabel" name="lblInfo">
+   <property name="geometry">
+    <rect>
+     <x>25</x>
+     <y>175</y>
+     <width>350</width>
+     <height>25</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
   <widget class="QPushButton" name="btnProfile">
    <property name="geometry">
     <rect>
@@ -180,73 +193,28 @@
     <string>个人资料</string>
    </property>
   </widget>
-  <widget class="QLabel" name="lblWaiterBGN">
-   <property name="geometry">
-    <rect>
-     <x>0</x>
-     <y>0</y>
-     <width>925</width>
-     <height>750</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string/>
-   </property>
-  </widget>
   <zorder>lblWaiterBGN</zorder>
-  <zorder>lblInfo</zorder>
   <zorder>gbTodo</zorder>
   <zorder>gbDone</zorder>
+  <zorder>lblInfo</zorder>
   <zorder>btnProfile</zorder>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
  <resources/>
  <connections>
   <connection>
-   <sender>lstDemand</sender>
-   <signal>currentRowChanged(int)</signal>
-   <receiver>WaiterView</receiver>
-   <slot>OnSelDemand(int)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>398</x>
-     <y>267</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>346</x>
-     <y>59</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>lstPlate</sender>
-   <signal>currentRowChanged(int)</signal>
-   <receiver>WaiterView</receiver>
-   <slot>OnSelPlate(int)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>163</x>
-     <y>255</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>361</x>
-     <y>72</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>btnDemand</sender>
+   <sender>btnProfile</sender>
    <signal>clicked()</signal>
    <receiver>WaiterView</receiver>
-   <slot>OnDemand()</slot>
+   <slot>OnProfile()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>436</x>
-     <y>525</y>
+     <x>437</x>
+     <y>191</y>
     </hint>
     <hint type="destinationlabel">
-     <x>562</x>
-     <y>517</y>
+     <x>452</x>
+     <y>-10</y>
     </hint>
    </hints>
   </connection>
@@ -257,37 +225,69 @@
    <slot>OnDeliver()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>170</x>
-     <y>521</y>
+     <x>174</x>
+     <y>672</y>
     </hint>
     <hint type="destinationlabel">
-     <x>388</x>
-     <y>587</y>
+     <x>126</x>
+     <y>-8</y>
     </hint>
    </hints>
   </connection>
   <connection>
-   <sender>btnProfile</sender>
+   <sender>btnDemand</sender>
    <signal>clicked()</signal>
    <receiver>WaiterView</receiver>
-   <slot>OnProfile()</slot>
+   <slot>OnDemand()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>459</x>
-     <y>32</y>
+     <x>431</x>
+     <y>672</y>
     </hint>
     <hint type="destinationlabel">
-     <x>550</x>
-     <y>50</y>
+     <x>329</x>
+     <y>-2</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>lstPlate</sender>
+   <signal>currentRowChanged(int)</signal>
+   <receiver>WaiterView</receiver>
+   <slot>OnSelPlate(int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>204</x>
+     <y>402</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>239</x>
+     <y>-15</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>lstDemand</sender>
+   <signal>currentRowChanged(int)</signal>
+   <receiver>WaiterView</receiver>
+   <slot>OnSelDemand(int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>364</x>
+     <y>344</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>408</x>
+     <y>-11</y>
     </hint>
    </hints>
   </connection>
  </connections>
  <slots>
-  <slot>OnSelPlate(int)</slot>
-  <slot>OnSelDemand(int)</slot>
+  <slot>OnProfile()</slot>
   <slot>OnDeliver()</slot>
   <slot>OnDemand()</slot>
-  <slot>OnProfile()</slot>
+  <slot>OnSelPlate(int)</slot>
+  <slot>OnSelDemand(int)</slot>
  </slots>
 </ui>

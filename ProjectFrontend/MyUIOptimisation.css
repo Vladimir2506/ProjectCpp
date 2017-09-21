@@ -73,17 +73,17 @@ QPushButton:disabled{
 }
 /*Line-edits Style*/
 QLineEdit {
-    background: transparent;
+    background-color: white;
     border-bottom: solid;
-    border-color: #BDBDBD;
-    border-width: 2px;
+    border-bottom-color: #BDBDBD;
+    border-bottom-width: 2px;
     font: 16px;
 }
 QLineEdit:focus {
-    background: transparent;
+    background-color: white;
     border-bottom: solid;
-    border-color: #039BE5;
-    border-width: 2px;
+    border-bottom-color: #039BE5;
+    border-bottom-width: 2px;
 }
 QComboBox {
     background: transparent;
@@ -108,8 +108,8 @@ QHeaderView {
 QTableView {
     background-color: transparent;
     gridline-color: ghostwhite;
-    text-align: center;
-    selection-background-color: #81D4FA;
+    selection-background-color: #E1F5FE;
+    selection-color: black;
 }
 /*Buttons in tables Style*/
 QTableWidget QPushButton {

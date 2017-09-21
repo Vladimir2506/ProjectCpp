@@ -147,6 +147,9 @@
     <ClCompile Include="GeneratedFiles\Debug\moc_WaiterView.cpp">
       <Filter>Generated Files</Filter>
     </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_WaiterView.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
     <ClCompile Include="WaiterView.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -265,11 +268,11 @@
     <CustomBuild Include="ProfileView.ui">
       <Filter>Form Files</Filter>
     </CustomBuild>
-    <CustomBuild Include="WaiterView.ui">
-      <Filter>Form Files</Filter>
-    </CustomBuild>
     <CustomBuild Include="WaiterView.h">
       <Filter>Header Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="WaiterView.ui">
+      <Filter>Form Files</Filter>
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>
@@ -279,5 +282,6 @@
     <None Include="MyUIOptimisation.css">
       <Filter>Resource Files</Filter>
     </None>
+    <None Include="ClassDiagram.cd" />
   </ItemGroup>
 </Project>
