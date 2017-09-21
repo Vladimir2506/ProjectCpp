@@ -212,7 +212,7 @@ protected:
 public:
 	map<string, Order>::iterator m_itNow;			//The iter to current order
 	map<string, string> m_statusComment;			//The status of comments made of cuisine
-	map<string, string> m_waitorComment;			//Waiter comment status
+	map<string, string> m_waiterComment;			//Waiter comment status
 	//Constructors
 	Customer(const string & strId = "", const string & strName = "",
 		const string & strPassword = "", const string & strPhone = "");

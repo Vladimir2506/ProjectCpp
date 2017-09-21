@@ -990,7 +990,7 @@ void Customer::Finish()
 	MainLogic::s_currentWaiters[m_itNow->second.GetWaiterId()].Liberate();
 	m_itNow = MainLogic::s_currentOrders.end();
 	m_statusComment.clear();
-	m_waitorComment.clear();
+	m_waiterComment.clear();
 }
 
 void Customer::GetSeat(const int nTable,const string &strName)

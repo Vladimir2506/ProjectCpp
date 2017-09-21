@@ -119,7 +119,7 @@ void CustomerView::PhaseMealEat()
 	if (idWaiter != "")
 	{
 		pWaiter = &MainLogic::s_currentWaiters[idWaiter];
-		pCustomer->m_waitorComment[idWaiter];
+		pCustomer->m_waiterComment[idWaiter];
 		ui.lblWaiter->setText("服务员" + str2qstr(pWaiter->GetName()) + "为您服务！");
 		pCustomer->m_itNow->second.Assign();
 	}

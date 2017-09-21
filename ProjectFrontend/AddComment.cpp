@@ -15,7 +15,7 @@ AddComment::AddComment(int nIdMode, Customer *p,QWidget *parent)
 	case IDGENERATOR::ID_WAITOR:
 		ui.btnBack->hide();
 		ui.btnNext->hide();
-		pComm = &p->m_waitorComment;
+		pComm = &p->m_waiterComment;
 		break;
 	default:
 		pComm = nullptr;
