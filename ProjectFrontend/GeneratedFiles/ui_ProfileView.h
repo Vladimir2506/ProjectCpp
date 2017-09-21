@@ -151,6 +151,15 @@ public:
         gbProfile->raise();
         gbOrders->raise();
         gbComments->raise();
+        QWidget::setTabOrder(lePhone, leName);
+        QWidget::setTabOrder(leName, lePassword);
+        QWidget::setTabOrder(lePassword, leDeux);
+        QWidget::setTabOrder(leDeux, btnSave);
+        QWidget::setTabOrder(btnSave, btnUndo);
+        QWidget::setTabOrder(btnUndo, leID);
+        QWidget::setTabOrder(leID, tbOrders);
+        QWidget::setTabOrder(tbOrders, cbOrders);
+        QWidget::setTabOrder(cbOrders, tbComments);
 
         retranslateUi(ProfileView);
         QObject::connect(lePhone, SIGNAL(textEdited(QString)), ProfileView, SLOT(OnDelta()));

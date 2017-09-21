@@ -304,6 +304,9 @@
       <height>25</height>
      </rect>
     </property>
+    <property name="maxLength">
+     <number>10</number>
+    </property>
     <property name="placeholderText">
      <string>10个字符之内</string>
     </property>

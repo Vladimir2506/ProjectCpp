@@ -121,6 +121,7 @@ public:
         leName = new QLineEdit(gbRegister);
         leName->setObjectName(QStringLiteral("leName"));
         leName->setGeometry(QRect(225, 250, 150, 25));
+        leName->setMaxLength(10);
         lblState4 = new QLabel(gbRegister);
         lblState4->setObjectName(QStringLiteral("lblState4"));
         lblState4->setGeometry(QRect(400, 250, 25, 25));

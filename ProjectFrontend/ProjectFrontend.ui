@@ -147,6 +147,9 @@
     <property name="text">
      <string/>
     </property>
+    <property name="buddy">
+     <cstring>lblLoginBGN</cstring>
+    </property>
    </widget>
    <zorder>lblLoginBGN</zorder>
    <zorder>gbLogin</zorder>
@@ -154,6 +157,12 @@
   <widget class="QStatusBar" name="statusBar"/>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
+ <tabstops>
+  <tabstop>lePhone</tabstop>
+  <tabstop>lePW</tabstop>
+  <tabstop>btnSignIn</tabstop>
+  <tabstop>btnSignUp</tabstop>
+ </tabstops>
  <resources>
   <include location="ProjectFrontend.qrc"/>
  </resources>

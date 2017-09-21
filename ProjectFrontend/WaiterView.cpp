@@ -7,14 +7,7 @@ WaiterView::WaiterView(QWidget *parent)
 	lstService{ "上菜","加水","打包","催单" }
 {
 	ui.setupUi(this);
-	if (pWaiter->IsIdle())
-	{
-		ui.lblInfo->setText("您好！尊敬的服务员" + str2qstr(pWaiter->GetName()));
-	}
-	else
-	{
-		ui.lblInfo->setText("您好！尊敬的服务员" + str2qstr(pWaiter->GetName()) + ",您服务的桌号为" + QString::number(pWaiter->GetTableNum() + 1));
-	}
+	ui.lblInfo->setText("您好！尊敬的服务员" + str2qstr(pWaiter->GetName()));
 	mdlDone = new QStandardItemModel(this);
 	PrepareDemand();
 	PrepareDone();
@@ -65,14 +58,7 @@ void WaiterView::OnProfile()
 {
 	ProfileView profile(this);
 	profile.exec();
-	if (pWaiter->IsIdle())
-	{
-		ui.lblInfo->setText("您好！尊敬的服务员" + str2qstr(pWaiter->GetId()));
-	}
-	else
-	{
-		ui.lblInfo->setText("您好！尊敬的服务员" + str2qstr(pWaiter->GetId()) + ",您服务的桌号为" + QString::number(pWaiter->GetTableNum()));
-	}
+	ui.lblInfo->setText("您好！尊敬的服务员" + str2qstr(pWaiter->GetName()));
 }
 
 void WaiterView::OnSelDemand(int nRow)
