@@ -187,3 +187,7 @@ QDateEdit::down-button {
 QGroupBox {
     font: bold;
 }
+/*QProgressBar Style*/
+QProgressBar::chunk {
+    background-color: #81D4FA;
+}

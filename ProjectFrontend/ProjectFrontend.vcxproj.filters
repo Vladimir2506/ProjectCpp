@@ -279,9 +279,9 @@
     <ResourceCompile Include="ProjectFrontend.rc" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="MyUIOptimisation.css">
+    <None Include="ClassDiagram.cd" />
+    <None Include="MyUI.css">
       <Filter>Resource Files</Filter>
     </None>
-    <None Include="ClassDiagram.cd" />
   </ItemGroup>
 </Project>

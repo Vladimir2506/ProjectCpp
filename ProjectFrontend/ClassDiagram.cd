@@ -28,21 +28,14 @@
       <FileName>ProjectBackend.h</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="Order">
-    <Position X="13.5" Y="1.75" Width="2.75" />
+  <Class Name="Order" Collapsed="true">
+    <Position X="13.5" Y="1.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAEAGAYIAAAABQAAFAAABAAAAgAECRIQAAAAQIBAAAE=</HashCode>
       <FileName>ProjectBackend.h</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="Customer">
-    <Position X="8.25" Y="3.25" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AIEAFEIAAQAAAAAARAAAAAAAAQAAAAAQQIAAAIAAAEw=</HashCode>
-      <FileName>ProjectBackend.h</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="Cook">
+  <Class Name="Cook" Collapsed="true">
     <Position X="10.5" Y="3.25" Width="1.5" />
     <InheritanceLine Type="People" FixedToPoint="true">
       <Path>
@@ -57,21 +50,21 @@
       <FileName>ProjectBackend.h</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="Waiter">
+  <Class Name="Waiter" Collapsed="true">
     <Position X="1.5" Y="3.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAEAIAAAAAAQACBAAAIAAAAAAABCCSACAAAIAAACQ=</HashCode>
       <FileName>ProjectBackend.h</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="Manager">
+  <Class Name="Manager" Collapsed="true">
     <Position X="3.5" Y="3.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAIAAAAAAgAABAAAAAAAAAAABAQAAAAAAIAAAAU=</HashCode>
       <FileName>ProjectBackend.h</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="Maintainer">
+  <Class Name="Maintainer" Collapsed="true">
     <Position X="5.75" Y="3.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAIAAAAAAAAABCAAAAAAAAAAAAAAAAAAAIAAAAQ=</HashCode>
@@ -79,7 +72,7 @@
     </TypeIdentifier>
   </Class>
   <Class Name="MainLogic" Collapsed="true">
-    <Position X="3.25" Y="1.5" Width="1.5" />
+    <Position X="3.25" Y="1.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AQAAEAAAAQAAAQAAACAABAgABERAAEAAAAIIAAAEASQ=</HashCode>
       <FileName>ProjectBackend.h</FileName>
@@ -93,241 +86,248 @@
     </TypeIdentifier>
   </Class>
   <Class Name="WaiterView" Collapsed="true">
-    <Position X="15.5" Y="10" Width="1.5" />
+    <Position X="15" Y="5.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAQAAAAAAEAABHIAAggIQAgAAACAAAAAAAAAIAAA=</HashCode>
       <FileName>WaiterView.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="AddComment" Collapsed="true">
-    <Position X="3.75" Y="10" Width="1.5" />
+    <Position X="3.25" Y="6.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>QBAgEAJAAAAAEIAARUAABAAAAEAAgAAAAAACACAIAQA=</HashCode>
       <FileName>AddComment.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="CookView" Collapsed="true">
-    <Position X="4" Y="12.5" Width="1.5" />
+    <Position X="3.25" Y="8" Width="1.5" />
     <TypeIdentifier>
       <HashCode>IAAAEAAAAAAAEAAABAAAgiAAAgAAAAAAAAAAACAAIAA=</HashCode>
       <FileName>CookView.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="ManagerView" Collapsed="true">
-    <Position X="3.75" Y="15" Width="1.5" />
+    <Position X="3.25" Y="10.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AIAAAABAAgAAFAAAMAAQBiAAAAAQACAACACAABAAAAA=</HashCode>
       <FileName>ManagerView.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="ProfileView" Collapsed="true">
-    <Position X="16" Y="12.75" Width="1.5" />
+    <Position X="15.5" Y="8.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>EBQAAgIAAAAQEAAgBAYgACAAA4AAAAAAIACRAAIAACg=</HashCode>
       <FileName>ProfileView.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="BrowseComment" Collapsed="true">
-    <Position X="11.25" Y="12.75" Width="1.5" />
+    <Position X="11" Y="8" Width="1.5" />
     <TypeIdentifier>
       <HashCode>QAAgFAJAABAAEAAABAAAAAAAAAAAAAAQAAAAACAAAAQ=</HashCode>
       <FileName>BrowseComment.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="CommentSupervise" Collapsed="true">
-    <Position X="8" Y="15" Width="1.5" />
+    <Position X="7.5" Y="10.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>wBCAEAJBAAAAEAAABQAAAABgAAIAgAAAAAEAACAQAAA=</HashCode>
       <FileName>CommentSupervise.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="CustomerView" Collapsed="true">
-    <Position X="7.25" Y="12.75" Width="1.5" />
+    <Position X="7" Y="8.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>QAAFARAAAAACEBAIBBACAgAQAkAEIAAAIASQABAGAAA=</HashCode>
       <FileName>CustomerView.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="RegisterForm" Collapsed="true">
-    <Position X="7.25" Y="10" Width="1.5" />
+    <Position X="7" Y="5.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>CBAAAAQAAAAQEAAABEogACAAAYCAAAAAAAAQAAAAAAA=</HashCode>
       <FileName>RegisterForm.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="ProjectFrontend" Collapsed="true">
-    <Position X="15" Y="14.5" Width="1.5" />
+    <Position X="14.5" Y="10" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAEAAEAAUBAAgAAAAAUAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>ProjectFrontend.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="MaintainerView" Collapsed="true">
-    <Position X="11.25" Y="10" Width="1.5" />
+    <Position X="11" Y="5.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>QIIAgAgAEAAgGJAIFIQAHBAMYAUIgMAgQBgAASWCAEo=</HashCode>
       <FileName>MaintainerView.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="OrderSupervise" Collapsed="true">
-    <Position X="12.25" Y="15" Width="1.5" />
+    <Position X="11.75" Y="10.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>ARABEAAAAAAAEqAAhQAAAABgAAIAAAAAAAgCgqgYAAA=</HashCode>
       <FileName>OrderSupervise.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Ui_AddComment" Collapsed="true">
-    <Position X="2" Y="9.5" Width="1.5" />
+    <Position X="1.5" Y="5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AQCAgAAAAAAAACAAAAAAAAAAAiYAJABQIBEAAAAgAEA=</HashCode>
       <FileName>GeneratedFiles\ui_AddComment.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Ui_CookView" Collapsed="true">
-    <Position X="2" Y="12" Width="1.5" />
+    <Position X="1.5" Y="7.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAghAAAAABAAAAAAoAAAAAAAAQQIAAAAAAABBAAAAA=</HashCode>
       <FileName>GeneratedFiles\ui_CookView.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Ui_ManagerView" Collapsed="true">
-    <Position X="2" Y="14.5" Width="1.5" />
+    <Position X="1.5" Y="10" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAEAAAAAAACEBAIIAAEAAAMYAIAAAAAACBBBABAI=</HashCode>
       <FileName>GeneratedFiles\ui_ManagerView.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Ui_ProfileView" Collapsed="true">
-    <Position X="13.75" Y="12" Width="1.5" />
+    <Position X="13.25" Y="7.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AQAAAACAAAQAAAAAAEYCEBAACASQIACEAqIAgAIBIAA=</HashCode>
       <FileName>GeneratedFiles\ui_ProfileView.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Ui_WaiterView" Collapsed="true">
-    <Position X="13.5" Y="9.5" Width="1.5" />
+    <Position X="13" Y="5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAgAAABAAFQAAAAAAIIAAAAABQQIAAACAAABBAAAAA=</HashCode>
       <FileName>GeneratedFiles\ui_WaiterView.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Ui_BrowseComment" Collapsed="true">
-    <Position X="9.5" Y="12" Width="1.5" />
+    <Position X="9" Y="7.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAgAAAAAAAACAAAAAAAAAAACYAIABEIjEAAAABAEA=</HashCode>
       <FileName>GeneratedFiles\ui_BrowseComment.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Ui_CommentSupervise" Collapsed="true">
-    <Position X="6" Y="14.5" Width="1.5" />
+    <Position X="5.5" Y="10" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AQCEgAAAAQAAAAIACAEAkAAAICYAoABGoBEEEAIBAEA=</HashCode>
       <FileName>GeneratedFiles\ui_CommentSupervise.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Ui_CustomerView" Collapsed="true">
-    <Position X="5.75" Y="12" Width="1.5" />
+    <Position X="5.25" Y="7.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>IIQAgAAAAAACEAAAAQAgAAGAABYAIAAAABAABNQAhQA=</HashCode>
       <FileName>GeneratedFiles\ui_CustomerView.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Ui_MaintainerView" Collapsed="true">
-    <Position X="9.5" Y="9.5" Width="1.5" />
+    <Position X="9" Y="5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>ABAAgEAAAEACEMEAAAAABIAIAAYQIAACAEAAABAAAQA=</HashCode>
       <FileName>GeneratedFiles\ui_MaintainerView.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Ui_OrderSupervise" Collapsed="true">
-    <Position X="10.25" Y="14.5" Width="1.5" />
+    <Position X="9.75" Y="10" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AQAAgACAAAAAECgAAAAAAEIgCAQAogBKQAIEAAIBAAQ=</HashCode>
       <FileName>GeneratedFiles\ui_OrderSupervise.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Ui_RegisterForm" Collapsed="true">
-    <Position X="5.75" Y="9.25" Width="1.5" />
+    <Position X="5.25" Y="4.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AQAAAAAAAAAIAAEAAAIAABQAAAQAIACAAI4AAECAkAA=</HashCode>
       <FileName>GeneratedFiles\ui_RegisterForm.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Ui::AddComment" Collapsed="true">
-    <Position X="2" Y="10.75" Width="1.5" />
+    <Position X="1.5" Y="6.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>GeneratedFiles\ui_AddComment.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Ui::CookView" Collapsed="true">
-    <Position X="2" Y="13.25" Width="1.5" />
+    <Position X="1.5" Y="8.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>GeneratedFiles\ui_CookView.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Ui::ManagerView" Collapsed="true">
-    <Position X="2" Y="15.75" Width="1.5" />
+    <Position X="1.5" Y="11.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>GeneratedFiles\ui_ManagerView.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Ui::ProfileView" Collapsed="true">
-    <Position X="13.75" Y="13.25" Width="1.5" />
+    <Position X="13.25" Y="8.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>GeneratedFiles\ui_ProfileView.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Ui::WaiterView" Collapsed="true">
-    <Position X="13.5" Y="10.75" Width="1.5" />
+    <Position X="13" Y="6.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>GeneratedFiles\ui_WaiterView.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Ui::BrowseComment" Collapsed="true">
-    <Position X="9.5" Y="13.25" Width="1.5" />
+    <Position X="9" Y="8.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>GeneratedFiles\ui_BrowseComment.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Ui::CommentSupervise" Collapsed="true">
-    <Position X="6" Y="15.75" Width="1.5" />
+    <Position X="5.5" Y="11.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>GeneratedFiles\ui_CommentSupervise.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Ui::CustomerView" Collapsed="true">
-    <Position X="5.75" Y="13.5" Width="1.5" />
+    <Position X="5.25" Y="9" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>GeneratedFiles\ui_CustomerView.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Ui::MaintainerView" Collapsed="true">
-    <Position X="9.5" Y="10.75" Width="1.5" />
+    <Position X="9" Y="6.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>GeneratedFiles\ui_MaintainerView.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Ui::OrderSupervise" Collapsed="true">
-    <Position X="10.25" Y="15.75" Width="1.5" />
+    <Position X="9.75" Y="11.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>GeneratedFiles\ui_OrderSupervise.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Ui::RegisterForm" Collapsed="true">
-    <Position X="5.75" Y="10.75" Width="1.5" />
+    <Position X="5.25" Y="6.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>GeneratedFiles\ui_RegisterForm.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Customer" Collapsed="true">
+    <Position X="8.25" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AIEAFEIAAQAAAAAARAAAAAAAAQAAAAAQQIAAAIAAAEw=</HashCode>
+      <FileName>ProjectBackend.h</FileName>
     </TypeIdentifier>
   </Class>
   <Font Name="Microsoft YaHei UI" Size="9" />

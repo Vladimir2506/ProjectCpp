@@ -1192,7 +1192,7 @@ void Cook::LoadInfo(MyDataBase & theDB)
 	const string strTableName = "Cook";
 	//The schema
 	/*
-	TABLE Customer
+	TABLE Cook
 	ID NTEXT PRIMARY KEY NOT NULL
 	NAME NTEXT NOT NULL
 	PASSWORD NTEXT NOT NULL
